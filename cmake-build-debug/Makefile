@@ -123,6 +123,33 @@ Runtime/fast:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/build
 .PHONY : Runtime/fast
 
+Bytecode.o: Bytecode.cpp.o
+
+.PHONY : Bytecode.o
+
+# target to build an object file
+Bytecode.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.o
+.PHONY : Bytecode.cpp.o
+
+Bytecode.i: Bytecode.cpp.i
+
+.PHONY : Bytecode.i
+
+# target to preprocess a source file
+Bytecode.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.i
+.PHONY : Bytecode.cpp.i
+
+Bytecode.s: Bytecode.cpp.s
+
+.PHONY : Bytecode.s
+
+# target to generate assembly for a file
+Bytecode.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
+.PHONY : Bytecode.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Runtime"
+	@echo "... Bytecode.o"
+	@echo "... Bytecode.i"
+	@echo "... Bytecode.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -3,4 +3,4 @@ project(Runtime)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Runtime main.cpp)
+add_executable(Runtime main.cpp Bytecode.cpp Bytecode.h)
