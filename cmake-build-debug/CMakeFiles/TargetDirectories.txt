@@ -1,0 +1,3 @@
+/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir
