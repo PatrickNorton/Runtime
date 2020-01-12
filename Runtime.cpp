@@ -19,3 +19,19 @@ Variable Runtime::pop() {
     stack.pop();
     return var;
 }
+
+void Runtime::push(Variable variable) {
+    stack.push(variable);
+}
+
+Variable Runtime::load_const(uint32_t index) {
+    return constants[index];
+}
+
+Variable Runtime::top() {
+    return stack.top();
+}
+
+void Runtime::goTo(uint32_t location) {
+    throw std::runtime_error("Goto not allowed yet");
+}
