@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/BuiltinImpl.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/BuiltinImpl.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Builtins.cpp">
 			<Option target="Runtime"/>
 		</Unit>
@@ -102,6 +108,12 @@
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.h">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Operator.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Operator.h">
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp">

@@ -7,13 +7,16 @@
 
 
 #include <string>
+#include "Operator.h"
 
 class _Variable {
 public:
-    std::string str();
+    typedef std::shared_ptr<_Variable> Variable;
+    virtual std::string str() = 0;
+    virtual Variable callOperator(Operator o, std::vector<Variable> args);
 };
 
-typedef std::shared_ptr<_Variable> Variable;
+typedef _Variable::Variable Variable;
 
 
 #endif //RUNTIME_VARIABLE_H

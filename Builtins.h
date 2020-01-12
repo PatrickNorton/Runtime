@@ -9,8 +9,9 @@
 #include "Variable.h"
 
 namespace Builtins {
-    Variable str;
-    void print(std::vector<Variable> args);
+    extern const Variable str;
+    extern Variable null;
+    void print(const std::vector<Variable>& args);
 }
 
 #endif //RUNTIME_BUILTINS_H

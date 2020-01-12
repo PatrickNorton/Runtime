@@ -4,10 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/patricknorton/CLionProjects/Runtime/BuiltinImpl.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Builtins.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Builtins.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Bytecode.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Bytecode.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Executor.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Executor.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntTools.cpp.o"
+  "/Users/patricknorton/CLionProjects/Runtime/Operator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Operator.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Runtime.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Variable.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Variable.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/main.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/main.cpp.o"

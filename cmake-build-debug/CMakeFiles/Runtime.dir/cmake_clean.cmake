@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o"
   "CMakeFiles/Runtime.dir/Builtins.cpp.o"
   "CMakeFiles/Runtime.dir/Bytecode.cpp.o"
   "CMakeFiles/Runtime.dir/Executor.cpp.o"
   "CMakeFiles/Runtime.dir/IntTools.cpp.o"
+  "CMakeFiles/Runtime.dir/Operator.cpp.o"
   "CMakeFiles/Runtime.dir/Runtime.cpp.o"
   "CMakeFiles/Runtime.dir/Variable.cpp.o"
   "CMakeFiles/Runtime.dir/main.cpp.o"
