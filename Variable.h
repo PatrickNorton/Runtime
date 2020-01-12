@@ -8,10 +8,12 @@
 
 #include <string>
 
-class Variable {
+class _Variable {
 public:
     std::string str();
 };
+
+typedef std::shared_ptr<_Variable> Variable;
 
 
 #endif //RUNTIME_VARIABLE_H

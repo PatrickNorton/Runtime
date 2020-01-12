@@ -4,6 +4,6 @@
 
 #include "Variable.h"
 
-std::string Variable::str() {
+std::string _Variable::str() {
     return std::string();
 }
