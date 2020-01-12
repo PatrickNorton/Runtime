@@ -123,6 +123,33 @@ Runtime/fast:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/build
 .PHONY : Runtime/fast
 
+Builtins.o: Builtins.cpp.o
+
+.PHONY : Builtins.o
+
+# target to build an object file
+Builtins.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Builtins.cpp.o
+.PHONY : Builtins.cpp.o
+
+Builtins.i: Builtins.cpp.i
+
+.PHONY : Builtins.i
+
+# target to preprocess a source file
+Builtins.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Builtins.cpp.i
+.PHONY : Builtins.cpp.i
+
+Builtins.s: Builtins.cpp.s
+
+.PHONY : Builtins.s
+
+# target to generate assembly for a file
+Builtins.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Builtins.cpp.s
+.PHONY : Builtins.cpp.s
+
 Bytecode.o: Bytecode.cpp.o
 
 .PHONY : Bytecode.o
@@ -150,32 +177,32 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
-RuntimeInfo.o: RuntimeInfo.cpp.o
+Runtime.o: Runtime.cpp.o
 
-.PHONY : RuntimeInfo.o
+.PHONY : Runtime.o
 
 # target to build an object file
-RuntimeInfo.cpp.o:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.o
-.PHONY : RuntimeInfo.cpp.o
+Runtime.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.o
+.PHONY : Runtime.cpp.o
 
-RuntimeInfo.i: RuntimeInfo.cpp.i
+Runtime.i: Runtime.cpp.i
 
-.PHONY : RuntimeInfo.i
+.PHONY : Runtime.i
 
 # target to preprocess a source file
-RuntimeInfo.cpp.i:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.i
-.PHONY : RuntimeInfo.cpp.i
+Runtime.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.i
+.PHONY : Runtime.cpp.i
 
-RuntimeInfo.s: RuntimeInfo.cpp.s
+Runtime.s: Runtime.cpp.s
 
-.PHONY : RuntimeInfo.s
+.PHONY : Runtime.s
 
 # target to generate assembly for a file
-RuntimeInfo.cpp.s:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.s
-.PHONY : RuntimeInfo.cpp.s
+Runtime.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.s
+.PHONY : Runtime.cpp.s
 
 Variable.o: Variable.cpp.o
 
@@ -240,12 +267,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Runtime"
+	@echo "... Builtins.o"
+	@echo "... Builtins.i"
+	@echo "... Builtins.s"
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
-	@echo "... RuntimeInfo.o"
-	@echo "... RuntimeInfo.i"
-	@echo "... RuntimeInfo.s"
+	@echo "... Runtime.o"
+	@echo "... Runtime.i"
+	@echo "... Runtime.s"
 	@echo "... Variable.o"
 	@echo "... Variable.i"
 	@echo "... Variable.s"

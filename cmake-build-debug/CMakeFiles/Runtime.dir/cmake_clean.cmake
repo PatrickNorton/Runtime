@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Runtime.dir/Builtins.cpp.o"
   "CMakeFiles/Runtime.dir/Bytecode.cpp.o"
-  "CMakeFiles/Runtime.dir/RuntimeInfo.cpp.o"
+  "CMakeFiles/Runtime.dir/Runtime.cpp.o"
   "CMakeFiles/Runtime.dir/Variable.cpp.o"
   "CMakeFiles/Runtime.dir/main.cpp.o"
   "Runtime"

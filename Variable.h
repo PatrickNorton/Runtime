@@ -6,8 +6,11 @@
 #define RUNTIME_VARIABLE_H
 
 
-class Variable {
+#include <string>
 
+class Variable {
+public:
+    std::string str();
 };
 
 
