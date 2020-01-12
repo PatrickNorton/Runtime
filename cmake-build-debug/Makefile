@@ -150,6 +150,60 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
+RuntimeInfo.o: RuntimeInfo.cpp.o
+
+.PHONY : RuntimeInfo.o
+
+# target to build an object file
+RuntimeInfo.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.o
+.PHONY : RuntimeInfo.cpp.o
+
+RuntimeInfo.i: RuntimeInfo.cpp.i
+
+.PHONY : RuntimeInfo.i
+
+# target to preprocess a source file
+RuntimeInfo.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.i
+.PHONY : RuntimeInfo.cpp.i
+
+RuntimeInfo.s: RuntimeInfo.cpp.s
+
+.PHONY : RuntimeInfo.s
+
+# target to generate assembly for a file
+RuntimeInfo.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/RuntimeInfo.cpp.s
+.PHONY : RuntimeInfo.cpp.s
+
+Variable.o: Variable.cpp.o
+
+.PHONY : Variable.o
+
+# target to build an object file
+Variable.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Variable.cpp.o
+.PHONY : Variable.cpp.o
+
+Variable.i: Variable.cpp.i
+
+.PHONY : Variable.i
+
+# target to preprocess a source file
+Variable.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Variable.cpp.i
+.PHONY : Variable.cpp.i
+
+Variable.s: Variable.cpp.s
+
+.PHONY : Variable.s
+
+# target to generate assembly for a file
+Variable.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Variable.cpp.s
+.PHONY : Variable.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -189,6 +243,12 @@ help:
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
+	@echo "... RuntimeInfo.o"
+	@echo "... RuntimeInfo.i"
+	@echo "... RuntimeInfo.s"
+	@echo "... Variable.o"
+	@echo "... Variable.i"
+	@echo "... Variable.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
