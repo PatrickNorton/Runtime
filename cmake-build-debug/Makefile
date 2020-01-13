@@ -312,6 +312,33 @@ FileParsing.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.s
 .PHONY : FileParsing.cpp.s
 
+IntConstant.o: IntConstant.cpp.o
+
+.PHONY : IntConstant.o
+
+# target to build an object file
+IntConstant.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.o
+.PHONY : IntConstant.cpp.o
+
+IntConstant.i: IntConstant.cpp.i
+
+.PHONY : IntConstant.i
+
+# target to preprocess a source file
+IntConstant.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.i
+.PHONY : IntConstant.cpp.i
+
+IntConstant.s: IntConstant.cpp.s
+
+.PHONY : IntConstant.s
+
+# target to generate assembly for a file
+IntConstant.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.s
+.PHONY : IntConstant.cpp.s
+
 IntTools.o: IntTools.cpp.o
 
 .PHONY : IntTools.o
@@ -477,6 +504,9 @@ help:
 	@echo "... FileParsing.o"
 	@echo "... FileParsing.i"
 	@echo "... FileParsing.s"
+	@echo "... IntConstant.o"
+	@echo "... IntConstant.i"
+	@echo "... IntConstant.s"
 	@echo "... IntTools.o"
 	@echo "... IntTools.i"
 	@echo "... IntTools.s"

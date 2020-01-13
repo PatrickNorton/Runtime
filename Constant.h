@@ -30,6 +30,16 @@ namespace Constants {
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
+    class IntConstant : public _Constant {
+    private:
+        std::vector<int64_t> values;
+    public:
+        explicit IntConstant(uint32_t value);
+        explicit IntConstant(std::vector<int64_t> values);
+        std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
+
 
     typedef std::shared_ptr<_Constant> Constant;
 }

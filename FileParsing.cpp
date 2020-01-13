@@ -26,7 +26,7 @@ namespace ConstantLoaders {
                 value.push_back(chr);
             } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
-        std::unique_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
+        std::shared_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
         return constant;
     }
 
@@ -34,6 +34,12 @@ namespace ConstantLoaders {
         auto builtinIndex = IntTools::bytesTo<uint32_t>(data, index);
         index += Constants::INT_32_BYTES;
         return Builtins::values[builtinIndex];
+    }
+
+    Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {
+        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(index));
+        index += Constants::INT_32_BYTES;
+        return constant;
     }
 }
 
@@ -45,7 +51,7 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::STR:
             return ConstantLoaders::loadStr(data, index);
         case ConstantBytes::INT:
-            break;
+            return ConstantLoaders::loadInt(data, index);
         case ConstantBytes::BIGINT:
             break;
         case ConstantBytes::DECIMAL:

@@ -128,6 +128,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/FileParsing.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntConstant.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntConstant.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp">
 			<Option target="Runtime"/>
 		</Unit>

@@ -36,3 +36,18 @@ Variable Constants::Function::callOperator(Operator o, std::vector<Variable> arg
     }
 }
 
+Constants::IntConstant::IntConstant(uint32_t value) {
+    values = {static_cast<int64_t>(value)};
+}
+
+Constants::IntConstant::IntConstant(std::vector<int64_t> values) {
+    this->values = std::move(values);
+}
+
+std::string Constants::IntConstant::str() {
+    return "";
+}
+
+Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> args) {
+    throw std::runtime_error("Operator not yet implemented");
+}
