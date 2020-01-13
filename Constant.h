@@ -32,10 +32,11 @@ namespace Constants {
 
     class IntConstant : public _Constant {
     private:
-        std::vector<int64_t> values;
+        bool isNegative{};
+        std::vector<uint64_t> values;
     public:
         explicit IntConstant(uint32_t value);
-        explicit IntConstant(std::vector<int64_t> values);
+        IntConstant(std::vector<uint64_t> values, bool isNegative);
         std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };

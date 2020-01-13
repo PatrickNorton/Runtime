@@ -37,9 +37,26 @@ namespace ConstantLoaders {
     }
 
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {
-        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(index));
+        auto value = IntTools::bytesTo<uint32_t>(data, index);
+        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(value));
         index += Constants::INT_32_BYTES;
         return constant;
+    }
+
+    Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index) {
+        auto count = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        std::vector<uint64_t> values(count / 2);
+        for (uint32_t i = 0; i < count; i++) {
+            auto val = IntTools::bytesTo<uint32_t>(data, index);
+            if (i % 2) {
+                values[i / 2] |= val;
+            } else {
+                values[i / 2] = static_cast<uint64_t>(val) << (unsigned) 32;
+            }
+            index += Constants::INT_32_BYTES;
+        }
+        return std::make_shared<Constants::IntConstant>(Constants::IntConstant(values, false));
     }
 }
 
@@ -53,7 +70,7 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::INT:
             return ConstantLoaders::loadInt(data, index);
         case ConstantBytes::BIGINT:
-            break;
+            return ConstantLoaders::loadBigint(data, index);
         case ConstantBytes::DECIMAL:
             break;
         case ConstantBytes::IMPORT:

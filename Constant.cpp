@@ -37,11 +37,13 @@ Variable Constants::Function::callOperator(Operator o, std::vector<Variable> arg
 }
 
 Constants::IntConstant::IntConstant(uint32_t value) {
-    values = {static_cast<int64_t>(value)};
+    values = {static_cast<uint64_t>(value)};
+    isNegative = false;
 }
 
-Constants::IntConstant::IntConstant(std::vector<int64_t> values) {
+Constants::IntConstant::IntConstant(std::vector<uint64_t> values, bool isNegative) {
     this->values = std::move(values);
+    this->isNegative = isNegative;
 }
 
 std::string Constants::IntConstant::str() {
