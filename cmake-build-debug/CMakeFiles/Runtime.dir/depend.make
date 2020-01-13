@@ -18,8 +18,11 @@ CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.h
 
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.cpp
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Bytecode.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.cpp
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntTools.h
@@ -27,8 +30,14 @@ CMakeFiles/Runtime.dir/Executor.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Bytecode.h
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../FileInfo.cpp
 CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../FileInfo.h
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../ConstantBytes.h
@@ -37,6 +46,8 @@ CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.cpp
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/IntTools.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/IntTools.cpp.o: ../IntTools.cpp
@@ -45,6 +56,7 @@ CMakeFiles/Runtime.dir/IntTools.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.cpp
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.h
 
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.cpp
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.h
@@ -54,7 +66,10 @@ CMakeFiles/Runtime.dir/Variable.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.cpp
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/main.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../FileParsing.h
+CMakeFiles/Runtime.dir/main.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/main.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../main.cpp
 

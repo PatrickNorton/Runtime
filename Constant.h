@@ -6,9 +6,23 @@
 #define RUNTIME_CONSTANT_H
 
 
-class Constant {
+#include "Variable.h"
 
-};
+namespace Constants {
+    class _Constant : public _Variable {
+    };
+
+    class String : public _Constant {
+    private:
+        std::string value;
+    public:
+        explicit String(std::string value);
+        std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
+
+    typedef std::shared_ptr<_Constant> Constant;
+}
 
 
 #endif //RUNTIME_CONSTANT_H

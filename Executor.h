@@ -8,8 +8,8 @@
 #include "Bytecode.h"
 #include "Runtime.h"
 
-void parse(Bytecode b, Runtime runtime);
+void parse(const std::vector<uint8_t>& bytes, const Runtime& runtime);
 
-
+void execute(const std::vector<uint8_t>& bytes, const std::vector<Constants::Constant>& constants);
 
 #endif //RUNTIME_EXECUTOR_H

@@ -35,3 +35,12 @@ Variable Runtime::top() {
 void Runtime::goTo(uint32_t location) {
     throw std::runtime_error("Goto not allowed yet");
 }
+
+uint32_t Runtime::currentPos() {
+    return location;
+}
+
+Runtime::Runtime(const std::vector<Constants::Constant>& constants) {
+    this->constants = constants;
+    location = 0;
+}

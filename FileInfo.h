@@ -6,8 +6,17 @@
 #define RUNTIME_FILEINFO_H
 
 
-class FileInfo {
+#include <vector>
+#include "Constant.h"
 
+class FileInfo {
+private:
+    std::vector<Constants::Constant> constants;
+    std::vector<std::vector<uint8_t>> functions;
+public:
+    FileInfo(std::vector<Constants::Constant> constants, std::vector<std::vector<uint8_t>> functions);
+
+    void execute();
 };
 
 

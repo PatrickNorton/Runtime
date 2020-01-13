@@ -9,13 +9,16 @@
 #include <stack>
 #include <vector>
 #include "Variable.h"
+#include "Constant.h"
 
 class Runtime final {
 private:
-    const std::vector<Variable> constants;
+    std::vector<Constants::Constant> constants;
     std::vector<Variable> variables;
     std::stack<Variable> stack;
+    uint32_t location;
 public:
+    explicit Runtime(const std::vector<Constants::Constant>& constants);
     Variable load_variable(uint32_t index);
     void store_variable(uint32_t index, Variable variable);
     Variable pop();
@@ -23,6 +26,7 @@ public:
     Variable load_const(uint32_t index);
     Variable top();
     void goTo(uint32_t location);
+    uint32_t currentPos();
 };
 
 

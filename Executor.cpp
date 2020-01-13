@@ -5,9 +5,8 @@
 #include "Executor.h"
 #include "IntTools.h"
 
-void parse(Bytecode b, const std::vector<uint8_t>& bytes, Runtime runtime) {
-    assert(bytes.size() == bytecode_size(b));
-
+void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
+    auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
     switch (b) {
 
         case Bytecode::NOP:
@@ -140,4 +139,12 @@ void parse(Bytecode b, const std::vector<uint8_t>& bytes, Runtime runtime) {
             break;
     }
     throw std::runtime_error("Bytecode not implemented yet");
+}
+
+
+void execute(const std::vector<uint8_t>& bytes, const std::vector<Constants::Constant>& constants) {
+    auto runtime = Runtime(constants);
+    while (runtime.currentPos() != bytes.size()) {
+        parse(bytes, runtime);
+    }
 }

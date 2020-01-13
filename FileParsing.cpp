@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include "FileParsing.h"
 #include "IntTools.h"
 #include "Constants.h"
@@ -12,12 +13,31 @@
 #include "ConstantBytes.h"
 
 
-Constant loadConstant(const std::vector<uint8_t>& data, size_t& index) {
+namespace ConstantLoaders {
+    Constants::Constant loadStr(const std::vector<uint8_t>& data, size_t& index) {
+        auto size = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        std::vector<char> value(size);
+        for (uint32_t i = 0; i < size; i++) {
+            unsigned char chr;
+            do {
+                chr = data[index++];
+                value.push_back(chr);
+            } while (chr >= 0b11000000);
+        }
+        std::unique_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
+        return constant;
+    }
+
+}
+
+
+Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index) {
     auto constantNum = static_cast<ConstantBytes>(data[index]);
     index++;
     switch (constantNum) {
         case ConstantBytes::STR:
-            break;
+            return ConstantLoaders::loadStr(data, index);
         case ConstantBytes::INT:
             break;
         case ConstantBytes::BIGINT:
@@ -60,7 +80,7 @@ FileInfo parseFile(const std::string& name) {
 
     auto constantCount = IntTools::bytesTo<uint32_t>(data, index);
     index += Constants::INT_32_BYTES;
-    std::vector<Constant> constants(constantCount);
+    std::vector<Constants::Constant> constants(constantCount);
     for (uint32_t i = 0; i < constantCount; i++) {
         constants[i] = loadConstant(data, index);
     }
@@ -74,5 +94,5 @@ FileInfo parseFile(const std::string& name) {
         index += functionLength;
     }
 
-    return {};
+    return FileInfo(constants, functions);
 }

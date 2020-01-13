@@ -39,7 +39,7 @@ uint32_t IntTools::bytesTo(std::vector<uint8_t> bytes, size_t start) {
 
     uint32_t result = 0;
     for (std::size_t i = start; i < start + Constants::INT_32_BYTES; i++) {
-        result |= (unsigned) bytes[i] << (Constants::INT_32_BYTES - 1 - i) * 8;
+        result |= (unsigned) bytes[i] << (Constants::INT_32_BYTES - 1 - (i - start)) * 8;
     }
 
     return result;
@@ -51,7 +51,7 @@ uint16_t IntTools::bytesTo(std::vector<uint8_t> bytes, size_t start) {
 
     uint32_t result = 0;
     for (std::size_t i = start; i < start + Constants::INT_16_BYTES; i++) {
-        result |= (unsigned) bytes[i] << (Constants::INT_16_BYTES - 1 - i) * 8;
+        result |= (unsigned) bytes[i] << (Constants::INT_16_BYTES - 1 - (i - start)) * 8;
     }
 
     return result;
