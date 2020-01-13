@@ -11,6 +11,7 @@
 #include "Constants.h"
 #include "Constant.h"
 #include "ConstantBytes.h"
+#include "Builtins.h"
 
 
 namespace ConstantLoaders {
@@ -23,12 +24,17 @@ namespace ConstantLoaders {
             do {
                 chr = data[index++];
                 value.push_back(chr);
-            } while (chr >= 0b11000000);
+            } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
         std::unique_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
         return constant;
     }
 
+    Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index) {
+        auto builtinIndex = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        return Builtins::values[builtinIndex];
+    }
 }
 
 
@@ -47,7 +53,7 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::IMPORT:
             break;
         case ConstantBytes::BUILTIN:
-            break;
+            return ConstantLoaders::loadBuiltin(data, index);
         case ConstantBytes::FUNCTION:
             break;
     }

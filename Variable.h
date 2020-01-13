@@ -16,6 +16,7 @@ public:
     virtual Variable callOperator(Operator o, std::vector<Variable> args) = 0;
 };
 
+
 typedef _Variable::Variable Variable;
 
 

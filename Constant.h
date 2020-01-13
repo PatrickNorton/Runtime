@@ -21,6 +21,16 @@ namespace Constants {
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
+    class Function : public _Constant {
+    private:
+        void (*function)(const std::vector<Variable>&);
+    public:
+        explicit Function(void (*caller)(const std::vector<Variable>&));
+        std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
+
+
     typedef std::shared_ptr<_Constant> Constant;
 }
 

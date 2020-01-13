@@ -7,11 +7,14 @@
 
 #include <vector>
 #include "Variable.h"
+#include "Constant.h"
 
 namespace Builtins {
     extern const Variable str;
     extern Variable null;
-    void print(const std::vector<Variable>& args);
+    extern Constants::Constant print;
+    extern const std::vector<Constants::Constant> values;
+    void _print(const std::vector<Variable>& args);
 }
 
 #endif //RUNTIME_BUILTINS_H
