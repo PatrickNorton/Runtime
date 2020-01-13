@@ -204,6 +204,33 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
+Constant.o: Constant.cpp.o
+
+.PHONY : Constant.o
+
+# target to build an object file
+Constant.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Constant.cpp.o
+.PHONY : Constant.cpp.o
+
+Constant.i: Constant.cpp.i
+
+.PHONY : Constant.i
+
+# target to preprocess a source file
+Constant.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Constant.cpp.i
+.PHONY : Constant.cpp.i
+
+Constant.s: Constant.cpp.s
+
+.PHONY : Constant.s
+
+# target to generate assembly for a file
+Constant.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Constant.cpp.s
+.PHONY : Constant.cpp.s
+
 Executor.o: Executor.cpp.o
 
 .PHONY : Executor.o
@@ -230,6 +257,60 @@ Executor.s: Executor.cpp.s
 Executor.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Executor.cpp.s
 .PHONY : Executor.cpp.s
+
+FileInfo.o: FileInfo.cpp.o
+
+.PHONY : FileInfo.o
+
+# target to build an object file
+FileInfo.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileInfo.cpp.o
+.PHONY : FileInfo.cpp.o
+
+FileInfo.i: FileInfo.cpp.i
+
+.PHONY : FileInfo.i
+
+# target to preprocess a source file
+FileInfo.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileInfo.cpp.i
+.PHONY : FileInfo.cpp.i
+
+FileInfo.s: FileInfo.cpp.s
+
+.PHONY : FileInfo.s
+
+# target to generate assembly for a file
+FileInfo.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileInfo.cpp.s
+.PHONY : FileInfo.cpp.s
+
+FileParsing.o: FileParsing.cpp.o
+
+.PHONY : FileParsing.o
+
+# target to build an object file
+FileParsing.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.o
+.PHONY : FileParsing.cpp.o
+
+FileParsing.i: FileParsing.cpp.i
+
+.PHONY : FileParsing.i
+
+# target to preprocess a source file
+FileParsing.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.i
+.PHONY : FileParsing.cpp.i
+
+FileParsing.s: FileParsing.cpp.s
+
+.PHONY : FileParsing.s
+
+# target to generate assembly for a file
+FileParsing.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.s
+.PHONY : FileParsing.cpp.s
 
 IntTools.o: IntTools.cpp.o
 
@@ -384,9 +465,18 @@ help:
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
+	@echo "... Constant.o"
+	@echo "... Constant.i"
+	@echo "... Constant.s"
 	@echo "... Executor.o"
 	@echo "... Executor.i"
 	@echo "... Executor.s"
+	@echo "... FileInfo.o"
+	@echo "... FileInfo.i"
+	@echo "... FileInfo.s"
+	@echo "... FileParsing.o"
+	@echo "... FileParsing.i"
+	@echo "... FileParsing.s"
 	@echo "... IntTools.o"
 	@echo "... IntTools.i"
 	@echo "... IntTools.s"

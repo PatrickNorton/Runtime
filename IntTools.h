@@ -11,6 +11,9 @@
 namespace IntTools {
     template <typename T>
     T bytesTo(std::vector<uint8_t> bytes);
+
+    template <typename T>
+    T bytesTo(std::vector<uint8_t> bytes, size_t start);
 }
 
 #endif //RUNTIME_INTTOOLS_H
