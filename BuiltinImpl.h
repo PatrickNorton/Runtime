@@ -24,6 +24,7 @@ namespace BuiltinImpl {
     public:
         explicit String(std::string str);
         std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
 
     private:
         std::string str_;

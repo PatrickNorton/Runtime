@@ -11,7 +11,7 @@
 
 namespace Builtins {
     Variable null = nullptr;
-    const Variable str = std::make_shared<_Variable>(new BuiltinImpl::str_t());
+    const Variable str = std::make_shared<BuiltinImpl::str_t>(BuiltinImpl::str_t());
 }
 
 

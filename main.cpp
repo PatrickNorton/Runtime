@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
+#include "FileParsing.h"
 
 int main(int argc, const char* argv[]) {
-    std::cout << "Hello, World!" << std::endl;
-    auto args = std::vector<std::string>(argv, argv + argc);
-    for (auto arg : args) {
-
+    auto args = std::vector<std::string>(argv + 1, argv + argc);
+    for (const auto& arg : args) {
+        parseFile(arg);
     }
     return 0;
 }

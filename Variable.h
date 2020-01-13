@@ -13,7 +13,7 @@ class _Variable {
 public:
     typedef std::shared_ptr<_Variable> Variable;
     virtual std::string str() = 0;
-    virtual Variable callOperator(Operator o, std::vector<Variable> args);
+    virtual Variable callOperator(Operator o, std::vector<Variable> args) = 0;
 };
 
 typedef _Variable::Variable Variable;

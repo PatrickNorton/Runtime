@@ -73,4 +73,6 @@ FileInfo parseFile(const std::string& name) {
         functions[i] = std::vector<uint8_t>(data[index], data[index + functionLength]);
         index += functionLength;
     }
+
+    return {};
 }
