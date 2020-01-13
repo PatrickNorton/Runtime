@@ -27,6 +27,7 @@ public:
     Variable top();
     void goTo(uint32_t location);
     uint32_t currentPos();
+    void advance(uint32_t count);
 };
 
 

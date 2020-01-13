@@ -7,6 +7,7 @@
 
 void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
     auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
+    runtime.advance(1);
     switch (b) {
 
         case Bytecode::NOP:
@@ -15,10 +16,10 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
             runtime.push(Variable());
             return;
         case Bytecode::LOAD_CONST:
-            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes)));
+            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
             return;
         case Bytecode::LOAD_VALUE:
-            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes)));
+            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
             return;
         case Bytecode::LOAD_DOT:
             break;
@@ -49,7 +50,7 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
         case Bytecode::SWAP_N:
             break;
         case Bytecode::STORE:
-            runtime.store_variable(IntTools::bytesTo<uint16_t>(bytes), runtime.pop());
+            runtime.store_variable(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos()), runtime.pop());
             return;
         case Bytecode::STORE_SUBSCRIPT:
             break;
@@ -111,8 +112,17 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
             break;
         case Bytecode::CALL_METHOD:
             break;
-        case Bytecode::CALL_TOS:
-            break;
+        case Bytecode::CALL_TOS: {
+            auto argc = IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos());
+            std::vector<Variable> argv(argc);
+            for (uint16_t i = 0; i < argc; i++) {
+                argv[argc - i - 1] = runtime.pop();
+            }
+            auto caller = runtime.pop();
+            (*caller).callOperator(Operator::CALL, argv);
+            // TODO: Push variable(s) back to stack
+        }
+            return;
         case Bytecode::TAIL_METHOD:
             break;
         case Bytecode::TAIL_TOS:
@@ -145,6 +155,8 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
 void execute(const std::vector<uint8_t>& bytes, const std::vector<Constants::Constant>& constants) {
     auto runtime = Runtime(constants);
     while (runtime.currentPos() != bytes.size()) {
+        auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
         parse(bytes, runtime);
+        runtime.advance(bytecode_size(b));
     }
 }

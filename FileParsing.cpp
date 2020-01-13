@@ -18,7 +18,7 @@ namespace ConstantLoaders {
     Constants::Constant loadStr(const std::vector<uint8_t>& data, size_t& index) {
         auto size = IntTools::bytesTo<uint32_t>(data, index);
         index += Constants::INT_32_BYTES;
-        std::vector<char> value(size);
+        std::vector<char> value {};
         for (uint32_t i = 0; i < size; i++) {
             unsigned char chr;
             do {
@@ -26,6 +26,9 @@ namespace ConstantLoaders {
                 value.push_back(chr);
             } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
+        // Strings are null-terminated
+        assert(value[value.size()] == '\0');
+        value.pop_back();
         std::unique_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
         return constant;
     }
@@ -96,7 +99,8 @@ FileInfo parseFile(const std::string& name) {
     std::vector<std::vector<uint8_t>> functions(functionCount);
     for (uint32_t i = 0; i < functionCount; i++) {
         auto functionLength = IntTools::bytesTo<uint32_t>(data, index);
-        functions[i] = std::vector<uint8_t>(data[index], data[index + functionLength]);
+        index += Constants::INT_32_BYTES;
+        functions[i] = std::vector<uint8_t>(data.begin() + index, data.begin() + index + functionLength);
         index += functionLength;
     }
 

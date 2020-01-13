@@ -44,3 +44,7 @@ Runtime::Runtime(const std::vector<Constants::Constant>& constants) {
     this->constants = constants;
     location = 0;
 }
+
+void Runtime::advance(uint32_t count) {
+    location += count;
+}
