@@ -26,9 +26,6 @@ namespace ConstantLoaders {
                 value.push_back(chr);
             } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
-        // Strings are null-terminated
-        assert(value[value.size()] == '\0');
-        value.pop_back();
         std::unique_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
         return constant;
     }
