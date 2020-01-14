@@ -107,6 +107,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/ConstantBytes.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/ConstantLoaders.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/ConstantLoaders.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Constants.h">
 			<Option target="Runtime"/>
 		</Unit>
@@ -126,12 +132,6 @@
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/FileParsing.h">
-			<Option target="Runtime"/>
-		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntConstant.cpp">
-			<Option target="Runtime"/>
-		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntConstant.h">
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp">

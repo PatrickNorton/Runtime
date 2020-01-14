@@ -213,18 +213,18 @@ CMakeFiles/Runtime.dir/Constant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/Constant.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/Constant.cpp -o CMakeFiles/Runtime.dir/Constant.cpp.s
 
-CMakeFiles/Runtime.dir/IntConstant.cpp.o: CMakeFiles/Runtime.dir/flags.make
-CMakeFiles/Runtime.dir/IntConstant.cpp.o: ../IntConstant.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Runtime.dir/IntConstant.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Runtime.dir/IntConstant.cpp.o -c /Users/patricknorton/CLionProjects/Runtime/IntConstant.cpp
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: CMakeFiles/Runtime.dir/flags.make
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../ConstantLoaders.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o -c /Users/patricknorton/CLionProjects/Runtime/ConstantLoaders.cpp
 
-CMakeFiles/Runtime.dir/IntConstant.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Runtime.dir/IntConstant.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patricknorton/CLionProjects/Runtime/IntConstant.cpp > CMakeFiles/Runtime.dir/IntConstant.cpp.i
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Runtime.dir/ConstantLoaders.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patricknorton/CLionProjects/Runtime/ConstantLoaders.cpp > CMakeFiles/Runtime.dir/ConstantLoaders.cpp.i
 
-CMakeFiles/Runtime.dir/IntConstant.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/IntConstant.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/IntConstant.cpp -o CMakeFiles/Runtime.dir/IntConstant.cpp.s
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/ConstantLoaders.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/ConstantLoaders.cpp -o CMakeFiles/Runtime.dir/ConstantLoaders.cpp.s
 
 # Object files for target Runtime
 Runtime_OBJECTS = \
@@ -240,7 +240,7 @@ Runtime_OBJECTS = \
 "CMakeFiles/Runtime.dir/FileParsing.cpp.o" \
 "CMakeFiles/Runtime.dir/FileInfo.cpp.o" \
 "CMakeFiles/Runtime.dir/Constant.cpp.o" \
-"CMakeFiles/Runtime.dir/IntConstant.cpp.o"
+"CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o"
 
 # External object files for target Runtime
 Runtime_EXTERNAL_OBJECTS =
@@ -257,7 +257,7 @@ Runtime: CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o
 Runtime: CMakeFiles/Runtime.dir/FileParsing.cpp.o
 Runtime: CMakeFiles/Runtime.dir/FileInfo.cpp.o
 Runtime: CMakeFiles/Runtime.dir/Constant.cpp.o
-Runtime: CMakeFiles/Runtime.dir/IntConstant.cpp.o
+Runtime: CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o
 Runtime: CMakeFiles/Runtime.dir/build.make
 Runtime: CMakeFiles/Runtime.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Runtime"

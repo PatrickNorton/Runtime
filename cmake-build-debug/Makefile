@@ -231,6 +231,33 @@ Constant.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Constant.cpp.s
 .PHONY : Constant.cpp.s
 
+ConstantLoaders.o: ConstantLoaders.cpp.o
+
+.PHONY : ConstantLoaders.o
+
+# target to build an object file
+ConstantLoaders.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o
+.PHONY : ConstantLoaders.cpp.o
+
+ConstantLoaders.i: ConstantLoaders.cpp.i
+
+.PHONY : ConstantLoaders.i
+
+# target to preprocess a source file
+ConstantLoaders.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ConstantLoaders.cpp.i
+.PHONY : ConstantLoaders.cpp.i
+
+ConstantLoaders.s: ConstantLoaders.cpp.s
+
+.PHONY : ConstantLoaders.s
+
+# target to generate assembly for a file
+ConstantLoaders.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ConstantLoaders.cpp.s
+.PHONY : ConstantLoaders.cpp.s
+
 Executor.o: Executor.cpp.o
 
 .PHONY : Executor.o
@@ -311,33 +338,6 @@ FileParsing.s: FileParsing.cpp.s
 FileParsing.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.s
 .PHONY : FileParsing.cpp.s
-
-IntConstant.o: IntConstant.cpp.o
-
-.PHONY : IntConstant.o
-
-# target to build an object file
-IntConstant.cpp.o:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.o
-.PHONY : IntConstant.cpp.o
-
-IntConstant.i: IntConstant.cpp.i
-
-.PHONY : IntConstant.i
-
-# target to preprocess a source file
-IntConstant.cpp.i:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.i
-.PHONY : IntConstant.cpp.i
-
-IntConstant.s: IntConstant.cpp.s
-
-.PHONY : IntConstant.s
-
-# target to generate assembly for a file
-IntConstant.cpp.s:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntConstant.cpp.s
-.PHONY : IntConstant.cpp.s
 
 IntTools.o: IntTools.cpp.o
 
@@ -495,6 +495,9 @@ help:
 	@echo "... Constant.o"
 	@echo "... Constant.i"
 	@echo "... Constant.s"
+	@echo "... ConstantLoaders.o"
+	@echo "... ConstantLoaders.i"
+	@echo "... ConstantLoaders.s"
 	@echo "... Executor.o"
 	@echo "... Executor.i"
 	@echo "... Executor.s"
@@ -504,9 +507,6 @@ help:
 	@echo "... FileParsing.o"
 	@echo "... FileParsing.i"
 	@echo "... FileParsing.s"
-	@echo "... IntConstant.o"
-	@echo "... IntConstant.i"
-	@echo "... IntConstant.s"
 	@echo "... IntTools.o"
 	@echo "... IntTools.i"
 	@echo "... IntTools.s"
