@@ -19,7 +19,7 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
             runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
             return;
         case Bytecode::LOAD_VALUE:
-            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
+            runtime.push(runtime.load_variable(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
             return;
         case Bytecode::LOAD_DOT:
             break;
@@ -42,8 +42,8 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
             auto oldTop = runtime.pop();
             auto middle = runtime.pop();
             auto newTop = runtime.pop();
-            runtime.push(oldTop);
             runtime.push(middle);
+            runtime.push(oldTop);
             runtime.push(newTop);
         }
             return;
