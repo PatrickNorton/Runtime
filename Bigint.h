@@ -10,9 +10,9 @@
 
 class Bigint {
 private:
-    explicit Bigint(int i);
 
-    typedef std::vector<uint32_t> __vec;
+    typedef uint32_t __num;
+    typedef std::vector<__num> __vec;
     __vec values;
     bool sign;  // True if negative, false if positive
     int8_t compareMagnitude(const Bigint& other) const;
@@ -26,9 +26,13 @@ private:
     static Bigint valueOf(__vec val);
 
 public:
+    Bigint();
+    explicit Bigint(size_t i);
+    explicit Bigint(int32_t i);
+    explicit Bigint(uint32_t i);
     explicit Bigint(int64_t);
     explicit Bigint(uint64_t);
-    Bigint(std::vector<uint32_t>, bool);
+    Bigint(__vec, bool);
     Bigint operator+(const Bigint&) const;
     Bigint operator-(const Bigint&) const;
     Bigint operator*(const Bigint&) const;
@@ -36,13 +40,21 @@ public:
     Bigint operator^(const Bigint&) const;
     Bigint operator|(const Bigint&) const;
     Bigint operator&(const Bigint&) const;
+    Bigint operator~() const;
     Bigint operator>>(const size_t&) const;
     Bigint operator<<(const size_t&) const;
     bool operator==(const Bigint&) const;
+    bool operator!=(const Bigint&) const;
     Bigint operator-() const;
     explicit operator bool() const;
     bool operator>(const Bigint&) const;
     bool operator<(const Bigint&) const;
+
+    explicit operator size_t() const;
+    explicit operator int32_t() const;
+    explicit operator uint32_t() const;
+    explicit operator int64_t() const;
+    explicit operator uint64_t() const;
 };
 
 

@@ -7,5 +7,9 @@
 #include "Variable.h"
 
 std::string _Variable::str() {
-    return std::string();
+    return callOperator(Operator::STR, {})->str();
+}
+
+Bigint _Variable::toInt() {
+    return callOperator(Operator::INT, {})->toInt();
 }

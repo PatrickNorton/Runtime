@@ -4,6 +4,11 @@
 
 #include "Bigint.h"
 
+Bigint::Bigint() {
+    sign = false;
+    values = {0};
+}
+
 Bigint::Bigint(int64_t value) {  // FIXME: Get casting right
     if (value < 0) {
         sign = true;
@@ -123,6 +128,10 @@ Bigint Bigint::operator&(const Bigint& other) const {
     return valueOf(result);
 }
 
+Bigint Bigint::operator~() const {
+    return (-*this) - Bigint(1);
+}
+
 Bigint Bigint::operator<<(const size_t& other) const {
     if (!*this) {
         return Bigint(0);
@@ -187,6 +196,10 @@ bool Bigint::operator==(const Bigint& other) const {
         return true;
     }
     return sign == other.sign && compareMagnitude(other) == 0;
+}
+
+bool Bigint::operator!=(const Bigint& other) const {
+    return !operator==(other);
 }
 
 Bigint Bigint::operator-() const {
@@ -357,4 +370,50 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
 
 Bigint::__vec Bigint::div(const Bigint::__vec &x, const Bigint::__vec &y) {
     throw std::runtime_error("Bigint division not yet implemented");
+}
+
+Bigint::Bigint(size_t i) {
+    sign = false;
+    values = {};
+    while (i > std::numeric_limits<__num>::max()) {
+        values.insert(values.begin(), i);
+        i >>= 32u;
+    }
+}
+
+Bigint::Bigint(uint32_t i) {
+    sign = false;
+    values = {i};
+}
+
+Bigint::operator size_t() const {
+    constexpr auto sizeBytes = std::numeric_limits<size_t>::digits;
+    constexpr auto numBytes = std::numeric_limits<__num>::digits;
+    constexpr auto byteCount = 1 + (sizeBytes - 1) / numBytes;  // Ceiling division
+    size_t result = 0;
+    for (int i = 0; i < byteCount; i++) {
+        result |= (static_cast<size_t>(values[values.size() - i - 1])) << (numBytes * i);
+    }
+    return result;
+}
+
+Bigint::operator int32_t() const {
+    auto unsignedVar = values[values.size() - 1];
+    return sign ? -unsignedVar : unsignedVar;
+}
+
+Bigint::operator uint32_t() const {
+    return values[values.size() - 1];
+}
+
+Bigint::operator int64_t() const {
+    if (sign) {
+        return -(int64_t) ((uint64_t) *this);
+    } else {
+        return (uint64_t) *this;
+    }
+}
+
+Bigint::operator uint64_t() const {
+    return (uint64_t) values[values.size() - 2] << 32u | (uint64_t) values[values.size() - 1];
 }

@@ -7,6 +7,7 @@
 
 
 #include "Variable.h"
+#include "Bigint.h"
 
 namespace Constants {
     class _Constant : public _Variable {
@@ -32,15 +33,21 @@ namespace Constants {
 
     class IntConstant : public _Constant {
     private:
-        bool isNegative{};
-        std::vector<uint64_t> values;
+        Bigint value;
     public:
         explicit IntConstant(uint32_t value);
-        IntConstant(std::vector<uint64_t> values, bool isNegative);
+        explicit IntConstant(Bigint value);
         std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
+    class BoolConstant : public _Constant {
+    private:
+        bool value;
+    public:
+        explicit BoolConstant(bool value);
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
 
     typedef std::shared_ptr<_Constant> Constant;
 }

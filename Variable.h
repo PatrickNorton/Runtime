@@ -8,11 +8,13 @@
 
 #include <string>
 #include "Operator.h"
+#include "Bigint.h"
 
 class _Variable {
 public:
     typedef std::shared_ptr<_Variable> Variable;
-    virtual std::string str() = 0;
+    virtual std::string str();
+    virtual Bigint toInt();
     virtual Variable callOperator(Operator o, std::vector<Variable> args) = 0;
 };
 

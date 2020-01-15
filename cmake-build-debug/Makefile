@@ -123,6 +123,33 @@ Runtime/fast:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/build
 .PHONY : Runtime/fast
 
+Bigint.o: Bigint.cpp.o
+
+.PHONY : Bigint.o
+
+# target to build an object file
+Bigint.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bigint.cpp.o
+.PHONY : Bigint.cpp.o
+
+Bigint.i: Bigint.cpp.i
+
+.PHONY : Bigint.i
+
+# target to preprocess a source file
+Bigint.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bigint.cpp.i
+.PHONY : Bigint.cpp.i
+
+Bigint.s: Bigint.cpp.s
+
+.PHONY : Bigint.s
+
+# target to generate assembly for a file
+Bigint.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bigint.cpp.s
+.PHONY : Bigint.cpp.s
+
 BuiltinImpl.o: BuiltinImpl.cpp.o
 
 .PHONY : BuiltinImpl.o
@@ -483,6 +510,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Runtime"
+	@echo "... Bigint.o"
+	@echo "... Bigint.i"
+	@echo "... Bigint.s"
 	@echo "... BuiltinImpl.o"
 	@echo "... BuiltinImpl.i"
 	@echo "... BuiltinImpl.s"
