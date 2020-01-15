@@ -32,4 +32,14 @@ namespace BuiltinImpl {
                 throw std::runtime_error("Operator not implemented");
         }
     }
+
+    NullType::NullType() = default;
+
+    std::string NullType::str() {
+        return "null";
+    }
+
+    Variable NullType::callOperator(Operator, std::vector<Variable>) {
+        throw std::runtime_error("Cannot call functions on null");
+    }
 }

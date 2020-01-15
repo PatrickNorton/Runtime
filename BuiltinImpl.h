@@ -29,6 +29,13 @@ namespace BuiltinImpl {
     private:
         std::string str_;
     };
+
+    class NullType : public _Variable {
+    public:
+        explicit NullType();
+        std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
 };
 
 

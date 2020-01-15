@@ -231,6 +231,33 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
+Callable.o: Callable.cpp.o
+
+.PHONY : Callable.o
+
+# target to build an object file
+Callable.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.o
+.PHONY : Callable.cpp.o
+
+Callable.i: Callable.cpp.i
+
+.PHONY : Callable.i
+
+# target to preprocess a source file
+Callable.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.i
+.PHONY : Callable.cpp.i
+
+Callable.s: Callable.cpp.s
+
+.PHONY : Callable.s
+
+# target to generate assembly for a file
+Callable.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.s
+.PHONY : Callable.cpp.s
+
 Constant.o: Constant.cpp.o
 
 .PHONY : Constant.o
@@ -447,6 +474,60 @@ Runtime.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.s
 .PHONY : Runtime.cpp.s
 
+StdVariable.o: StdVariable.cpp.o
+
+.PHONY : StdVariable.o
+
+# target to build an object file
+StdVariable.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StdVariable.cpp.o
+.PHONY : StdVariable.cpp.o
+
+StdVariable.i: StdVariable.cpp.i
+
+.PHONY : StdVariable.i
+
+# target to preprocess a source file
+StdVariable.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StdVariable.cpp.i
+.PHONY : StdVariable.cpp.i
+
+StdVariable.s: StdVariable.cpp.s
+
+.PHONY : StdVariable.s
+
+# target to generate assembly for a file
+StdVariable.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StdVariable.cpp.s
+.PHONY : StdVariable.cpp.s
+
+Type.o: Type.cpp.o
+
+.PHONY : Type.o
+
+# target to build an object file
+Type.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Type.cpp.o
+.PHONY : Type.cpp.o
+
+Type.i: Type.cpp.i
+
+.PHONY : Type.i
+
+# target to preprocess a source file
+Type.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Type.cpp.i
+.PHONY : Type.cpp.i
+
+Type.s: Type.cpp.s
+
+.PHONY : Type.s
+
+# target to generate assembly for a file
+Type.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Type.cpp.s
+.PHONY : Type.cpp.s
+
 Variable.o: Variable.cpp.o
 
 .PHONY : Variable.o
@@ -522,6 +603,9 @@ help:
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
+	@echo "... Callable.o"
+	@echo "... Callable.i"
+	@echo "... Callable.s"
 	@echo "... Constant.o"
 	@echo "... Constant.i"
 	@echo "... Constant.s"
@@ -546,6 +630,12 @@ help:
 	@echo "... Runtime.o"
 	@echo "... Runtime.i"
 	@echo "... Runtime.s"
+	@echo "... StdVariable.o"
+	@echo "... StdVariable.i"
+	@echo "... StdVariable.s"
+	@echo "... Type.o"
+	@echo "... Type.i"
+	@echo "... Type.s"
 	@echo "... Variable.o"
 	@echo "... Variable.i"
 	@echo "... Variable.s"

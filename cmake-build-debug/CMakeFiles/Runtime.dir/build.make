@@ -239,6 +239,45 @@ CMakeFiles/Runtime.dir/Bigint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/Bigint.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/Bigint.cpp -o CMakeFiles/Runtime.dir/Bigint.cpp.s
 
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: CMakeFiles/Runtime.dir/flags.make
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../StdVariable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Runtime.dir/StdVariable.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Runtime.dir/StdVariable.cpp.o -c /Users/patricknorton/CLionProjects/Runtime/StdVariable.cpp
+
+CMakeFiles/Runtime.dir/StdVariable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Runtime.dir/StdVariable.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patricknorton/CLionProjects/Runtime/StdVariable.cpp > CMakeFiles/Runtime.dir/StdVariable.cpp.i
+
+CMakeFiles/Runtime.dir/StdVariable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/StdVariable.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/StdVariable.cpp -o CMakeFiles/Runtime.dir/StdVariable.cpp.s
+
+CMakeFiles/Runtime.dir/Type.cpp.o: CMakeFiles/Runtime.dir/flags.make
+CMakeFiles/Runtime.dir/Type.cpp.o: ../Type.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Runtime.dir/Type.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Runtime.dir/Type.cpp.o -c /Users/patricknorton/CLionProjects/Runtime/Type.cpp
+
+CMakeFiles/Runtime.dir/Type.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Runtime.dir/Type.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patricknorton/CLionProjects/Runtime/Type.cpp > CMakeFiles/Runtime.dir/Type.cpp.i
+
+CMakeFiles/Runtime.dir/Type.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/Type.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/Type.cpp -o CMakeFiles/Runtime.dir/Type.cpp.s
+
+CMakeFiles/Runtime.dir/Callable.cpp.o: CMakeFiles/Runtime.dir/flags.make
+CMakeFiles/Runtime.dir/Callable.cpp.o: ../Callable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Runtime.dir/Callable.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Runtime.dir/Callable.cpp.o -c /Users/patricknorton/CLionProjects/Runtime/Callable.cpp
+
+CMakeFiles/Runtime.dir/Callable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Runtime.dir/Callable.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patricknorton/CLionProjects/Runtime/Callable.cpp > CMakeFiles/Runtime.dir/Callable.cpp.i
+
+CMakeFiles/Runtime.dir/Callable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Runtime.dir/Callable.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patricknorton/CLionProjects/Runtime/Callable.cpp -o CMakeFiles/Runtime.dir/Callable.cpp.s
+
 # Object files for target Runtime
 Runtime_OBJECTS = \
 "CMakeFiles/Runtime.dir/main.cpp.o" \
@@ -254,7 +293,10 @@ Runtime_OBJECTS = \
 "CMakeFiles/Runtime.dir/FileInfo.cpp.o" \
 "CMakeFiles/Runtime.dir/Constant.cpp.o" \
 "CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o" \
-"CMakeFiles/Runtime.dir/Bigint.cpp.o"
+"CMakeFiles/Runtime.dir/Bigint.cpp.o" \
+"CMakeFiles/Runtime.dir/StdVariable.cpp.o" \
+"CMakeFiles/Runtime.dir/Type.cpp.o" \
+"CMakeFiles/Runtime.dir/Callable.cpp.o"
 
 # External object files for target Runtime
 Runtime_EXTERNAL_OBJECTS =
@@ -273,9 +315,12 @@ Runtime: CMakeFiles/Runtime.dir/FileInfo.cpp.o
 Runtime: CMakeFiles/Runtime.dir/Constant.cpp.o
 Runtime: CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o
 Runtime: CMakeFiles/Runtime.dir/Bigint.cpp.o
+Runtime: CMakeFiles/Runtime.dir/StdVariable.cpp.o
+Runtime: CMakeFiles/Runtime.dir/Type.cpp.o
+Runtime: CMakeFiles/Runtime.dir/Callable.cpp.o
 Runtime: CMakeFiles/Runtime.dir/build.make
 Runtime: CMakeFiles/Runtime.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable Runtime"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable Runtime"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Runtime.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
