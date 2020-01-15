@@ -36,7 +36,7 @@ namespace ConstantLoaders {
 
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {
         auto value = IntTools::bytesTo<uint32_t>(data, index);
-        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(value, Bigint(0)));
+        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(Bigint(value)));
         index += Constants::INT_32_BYTES;
         return constant;
     }
@@ -44,16 +44,12 @@ namespace ConstantLoaders {
     Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index) {
         auto count = IntTools::bytesTo<uint32_t>(data, index);
         index += Constants::INT_32_BYTES;
-        std::vector<uint64_t> values(count / 2);
+        std::vector<uint32_t> values(count);
         for (uint32_t i = 0; i < count; i++) {
             auto val = IntTools::bytesTo<uint32_t>(data, index);
-            if (i % 2) {
-                values[i / 2] |= val;
-            } else {
-                values[i / 2] = static_cast<uint64_t>(val) << (unsigned) 32;
-            }
+            values[i] = val;
             index += Constants::INT_32_BYTES;
         }
-        return std::make_shared<Constants::IntConstant>(Constants::IntConstant(values, Bigint(0)));
+        return std::make_shared<Constants::IntConstant>(Constants::IntConstant(Bigint(values, false)));
     }
 }

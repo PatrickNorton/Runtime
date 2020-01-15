@@ -28,6 +28,8 @@ namespace BuiltinImpl {
                 return args[0]->callOperator(Operator::STR, {});
             case Operator::STR:
                 return std::make_shared<String>(String("str"));
+            default:
+                throw std::runtime_error("Operator not implemented");
         }
     }
 }

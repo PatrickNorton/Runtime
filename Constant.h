@@ -41,7 +41,7 @@ namespace Constants {
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
-    class BoolConstant : public _Constant {
+    class BoolConstant : public IntConstant {
     private:
         bool value;
     public:
