@@ -417,3 +417,8 @@ Bigint::operator int64_t() const {
 Bigint::operator uint64_t() const {
     return (uint64_t) values[values.size() - 2] << 32u | (uint64_t) values[values.size() - 1];
 }
+
+Bigint Bigint::operator++() const {
+    const Bigint ONE(1);  // Prevent over-creation
+    return *this + ONE;
+}

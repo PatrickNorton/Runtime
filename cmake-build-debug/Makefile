@@ -420,6 +420,33 @@ IntTools.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntTools.cpp.s
 .PHONY : IntTools.cpp.s
 
+IntUtils.o: IntUtils.cpp.o
+
+.PHONY : IntUtils.o
+
+# target to build an object file
+IntUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.o
+.PHONY : IntUtils.cpp.o
+
+IntUtils.i: IntUtils.cpp.i
+
+.PHONY : IntUtils.i
+
+# target to preprocess a source file
+IntUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.i
+.PHONY : IntUtils.cpp.i
+
+IntUtils.s: IntUtils.cpp.s
+
+.PHONY : IntUtils.s
+
+# target to generate assembly for a file
+IntUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.s
+.PHONY : IntUtils.cpp.s
+
 Operator.o: Operator.cpp.o
 
 .PHONY : Operator.o
@@ -500,6 +527,33 @@ StdVariable.s: StdVariable.cpp.s
 StdVariable.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StdVariable.cpp.s
 .PHONY : StdVariable.cpp.s
+
+StringUtils.o: StringUtils.cpp.o
+
+.PHONY : StringUtils.o
+
+# target to build an object file
+StringUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StringUtils.cpp.o
+.PHONY : StringUtils.cpp.o
+
+StringUtils.i: StringUtils.cpp.i
+
+.PHONY : StringUtils.i
+
+# target to preprocess a source file
+StringUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StringUtils.cpp.i
+.PHONY : StringUtils.cpp.i
+
+StringUtils.s: StringUtils.cpp.s
+
+.PHONY : StringUtils.s
+
+# target to generate assembly for a file
+StringUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StringUtils.cpp.s
+.PHONY : StringUtils.cpp.s
 
 Type.o: Type.cpp.o
 
@@ -624,6 +678,9 @@ help:
 	@echo "... IntTools.o"
 	@echo "... IntTools.i"
 	@echo "... IntTools.s"
+	@echo "... IntUtils.o"
+	@echo "... IntUtils.i"
+	@echo "... IntUtils.s"
 	@echo "... Operator.o"
 	@echo "... Operator.i"
 	@echo "... Operator.s"
@@ -633,6 +690,9 @@ help:
 	@echo "... StdVariable.o"
 	@echo "... StdVariable.i"
 	@echo "... StdVariable.s"
+	@echo "... StringUtils.o"
+	@echo "... StringUtils.i"
+	@echo "... StringUtils.s"
 	@echo "... Type.o"
 	@echo "... Type.i"
 	@echo "... Type.s"

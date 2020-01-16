@@ -152,6 +152,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntUtils.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntUtils.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Operator.cpp">
 			<Option target="Runtime"/>
 		</Unit>
@@ -168,6 +174,12 @@
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StdVariable.h">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StringUtils.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StringUtils.h">
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Type.cpp">

@@ -10,6 +10,8 @@
 #include "Constant.h"
 #include "ConstantBytes.h"
 #include "Builtins.h"
+#include "StringUtils.h"
+#include "IntUtils.h"
 
 
 namespace ConstantLoaders {
@@ -24,8 +26,7 @@ namespace ConstantLoaders {
                 value.push_back(chr);
             } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
-        std::shared_ptr<Constants::String> constant(new Constants::String(std::string(value.begin(), value.end())));
-        return constant;
+        return Constants::fromNative(std::string(value.begin(), value.end()), true);
     }
 
     Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index) {
@@ -36,9 +37,8 @@ namespace ConstantLoaders {
 
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {
         auto value = IntTools::bytesTo<uint32_t>(data, index);
-        std::shared_ptr<Constants::IntConstant> constant(new Constants::IntConstant(Bigint(value)));
         index += Constants::INT_32_BYTES;
-        return constant;
+        return Constants::fromNative(Bigint(value));
     }
 
     Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index) {
@@ -50,6 +50,6 @@ namespace ConstantLoaders {
             values[i] = val;
             index += Constants::INT_32_BYTES;
         }
-        return std::make_shared<Constants::IntConstant>(Constants::IntConstant(Bigint(values, false)));
+        return Constants::fromNative(Bigint(values, false));
     }
 }

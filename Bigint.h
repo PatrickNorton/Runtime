@@ -43,6 +43,7 @@ public:
     Bigint operator~() const;
     Bigint operator>>(const size_t&) const;
     Bigint operator<<(const size_t&) const;
+    Bigint operator++() const;
     bool operator==(const Bigint&) const;
     bool operator!=(const Bigint&) const;
     Bigint operator-() const;
