@@ -30,6 +30,7 @@ CMakeFiles/Runtime.dir/Callable.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Callable.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.cpp
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.h
@@ -109,8 +110,6 @@ CMakeFiles/Runtime.dir/Type.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Bigint.h
-CMakeFiles/Runtime.dir/Variable.cpp.o: ../Builtins.h
-CMakeFiles/Runtime.dir/Variable.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.cpp
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.h

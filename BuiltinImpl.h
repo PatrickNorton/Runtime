@@ -30,7 +30,7 @@ namespace BuiltinImpl {
         std::string str_;
     };
 
-    class NullType : public _Variable {
+    class NullType : public Constants::_Constant {
     public:
         explicit NullType();
         std::string str() override;

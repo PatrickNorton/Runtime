@@ -3,7 +3,6 @@
 //
 
 #include <vector>
-#include "Builtins.h"
 #include "Variable.h"
 
 std::string _Variable::str() {
@@ -12,4 +11,8 @@ std::string _Variable::str() {
 
 Bigint _Variable::toInt() {
     return callOperator(Operator::INT, {})->toInt();
+}
+
+_Variable::operator bool() {
+    return bool(*callOperator(Operator::BOOL, {}));
 }

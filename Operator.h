@@ -45,6 +45,7 @@ enum class Operator {
     CALL,
     STR,
     INT,
+    BOOL,
 };
 
 

@@ -16,6 +16,7 @@ public:
     virtual std::string str();
     virtual Bigint toInt();
     virtual Variable callOperator(Operator o, std::vector<Variable> args) = 0;
+    virtual explicit operator bool();
 };
 
 

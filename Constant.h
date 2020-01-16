@@ -46,10 +46,14 @@ namespace Constants {
         bool value;
     public:
         explicit BoolConstant(bool value);
+        std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
     typedef std::shared_ptr<_Constant> Constant;
+
+    Constant fromNative(bool val);
+    Constant null();
 }
 
 

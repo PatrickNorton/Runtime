@@ -13,13 +13,13 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
         case Bytecode::NOP:
             return;
         case Bytecode::LOAD_NULL:
-            runtime.push(Variable());
+            runtime.push(Constants::null());
             return;
         case Bytecode::LOAD_CONST:
-            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
+            runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes)));
             return;
         case Bytecode::LOAD_VALUE:
-            runtime.push(runtime.load_variable(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos())));
+            runtime.push(runtime.load_variable(IntTools::bytesTo<uint16_t>(bytes)));
             return;
         case Bytecode::LOAD_DOT:
             break;
@@ -50,7 +50,7 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
         case Bytecode::SWAP_N:
             break;
         case Bytecode::STORE:
-            runtime.store_variable(IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos()), runtime.pop());
+            runtime.store_variable(IntTools::bytesTo<uint16_t>(bytes), runtime.pop());
             return;
         case Bytecode::STORE_SUBSCRIPT:
             break;
@@ -92,8 +92,12 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
             break;
         case Bytecode::BOOL_NOT:
             break;
-        case Bytecode::IDENTICAL:
-            break;
+        case Bytecode::IDENTICAL: {
+            Variable x = runtime.pop();
+            Variable y = runtime.pop();
+            runtime.push(Constants::fromNative(x == y));
+        }
+            return;
         case Bytecode::INSTANCEOF:
             break;
         case Bytecode::CALL_OP:
@@ -105,15 +109,21 @@ void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
         case Bytecode::JUMP:
             runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
         case Bytecode::JUMP_FALSE:
-            break;
+            if (!*runtime.pop()) {
+                runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
+            }
+            return;
         case Bytecode::JUMP_TRUE:
-            break;
+            if (*runtime.pop()) {
+                runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
+            }
+            return;
         case Bytecode::JUMP_NN:
             break;
         case Bytecode::CALL_METHOD:
             break;
         case Bytecode::CALL_TOS: {
-            auto argc = IntTools::bytesTo<uint16_t>(bytes, runtime.currentPos());
+            auto argc = IntTools::bytesTo<uint16_t>(bytes);
             std::vector<Variable> argv(argc);
             for (uint16_t i = 0; i < argc; i++) {
                 argv[argc - i - 1] = runtime.pop();
@@ -156,7 +166,10 @@ void execute(const std::vector<uint8_t>& bytes, const std::vector<Constants::Con
     auto runtime = Runtime(constants);
     while (runtime.currentPos() != bytes.size()) {
         auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
-        parse(bytes, runtime);
+        auto byteStart = runtime.currentPos() + 1;
+        auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
+        std::vector<uint8_t>varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
         runtime.advance(bytecode_size(b));
+        parse(bytes, runtime);
     }
 }

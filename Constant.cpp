@@ -6,6 +6,7 @@
 #include <vector>
 #include "Constant.h"
 #include "Builtins.h"
+#include "BuiltinImpl.h"
 
 Constants::String::String(std::string value) {
     this->value = std::move(value);
@@ -168,6 +169,8 @@ Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> 
             break;
         case Operator::INT:
             return Variable(this);
+        case Operator::BOOL:
+            return Constants::fromNative(value == Bigint(0));
         default:
             throw std::runtime_error("Operator should not be called on variable");
     }
@@ -185,4 +188,19 @@ Variable Constants::BoolConstant::callOperator(Operator o, std::vector<Variable>
         default:
             return IntConstant::callOperator(o, args);
     }
+}
+
+std::string Constants::BoolConstant::str() {
+    return value ? "true" : "false";
+}
+
+Constants::Constant Constants::fromNative(bool val) {
+    static Constant t = std::make_shared<BoolConstant>(BoolConstant(true));
+    static Constant f = std::make_shared<BoolConstant>(BoolConstant(false));
+    return val ? t : f;
+}
+
+Constants::Constant Constants::null() {
+    static Constant instance = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
+    return instance;
 }
