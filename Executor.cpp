@@ -5,9 +5,7 @@
 #include "Executor.h"
 #include "IntTools.h"
 
-void parse(const std::vector<uint8_t>& bytes, Runtime& runtime) {
-    auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
-    runtime.advance(1);
+void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime) {
     switch (b) {
 
         case Bytecode::NOP:
@@ -168,8 +166,8 @@ void execute(const std::vector<uint8_t>& bytes, const std::vector<Constants::Con
         auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
         auto byteStart = runtime.currentPos() + 1;
         auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
-        std::vector<uint8_t>varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
-        runtime.advance(bytecode_size(b));
-        parse(bytes, runtime);
+        std::vector<uint8_t> varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
+        runtime.advance(bytecode_size(b) + 1);
+        parse(b, varBytes, runtime);
     }
 }
