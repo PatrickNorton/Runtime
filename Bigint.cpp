@@ -54,7 +54,7 @@ Bigint Bigint::operator+(const Bigint& other) const {
         return Bigint(add(values, other.values), sign);
     } else {
         if (cmp == 0) {
-            return Bigint(0);
+            return 0_B;
         } else if (cmp > 0) {
             return Bigint(sub(values, other.values), sign);
         } else {  // cmp < 0
@@ -75,7 +75,7 @@ Bigint Bigint::operator-(const Bigint& other) const {
     }
     auto cmp = compareMagnitude(other);
     if (cmp == 0) {
-        return Bigint(0);
+        return 0_B;
     } else if (cmp > 0) {
         return Bigint(sub(values, other.values), sign);
     } else {  // cmp < 0
@@ -85,7 +85,7 @@ Bigint Bigint::operator-(const Bigint& other) const {
 
 Bigint Bigint::operator*(const Bigint& other) const {
     if (!*this || !other) {
-        return Bigint(0);
+        return 0_B;
     }
     bool resultSign = sign == other.sign;
     return Bigint(mul(values, other.values), resultSign);
@@ -95,7 +95,7 @@ Bigint Bigint::operator/(const Bigint& other) const {
     if (*this == other) {
         return Bigint(sign == other.sign ? 1 : -1);
     } else if (other > *this) {
-        return Bigint(0);
+        return 0_B;
     } else {
         return Bigint(div(values, other.values), sign == other.sign);
     }
@@ -129,12 +129,12 @@ Bigint Bigint::operator&(const Bigint& other) const {
 }
 
 Bigint Bigint::operator~() const {
-    return (-*this) - Bigint(1);
+    return (-*this) - 1_B;
 }
 
 Bigint Bigint::operator<<(const size_t& other) const {
     if (!*this) {
-        return Bigint(0);
+        return 0_B;
     }
     if (other == 0) {
         return *this;
@@ -163,7 +163,7 @@ Bigint Bigint::operator<<(const size_t& other) const {
 
 Bigint Bigint::operator>>(const size_t& other) const {
     if (!*this) {
-        return Bigint(0);
+        return 0_B;
     }
     if (other == 0) {
         return *this;
@@ -171,7 +171,7 @@ Bigint Bigint::operator>>(const size_t& other) const {
     constexpr auto intBytes = std::numeric_limits<uint32_t>::digits;
     __vec result(values);
     if (other > values.size() * intBytes) {
-        return Bigint(0);
+        return 0_B;
     }
     size_t wholeShifts = other / intBytes;
     result.erase(result.end() - wholeShifts, result.end());
@@ -421,4 +421,8 @@ Bigint::operator uint64_t() const {
 Bigint Bigint::operator++() const {
     const Bigint ONE(1);  // Prevent over-creation
     return *this + ONE;
+}
+
+Bigint operator "" _B(unsigned long long val) {
+    return Bigint(val);
 }

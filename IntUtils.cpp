@@ -132,7 +132,7 @@ Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> 
         case Operator::INT:
             return Variable(this);
         case Operator::BOOL:
-            return Constants::fromNative(value == Bigint(0));
+            return Constants::fromNative(value == 0_B);
         default:
             throw std::runtime_error("Operator should not be called on variable");
     }
@@ -165,7 +165,7 @@ Constants::Constant Constants::fromNative(bool val) {
 std::unordered_map<Bigint, Constants::Constant> __loadInterned() {
     static const Bigint MAX {0xff};
     std::unordered_map<Bigint, Constants::Constant> interns {};
-    for (Bigint i = Bigint(0); i < MAX; ++i) {
+    for (Bigint i = 0_B; i < MAX; ++i) {
         interns[i] = std::make_shared<Constants::IntConstant>(Constants::IntConstant(i));
     }
     return interns;

@@ -58,5 +58,7 @@ public:
     explicit operator uint64_t() const;
 };
 
+Bigint operator "" _B (unsigned long long);
+
 
 #endif //RUNTIME_BIGINT_H
