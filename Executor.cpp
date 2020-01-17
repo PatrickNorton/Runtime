@@ -22,8 +22,15 @@ void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime
             return;
         case Bytecode::LOAD_DOT:
             break;
-        case Bytecode::LOAD_SUBSCRIPT:
-            break;
+        case Bytecode::LOAD_SUBSCRIPT: {
+            auto operandCount = IntTools::bytesTo<uint16_t>(bytes);
+            std::vector<Variable> args(operandCount);
+            for (int i = 0; i < operandCount; i++) {
+                args[operandCount - i - 1] = runtime.pop();
+            }
+            runtime.push(runtime.pop()->callOperator(Operator::GET_ATTR, args));
+        }
+            return;
         case Bytecode::POP_TOP:
             runtime.pop();
             return;
@@ -46,13 +53,28 @@ void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime
             runtime.push(newTop);
         }
             return;
-        case Bytecode::SWAP_N:
-            break;
+        case Bytecode::SWAP_N: {
+            auto swapped = IntTools::bytesTo<uint16_t>(bytes);
+            std::vector<Variable> popped(swapped);
+            for (uint16_t i = 0; i < swapped; i++) {
+                popped[i] = runtime.pop();
+            }
+            for (uint16_t i = swapped - 2; i >= 0; i--) {
+                runtime.push(popped[i]);
+            }
+            runtime.push(popped[swapped-1]);
+        }
+            return;
         case Bytecode::STORE:
             runtime.store_variable(IntTools::bytesTo<uint16_t>(bytes), runtime.pop());
             return;
-        case Bytecode::STORE_SUBSCRIPT:
-            break;
+        case Bytecode::STORE_SUBSCRIPT: {
+            auto result = runtime.pop();
+            auto index = runtime.pop();
+            auto stored = runtime.pop();
+            stored->callOperator(Operator::SET_ATTR, {index, result});
+        }
+            return;
         case Bytecode::PLUS:
             break;
         case Bytecode::MINUS:
@@ -117,8 +139,12 @@ void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime
                 runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
             }
             return;
-        case Bytecode::JUMP_NN:
-            break;
+        case Bytecode::JUMP_NN: {
+            if (runtime.pop() == Constants::null()) {
+                runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
+            }
+        }
+            return;
         case Bytecode::CALL_METHOD:
             break;
         case Bytecode::CALL_TOS: {
@@ -128,7 +154,7 @@ void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime
                 argv[argc - i - 1] = runtime.pop();
             }
             auto caller = runtime.pop();
-            (*caller).callOperator(Operator::CALL, argv);
+            caller->callOperator(Operator::CALL, argv);
             // TODO: Push variable(s) back to stack
         }
             return;
