@@ -76,13 +76,33 @@ Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> 
             }
             return std::make_shared<BoolConstant>(BoolConstant(true));
         case Operator::GREATER_THAN:
-            break;
+            for (const auto& arg : args) {
+                if (!(arg->toInt() > value)) {
+                    return Constants::fromNative(false);
+                }
+            }
+            return Constants::fromNative(true);
         case Operator::LESS_THAN:
-            break;
+            for (const auto& arg : args) {
+                if (!(arg->toInt() < value)) {
+                    return Constants::fromNative(false);
+                }
+            }
+            return Constants::fromNative(true);
         case Operator::GREATER_EQUAL:
-            break;
+            for (const auto& arg : args) {
+                if (!(arg->toInt() >= value)) {
+                    return Constants::fromNative(false);
+                }
+            }
+            return Constants::fromNative(true);
         case Operator::LESS_EQUAL:
-            break;
+            for (const auto& arg : args) {
+                if (!(arg->toInt() >= value)) {
+                    return Constants::fromNative(false);
+                }
+            }
+            return Constants::fromNative(true);
         case Operator::LEFT_BITSHIFT: {
             assert(args.size() == 1);
             auto arg = args[0];

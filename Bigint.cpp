@@ -489,6 +489,14 @@ Bigint& Bigint::operator<<=(const size_t& other) {
     return *this;
 }
 
+bool Bigint::operator>=(const Bigint & other) const {
+    return *this > other || *this == other;
+}
+
+bool Bigint::operator<=(const Bigint & other) const {
+    return *this < other || *this == other;
+}
+
 Bigint operator "" _B(unsigned long long val) {
     return Bigint(val);
 }

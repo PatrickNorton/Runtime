@@ -65,6 +65,8 @@ public:
     explicit operator bool() const;
     bool operator>(const Bigint&) const;
     bool operator<(const Bigint&) const;
+    bool operator>=(const Bigint&) const;
+    bool operator<=(const Bigint&) const;
 
     explicit operator size_t() const;
     explicit operator int32_t() const;
