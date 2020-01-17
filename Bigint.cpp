@@ -422,6 +422,11 @@ Bigint Bigint::operator++() const {
     return *this + ONE;
 }
 
+Bigint Bigint::operator--() const {
+    const Bigint ONE(1);  // Prevent over-creation
+    return *this - ONE;
+}
+
 Bigint operator "" _B(unsigned long long val) {
     return Bigint(val);
 }
