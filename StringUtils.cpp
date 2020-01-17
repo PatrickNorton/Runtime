@@ -125,13 +125,15 @@ Constants::Constant Constants::fromNative(const std::string& val) {
 }
 
 Constants::Constant Constants::fromNative(const std::string& val, bool intern) {
-    if (intern) {
-        static std::unordered_map<std::string, Constant> interns{};
-        if (!interns.count(val)) {
-            interns[val] = std::make_shared<String>(String(val));
-        }
+    static std::unordered_map<std::string, Constant> interns{};
+    if (interns.count(val)) {
         return interns[val];
     } else {
-        return std::make_shared<String>(String(val));
+        if (intern) {
+            interns[val] = std::make_shared<String>(String(val));
+            return interns[val];
+        } else {
+            return std::make_shared<String>(String(val));
+        }
     }
 }
