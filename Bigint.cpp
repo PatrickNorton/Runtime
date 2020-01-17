@@ -15,7 +15,7 @@ Bigint::Bigint(int64_t value) {
     values = {};
     do {
         values.insert(values.begin(), static_cast<uint32_t>(uValue));
-        uValue >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+        uValue >>= NUM_BITS;
     } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
@@ -25,7 +25,7 @@ Bigint::Bigint(int value) {
     values = {};
     do {
         values.insert(values.begin(), static_cast<uint32_t>(uValue));
-        uValue >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+        uValue >>= NUM_BITS;
     } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
@@ -34,7 +34,7 @@ Bigint::Bigint(uint64_t value) {
     values = {};
     do {
         values.insert(values.begin(), static_cast<uint32_t>(value));
-        value >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+        value >>= NUM_BITS;
     } while (value > std::numeric_limits<uint32_t>::max());
 }
 
@@ -247,13 +247,13 @@ Bigint::__vec Bigint::_add(const Bigint::__vec& x, const Bigint::__vec& y) {
         while (yIndex > 0) {
             xIndex--;
             yIndex--;
-            sum = x[xIndex] + y[yIndex] + (sum >> (unsigned) 32);
+            sum = x[xIndex] + y[yIndex] + (sum >> NUM_BITS);
             result[xIndex] = static_cast<uint32_t>(sum);
         }
     }
 
     // Copy remainder of longer number while carry propagation is required
-    bool carry = sum >> (unsigned) 32 != 0;
+    bool carry = sum >> NUM_BITS != 0;
     while (xIndex > 0 && carry) {
         xIndex--;
         result[xIndex] = x[xIndex];
@@ -284,12 +284,12 @@ Bigint::__vec Bigint::sub(const Bigint::__vec& big, const Bigint::__vec& little)
     while (littleIndex > 0) {
         bigIndex--;
         littleIndex--;
-        difference = big[bigIndex] - little[littleIndex] + (difference >> (unsigned) 32);
+        difference = big[bigIndex] - little[littleIndex] + (difference >> NUM_BITS);
         result[bigIndex] = difference;
     }
 
     // Subtract remainder of longer number while borrow propagates
-    bool borrow = difference >> (unsigned) 32 != 0;
+    bool borrow = difference >> NUM_BITS != 0;
     while (bigIndex > 0 && borrow) {
         bigIndex--;
         result[bigIndex] = big[bigIndex] - 1;
@@ -346,7 +346,7 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
     for (size_t j=yStart, k= yStart + 1 + xStart; j >= 0; j--, k--) {
         uint64_t product = y[j] * x[xStart] + carry;
         z[k] = product;
-        carry = product >> (unsigned) 32;
+        carry = product >> NUM_BITS;
     }
     z[xStart] = carry;
 
@@ -355,7 +355,7 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
         for (size_t j=yStart, k=yStart+1+i; j >= 0; j--, k--) {
             uint64_t product = y[j] * x[i] + z[k] + carry;
             z[k] = product;
-            carry = product >> (unsigned) 32;
+            carry = product >> NUM_BITS;
         }
         z[i] = carry;
     }
@@ -388,11 +388,10 @@ Bigint::Bigint(uint32_t i) {
 
 Bigint::operator size_t() const {
     constexpr auto sizeBytes = std::numeric_limits<size_t>::digits;
-    constexpr auto numBytes = std::numeric_limits<__num>::digits;
-    constexpr auto byteCount = 1 + (sizeBytes - 1) / numBytes;  // Ceiling division
+    constexpr auto byteCount = 1 + (sizeBytes - 1) / NUM_BITS;  // Ceiling division
     size_t result = 0;
-    for (int i = 0; i < byteCount; i++) {
-        result |= values[values.size() - i - 1] << (unsigned) (numBytes * i);
+    for (size_t i = 0; i < byteCount; i++) {
+        result |= values[values.size() - i - 1] << (NUM_BITS * i);
     }
     return result;
 }

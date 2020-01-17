@@ -25,6 +25,7 @@ private:
 
     static Bigint valueOf(__vec val);
 
+    static constexpr unsigned int NUM_BITS = std::numeric_limits<__num>::digits;
 public:
     Bigint();
     explicit Bigint(size_t i);
