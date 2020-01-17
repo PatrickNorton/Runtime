@@ -44,8 +44,10 @@ public:
     Bigint operator~() const;
     Bigint operator>>(const size_t&) const;
     Bigint operator<<(const size_t&) const;
-    Bigint operator++() const;
-    Bigint operator--() const;
+    Bigint operator++();
+    Bigint operator--();
+    Bigint operator++(int);
+    Bigint operator--(int);
 
     bool operator==(const Bigint&) const;
     bool operator!=(const Bigint&) const;

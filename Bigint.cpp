@@ -417,14 +417,24 @@ Bigint::operator uint64_t() const {
     return (uint64_t) values[values.size() - 2] << 32u | (uint64_t) values[values.size() - 1];
 }
 
-Bigint Bigint::operator++() const {
+Bigint Bigint::operator++() {
     const Bigint ONE(1);  // Prevent over-creation
     return *this + ONE;
 }
 
-Bigint Bigint::operator--() const {
+Bigint Bigint::operator--() {
     const Bigint ONE(1);  // Prevent over-creation
     return *this - ONE;
+}
+
+Bigint Bigint::operator++(int) {
+    const Bigint ONE(1);  // Prevent over-creation
+    return Bigint(*this + ONE);
+}
+
+Bigint Bigint::operator--(int) {
+    const Bigint ONE(1);  // Prevent over-creation
+    return Bigint(*this - ONE);
 }
 
 Bigint operator "" _B(unsigned long long val) {
