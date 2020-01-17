@@ -7,6 +7,8 @@
 #include <unordered_set>
 #include <unordered_map>
 
+#include "IntUtils.h"
+
 Constants::String::String(std::string value) {
     this->value = std::move(value);
 }

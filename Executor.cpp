@@ -4,6 +4,7 @@
 
 #include "Executor.h"
 #include "IntTools.h"
+#include "IntUtils.h"
 
 void parse(const Bytecode b, const std::vector<uint8_t>& bytes, Runtime& runtime) {
     switch (b) {

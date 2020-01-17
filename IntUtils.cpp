@@ -3,6 +3,7 @@
 //
 
 #include <unordered_map>
+#include <map>
 #include "IntUtils.h"
 #include "StringUtils.h"
 
@@ -162,9 +163,9 @@ Constants::Constant Constants::fromNative(bool val) {
     return val ? t : f;
 }
 
-std::unordered_map<Bigint, Constants::Constant> __loadInterned() {
+std::map<Bigint, Constants::Constant> __loadInterned() {
     static const Bigint MAX {0xff};
-    std::unordered_map<Bigint, Constants::Constant> interns {};
+    std::map<Bigint, Constants::Constant> interns {};
     for (Bigint i = 0_B; i < MAX; ++i) {
         interns[i] = std::make_shared<Constants::IntConstant>(Constants::IntConstant(i));
     }
@@ -172,7 +173,7 @@ std::unordered_map<Bigint, Constants::Constant> __loadInterned() {
 }
 
 Constants::Constant Constants::fromNative(const Bigint& val) {
-    static std::unordered_map<Bigint, Constant> interns = __loadInterned();
+    static std::map<Bigint, Constant> interns = __loadInterned();
     if (interns.count(val)) {
         return interns[val];
     } else {
