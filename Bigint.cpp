@@ -417,24 +417,76 @@ Bigint::operator uint64_t() const {
     return (uint64_t) values[values.size() - 2] << 32u | (uint64_t) values[values.size() - 1];
 }
 
-Bigint Bigint::operator++() {
+Bigint& Bigint::operator++() {
     const Bigint ONE(1);  // Prevent over-creation
-    return *this + ONE;
+    *this = *this + ONE;
+    return *this;
 }
 
-Bigint Bigint::operator--() {
+Bigint& Bigint::operator--() {
     const Bigint ONE(1);  // Prevent over-creation
-    return *this - ONE;
+    *this = *this - ONE;
+    return *this;
 }
 
 Bigint Bigint::operator++(int) {
     const Bigint ONE(1);  // Prevent over-creation
-    return Bigint(*this + ONE);
+    Bigint temp = *this;
+    ++*this;
+    return temp;
 }
 
 Bigint Bigint::operator--(int) {
     const Bigint ONE(1);  // Prevent over-creation
-    return Bigint(*this - ONE);
+    Bigint temp = *this;
+    --*this;
+    return temp;
+}
+
+// Inplace operators
+Bigint& Bigint::operator+=(const Bigint& other) {
+    *this = *this + other;
+    return *this;
+}
+
+Bigint& Bigint::operator-=(const Bigint& other) {
+    *this = *this - other;
+    return *this;
+}
+
+Bigint& Bigint::operator*=(const Bigint& other) {
+    *this = *this * other;
+    return *this;
+}
+
+Bigint& Bigint::operator/=(const Bigint& other) {
+    *this = *this / other;
+    return *this;
+}
+
+Bigint& Bigint::operator^=(const Bigint& other) {
+    *this = *this ^ other;
+    return *this;
+}
+
+Bigint& Bigint::operator|=(const Bigint& other) {
+    *this = *this | other;
+    return *this;
+}
+
+Bigint& Bigint::operator&=(const Bigint& other) {
+    *this = *this & other;
+    return *this;
+}
+
+Bigint& Bigint::operator>>=(const size_t& other) {
+    *this = *this >> other;
+    return *this;
+}
+
+Bigint& Bigint::operator<<=(const size_t& other) {
+    *this = *this << other;
+    return *this;
 }
 
 Bigint operator "" _B(unsigned long long val) {

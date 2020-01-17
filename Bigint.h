@@ -44,10 +44,20 @@ public:
     Bigint operator~() const;
     Bigint operator>>(const size_t&) const;
     Bigint operator<<(const size_t&) const;
-    Bigint operator++();
-    Bigint operator--();
+    Bigint& operator++();
+    Bigint& operator--();
     Bigint operator++(int);
     Bigint operator--(int);
+
+    Bigint& operator+=(const Bigint&);
+    Bigint& operator-=(const Bigint&);
+    Bigint& operator*=(const Bigint&);
+    Bigint& operator/=(const Bigint&);
+    Bigint& operator^=(const Bigint&);
+    Bigint& operator|=(const Bigint&);
+    Bigint& operator&=(const Bigint&);
+    Bigint& operator>>=(const size_t&);
+    Bigint& operator<<=(const size_t&);
 
     bool operator==(const Bigint&) const;
     bool operator!=(const Bigint&) const;
