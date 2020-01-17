@@ -3,6 +3,7 @@
 //
 
 #include "BuiltinImpl.h"
+#include "StringUtils.h"
 
 
 namespace BuiltinImpl {
@@ -27,7 +28,7 @@ namespace BuiltinImpl {
             case Operator::CALL:
                 return args[0]->callOperator(Operator::STR, {});
             case Operator::STR:
-                return std::make_shared<String>(String("str"));
+                return Constants::fromNative("str", true);
             default:
                 throw std::runtime_error("Operator not implemented");
         }
