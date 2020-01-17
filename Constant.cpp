@@ -8,18 +8,6 @@
 #include "Builtins.h"
 #include "BuiltinImpl.h"
 
-Constants::String::String(std::string value) {
-    this->value = std::move(value);
-}
-
-std::string Constants::String::str() {
-    return this->value;
-}
-
-Variable Constants::String::callOperator(Operator o, std::vector<Variable> args) {
-    throw std::runtime_error("Operators on strings not yet implemented");
-}
-
 std::string Constants::Function::str() {
     return std::string();
 }
