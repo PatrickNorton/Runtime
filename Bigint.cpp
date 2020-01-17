@@ -9,33 +9,33 @@ Bigint::Bigint() {
     values = {0};
 }
 
-Bigint::Bigint(int64_t value) {  // FIXME: Get casting right
-    if (value < 0) {
-        sign = true;
-        values = {static_cast<uint32_t>(-value)};
-    } else {
-        sign = false;
-        values = {static_cast<uint32_t>(value)};
-    }
+Bigint::Bigint(int64_t value) {
+    sign = value < 0;
+    auto uValue = static_cast<uint64_t>(value);
+    values = {};
+    do {
+        values.insert(values.begin(), static_cast<uint32_t>(uValue));
+        uValue >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+    } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
-Bigint::Bigint(int value) {  // FIXME: Get casting right
-    if (value < 0) {
-        sign = true;
-        values = {static_cast<uint32_t>(-value)};
-    } else {
-        sign = false;
-        values = {static_cast<uint32_t>(value)};
-    }
+Bigint::Bigint(int value) {
+    sign = value < 0;
+    auto uValue = static_cast<uint64_t>(value);
+    values = {};
+    do {
+        values.insert(values.begin(), static_cast<uint32_t>(uValue));
+        uValue >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+    } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
 Bigint::Bigint(uint64_t value) {
-    sign = false;
-    if (value < std::numeric_limits<uint32_t>::max()) {
-        values = {static_cast<uint32_t>(value)};
-    } else {
-        values = {static_cast<uint32_t>(value), static_cast<uint32_t>(value << (unsigned) 32)};
-    }
+    sign = value < 0;
+    values = {};
+    do {
+        values.insert(values.begin(), static_cast<uint32_t>(value));
+        value >>= (unsigned) std::numeric_limits<uint32_t>::digits;
+    } while (value > std::numeric_limits<uint32_t>::max());
 }
 
 Bigint::Bigint(std::vector<uint32_t> values, bool sign) {
@@ -392,7 +392,7 @@ Bigint::operator size_t() const {
     constexpr auto byteCount = 1 + (sizeBytes - 1) / numBytes;  // Ceiling division
     size_t result = 0;
     for (int i = 0; i < byteCount; i++) {
-        result |= (static_cast<size_t>(values[values.size() - i - 1])) << (numBytes * i);
+        result |= values[values.size() - i - 1] << (unsigned) (numBytes * i);
     }
     return result;
 }
