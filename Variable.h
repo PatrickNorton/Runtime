@@ -10,7 +10,7 @@
 #include "Operator.h"
 #include "Bigint.h"
 
-class _Variable {
+class _Variable : protected std::enable_shared_from_this<_Variable> {
 public:
     typedef std::shared_ptr<_Variable> Variable;
     virtual std::string str();

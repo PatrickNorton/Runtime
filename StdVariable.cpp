@@ -11,5 +11,5 @@ StdVariable::StdVariable(Type type, std::vector<Variable> args) {
 }
 
 Variable StdVariable::callOperator(Operator o, std::vector<Variable> args) {
-    return type->callOperator(o, std::make_shared<StdVariable>(*this), args);
+    return type->callOperator(o, shared_from_this(), args);
 }

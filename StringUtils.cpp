@@ -109,7 +109,7 @@ Variable Constants::String::callOperator(Operator o, std::vector<Variable> args)
         case Operator::CALL:
             break;
         case Operator::STR: {
-            return std::make_shared<String>(*this);
+            return shared_from_this();
         }
         case Operator::INT:
             break;

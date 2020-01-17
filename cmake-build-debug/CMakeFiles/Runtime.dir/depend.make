@@ -10,6 +10,7 @@ CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Bigint.h
