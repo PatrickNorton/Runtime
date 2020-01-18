@@ -45,6 +45,8 @@ enum class Operator {
     SET_SLICE,
     GET_ATTR,
     GET_SLICE,
+    DEL_ATTR,
+    DEL_SLICE,
     COMPARE,
     CALL,
     STR,

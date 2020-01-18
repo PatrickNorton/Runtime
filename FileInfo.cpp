@@ -14,5 +14,5 @@ FileInfo::FileInfo(std::vector<Constants::Constant> constants, std::vector<std::
 
 void FileInfo::execute() {
     auto defaultFn = functions[0];
-    ::execute(defaultFn, constants);
+    Executor::execute(defaultFn, constants);
 }
