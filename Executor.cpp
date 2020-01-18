@@ -13,7 +13,8 @@ namespace Executor {
             argv[argc - i - 1] = runtime.pop();
         }
         auto caller = runtime.pop();
-        caller->callOperator(Operator::CALL, argv);
+        caller->callOperator(o, argv);
+        // TODO: Push variable(s) back to stack
     }
 
     void parse(const Bytecode b, const std::vector<uint8_t> &bytes, Runtime &runtime) {
@@ -133,12 +134,21 @@ namespace Executor {
             case Bytecode::BITWISE_NOT:
                 callOperator(Operator::BITWISE_NOT, 0, runtime);
                 return;
-            case Bytecode::BOOL_AND:
-                break;
-            case Bytecode::BOOL_OR:
-                break;
+            case Bytecode::BOOL_AND: {
+                auto arg1 = bool(*runtime.pop());
+                auto arg2 = bool(*runtime.pop());
+                runtime.push(Constants::fromNative(arg2 && arg1));
+            }
+                return;
+            case Bytecode::BOOL_OR: {
+                auto arg1 = bool(*runtime.pop());
+                auto arg2 = bool(*runtime.pop());
+                runtime.push(Constants::fromNative(arg2 || arg1));
+            }
+                return;
             case Bytecode::BOOL_NOT:
-                break;
+                runtime.push(Constants::fromNative(!*runtime.pop()));
+                return;
             case Bytecode::IDENTICAL: {
                 Variable x = runtime.pop();
                 Variable y = runtime.pop();
@@ -175,13 +185,7 @@ namespace Executor {
                 break;
             case Bytecode::CALL_TOS: {
                 auto argc = IntTools::bytesTo<uint16_t>(bytes);
-                std::vector<Variable> argv(argc);
-                for (uint16_t i = 0; i < argc; i++) {
-                    argv[argc - i - 1] = runtime.pop();
-                }
-                auto caller = runtime.pop();
-                caller->callOperator(Operator::CALL, argv);
-                // TODO: Push variable(s) back to stack
+                callOperator(Operator::CALL, argc, runtime);
             }
                 return;
             case Bytecode::TAIL_METHOD:
