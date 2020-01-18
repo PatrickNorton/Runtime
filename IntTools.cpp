@@ -8,7 +8,7 @@
 
 template <>
 uint32_t IntTools::bytesTo(std::vector<uint8_t> bytes) {
-    constexpr std::size_t byteSize = 32 / 8;
+    constexpr std::size_t byteSize = Constants::INT_32_BYTES;
     assert(bytes.size() == byteSize);
 
     uint32_t result = 0;
@@ -22,7 +22,7 @@ uint32_t IntTools::bytesTo(std::vector<uint8_t> bytes) {
 
 template <>
 uint16_t IntTools::bytesTo(std::vector<uint8_t> bytes) {
-    constexpr std::size_t byteSize = 16 / 8;
+    constexpr std::size_t byteSize = Constants::INT_16_BYTES;
     assert(bytes.size() == byteSize);
 
     uint16_t result = 0;
