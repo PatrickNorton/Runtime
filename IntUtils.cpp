@@ -17,7 +17,7 @@ Constants::IntConstant::IntConstant(Bigint value) {
 }
 
 std::string Constants::IntConstant::str() {
-    return "";
+    return value.to_string();
 }
 
 Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> args) {
@@ -158,6 +158,10 @@ Variable Constants::IntConstant::callOperator(Operator o, std::vector<Variable> 
             throw std::runtime_error("Operator should not be called on variable");
     }
     throw std::runtime_error("Operator not yet implemented");
+}
+
+Bigint Constants::IntConstant::toInt() {
+    return value;
 }
 
 Constants::BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {

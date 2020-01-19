@@ -4,6 +4,8 @@
 
 #include "Bigint.h"
 
+#include <string>
+
 Bigint::Bigint() {
     sign = false;
     values = {0};
@@ -495,6 +497,16 @@ bool Bigint::operator>=(const Bigint & other) const {
 
 bool Bigint::operator<=(const Bigint & other) const {
     return *this < other || *this == other;
+}
+
+std::string Bigint::to_string() const {
+    if (values.empty()) {
+        return "0";
+    } else if (values.size() == 1) {
+        return std::to_string(values[0]);
+    } else {
+        throw std::runtime_error("Too big to stringify yet");
+    }
 }
 
 Bigint operator "" _B(unsigned long long val) {

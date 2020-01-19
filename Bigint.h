@@ -6,6 +6,7 @@
 #define RUNTIME_BIGINT_H
 
 
+#include <string>
 #include <vector>
 
 class Bigint {
@@ -73,6 +74,8 @@ public:
     explicit operator uint32_t() const;
     explicit operator int64_t() const;
     explicit operator uint64_t() const;
+
+    std::string to_string() const;
 };
 
 Bigint operator "" _B (unsigned long long);

@@ -16,6 +16,7 @@ namespace Constants {
         explicit IntConstant(uint32_t value);
         explicit IntConstant(Bigint value);
         std::string str() override;
+        Bigint toInt() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 

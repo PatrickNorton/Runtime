@@ -13,8 +13,7 @@ namespace Executor {
             argv[argc - i - 1] = runtime.pop();
         }
         auto caller = runtime.pop();
-        caller->callOperator(o, argv);
-        // TODO: Push variable(s) back to stack
+        runtime.push(caller->callOperator(o, argv));
     }
 
     void parse(const Bytecode b, const std::vector<uint8_t> &bytes, Runtime &runtime) {
