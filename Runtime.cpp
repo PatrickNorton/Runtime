@@ -4,6 +4,8 @@
 
 #include "Runtime.h"
 
+#include <utility>
+
 
 Variable Runtime::load_variable(uint32_t index) {
     return this->variables[index];
@@ -11,7 +13,7 @@ Variable Runtime::load_variable(uint32_t index) {
 
 
 void Runtime::store_variable(uint32_t index, Variable variable) {
-    this->variables[index] = variable;
+    this->variables[index] = std::move(variable);
 }
 
 Variable Runtime::pop() {
@@ -21,7 +23,7 @@ Variable Runtime::pop() {
 }
 
 void Runtime::push(Variable variable) {
-    stack.push(variable);
+    stack.push(std::move(variable));
 }
 
 Variable Runtime::load_const(uint32_t index) {
@@ -32,8 +34,8 @@ Variable Runtime::top() {
     return stack.top();
 }
 
-void Runtime::goTo(uint32_t location) {
-    throw std::runtime_error("Goto not allowed yet");
+void Runtime::goTo(uint32_t pos) {
+    location = pos;
 }
 
 uint32_t Runtime::currentPos() {

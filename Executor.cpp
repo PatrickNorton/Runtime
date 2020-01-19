@@ -174,11 +174,10 @@ namespace Executor {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;
-            case Bytecode::JUMP_NN: {
+            case Bytecode::JUMP_NN:
                 if (runtime.pop() == Constants::null()) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
-            }
                 return;
             case Bytecode::CALL_METHOD:
                 break;
