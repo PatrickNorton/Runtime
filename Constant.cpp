@@ -12,7 +12,7 @@ std::string Constants::Function::str() {
     return std::string();
 }
 
-Constants::Function::Function(void (*caller)(const std::vector<Variable>&)) {
+Constants::Function::Function(Callable caller) {
     function = caller;
 }
 

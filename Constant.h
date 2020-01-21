@@ -14,10 +14,12 @@ namespace Constants {
     };
 
     class Function : public _Constant {
-    private:
-        void (*function)(const std::vector<Variable>&);
     public:
-        explicit Function(void (*caller)(const std::vector<Variable>&));
+        typedef void (*Callable)(const std::vector<Variable>&);
+    private:
+        Callable function;
+    public:
+        explicit Function(Callable caller);
         std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
