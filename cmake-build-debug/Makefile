@@ -123,6 +123,33 @@ Runtime/fast:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/build
 .PHONY : Runtime/fast
 
+BigDecimal.o: BigDecimal.cpp.o
+
+.PHONY : BigDecimal.o
+
+# target to build an object file
+BigDecimal.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/BigDecimal.cpp.o
+.PHONY : BigDecimal.cpp.o
+
+BigDecimal.i: BigDecimal.cpp.i
+
+.PHONY : BigDecimal.i
+
+# target to preprocess a source file
+BigDecimal.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/BigDecimal.cpp.i
+.PHONY : BigDecimal.cpp.i
+
+BigDecimal.s: BigDecimal.cpp.s
+
+.PHONY : BigDecimal.s
+
+# target to generate assembly for a file
+BigDecimal.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/BigDecimal.cpp.s
+.PHONY : BigDecimal.cpp.s
+
 Bigint.o: Bigint.cpp.o
 
 .PHONY : Bigint.o
@@ -645,6 +672,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Runtime"
+	@echo "... BigDecimal.o"
+	@echo "... BigDecimal.i"
+	@echo "... BigDecimal.s"
 	@echo "... Bigint.o"
 	@echo "... Bigint.i"
 	@echo "... Bigint.s"

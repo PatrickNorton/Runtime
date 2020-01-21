@@ -6,6 +6,7 @@
 #define RUNTIME_INTUTILS_H
 
 #include "Constant.h"
+#include "BigDecimal.h"
 
 namespace Constants {
 
@@ -26,6 +27,16 @@ namespace Constants {
     public:
         explicit BoolConstant(bool value);
         std::string str() override;
+        Variable callOperator(Operator o, std::vector<Variable> args) override;
+    };
+
+    class DecimalConstant : public _Constant {
+    private:
+        BigDecimal value;
+    public:
+        explicit DecimalConstant(BigDecimal value);
+        std::string str() override;
+        Bigint toInt() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 

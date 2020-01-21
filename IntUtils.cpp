@@ -4,6 +4,7 @@
 
 #include <unordered_map>
 #include <map>
+#include <utility>
 #include "IntUtils.h"
 #include "StringUtils.h"
 
@@ -204,3 +205,19 @@ Constants::Constant Constants::fromNative(const Bigint& val) {
         return std::make_shared<IntConstant>(IntConstant(val));
     }
 }
+
+Constants::DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}
+
+std::string Constants::DecimalConstant::str() {
+    return value.toString();
+}
+
+Bigint Constants::DecimalConstant::toInt() {
+    return value.round();
+}
+
+Variable Constants::DecimalConstant::callOperator(Operator o, std::vector<Variable> args) {
+    throw std::runtime_error("Decimal operators not implemented yet");
+}
+
+
