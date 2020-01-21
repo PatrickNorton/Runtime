@@ -43,6 +43,7 @@ namespace Constants {
 
     Constant fromNative(bool val);
     Constant fromNative(const Bigint& val);
+    Constant fromNative(const BigDecimal& val);
 }
 
 #endif //RUNTIME_INTUTILS_H

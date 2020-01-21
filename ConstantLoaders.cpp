@@ -52,4 +52,18 @@ namespace ConstantLoaders {
         }
         return Constants::fromNative(Bigint(values, false));
     }
+
+    Constants::Constant loadDecimal(const std::vector<uint8_t> &data, size_t &index) {
+        auto count = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        auto scale = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        std::vector<uint32_t> values(count);
+        for (uint32_t i = 0; i < count; i++) {
+            auto val = IntTools::bytesTo<uint32_t>(data, index);
+            values[i] = val;
+            index += Constants::INT_32_BYTES;
+        }
+        return Constants::fromNative(BigDecimal(Bigint(values, false), scale));
+    }
 }

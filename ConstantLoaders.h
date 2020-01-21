@@ -15,6 +15,7 @@ namespace ConstantLoaders {
     Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index);
+    Constants::Constant loadDecimal(const std::vector<uint8_t>& data, size_t& index);
 }
 
 

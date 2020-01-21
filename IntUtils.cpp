@@ -206,6 +206,10 @@ Constants::Constant Constants::fromNative(const Bigint& val) {
     }
 }
 
+Constants::Constant Constants::fromNative(const BigDecimal &val) {
+    return std::make_shared<DecimalConstant>(DecimalConstant(val));
+}
+
 Constants::DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}
 
 std::string Constants::DecimalConstant::str() {

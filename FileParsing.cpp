@@ -24,7 +24,7 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::BIGINT:
             return ConstantLoaders::loadBigint(data, index);
         case ConstantBytes::DECIMAL:
-            break;
+            return ConstantLoaders::loadDecimal(data, index);
         case ConstantBytes::IMPORT:
             break;
         case ConstantBytes::BUILTIN:
