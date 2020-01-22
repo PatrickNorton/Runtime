@@ -528,6 +528,33 @@ Runtime.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.s
 .PHONY : Runtime.cpp.s
 
+StandardFunction.o: StandardFunction.cpp.o
+
+.PHONY : StandardFunction.o
+
+# target to build an object file
+StandardFunction.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StandardFunction.cpp.o
+.PHONY : StandardFunction.cpp.o
+
+StandardFunction.i: StandardFunction.cpp.i
+
+.PHONY : StandardFunction.i
+
+# target to preprocess a source file
+StandardFunction.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StandardFunction.cpp.i
+.PHONY : StandardFunction.cpp.i
+
+StandardFunction.s: StandardFunction.cpp.s
+
+.PHONY : StandardFunction.s
+
+# target to generate assembly for a file
+StandardFunction.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StandardFunction.cpp.s
+.PHONY : StandardFunction.cpp.s
+
 StdVariable.o: StdVariable.cpp.o
 
 .PHONY : StdVariable.o
@@ -717,6 +744,9 @@ help:
 	@echo "... Runtime.o"
 	@echo "... Runtime.i"
 	@echo "... Runtime.s"
+	@echo "... StandardFunction.o"
+	@echo "... StandardFunction.i"
+	@echo "... StandardFunction.s"
 	@echo "... StdVariable.o"
 	@echo "... StdVariable.i"
 	@echo "... StdVariable.s"
