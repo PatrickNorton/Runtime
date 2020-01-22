@@ -11,14 +11,11 @@
 #include <iostream>
 #include "Builtins.h"
 #include "Operator.h"
+#include "Type.h"
 
 
 namespace BuiltinImpl {
-    class str_t : public _Variable {
-    public:
-        std::string str() override;
-        Variable callOperator(Operator o, std::vector<Variable> args) override;
-    };
+    Type str_t();
 
     class String : public _Variable {
     public:

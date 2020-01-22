@@ -19,21 +19,6 @@ namespace BuiltinImpl {
         throw std::runtime_error("Operator calling not yet implemented for str");
     }
 
-    std::string str_t::str() {
-        return "str";
-    }
-
-    Variable str_t::callOperator(Operator o, std::vector<Variable> args) {
-        switch (o) {
-            case Operator::CALL:
-                return args[0]->callOperator(Operator::STR, {});
-            case Operator::STR:
-                return Constants::fromNative("str", true);
-            default:
-                throw std::runtime_error("Operator not implemented");
-        }
-    }
-
     NullType::NullType() = default;
 
     std::string NullType::str() {
@@ -42,5 +27,11 @@ namespace BuiltinImpl {
 
     Variable NullType::callOperator(Operator, std::vector<Variable>) {
         throw std::runtime_error("Cannot call functions on null");
+    }
+
+    Type str_t() {
+        static const std::unordered_map<Operator, Callable> strOperators {};  // TODO: Implement operators
+        static Type instance = std::make_shared<Constants::_Type>(Constants::_Type(strOperators));
+        return instance;
     }
 }

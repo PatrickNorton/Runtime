@@ -12,7 +12,7 @@
 
 namespace Builtins {
     Variable null = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
-    const Variable str = std::make_shared<BuiltinImpl::str_t>(BuiltinImpl::str_t());
+    const Variable str = BuiltinImpl::str_t();
     Constants::Constant print = std::make_shared<Constants::Function>(Constants::Function(Builtins::_print));
     const std::vector<Constants::Constant> values = {
             print

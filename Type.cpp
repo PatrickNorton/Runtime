@@ -6,14 +6,16 @@
 
 #include <utility>
 
-_Type::_Type(std::unordered_map<Operator, Callable> operators) {
-    this->operators = std::move(operators);
-}
+namespace Constants {
+    _Type::_Type(std::unordered_map<Operator, Callable> operators) {
+        this->operators = std::move(operators);
+    }
 
-Variable _Type::callOperator(Operator o, std::vector<Variable> args) {
-    return (*(operators)[o])(args);
-}
+    Variable _Type::callOperator(Operator o, std::vector<Variable> args) {
+        return (*(operators)[o])(args);
+    }
 
-Variable _Type::callOperator(Operator o, Variable self, std::vector<Variable> args) {
-    throw std::runtime_error("Calling not yet implemented");
+    Variable _Type::callOperator(Operator o, Variable self, std::vector<Variable> args) {
+        throw std::runtime_error("Calling not yet implemented");
+    }
 }
