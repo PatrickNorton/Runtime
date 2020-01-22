@@ -9,34 +9,43 @@
 #include "BuiltinImpl.h"
 #include "Runtime.h"
 
-std::string Constants::Function::str() {
-    return std::string();
-}
-
-Constants::Function::Function(Callable caller) {
-    function = caller;
-}
-
-Variable Constants::Function::callOperator(Operator o, std::vector<Variable> args) {
-    if (o == Operator::CALL) {
-        function(args);
-        return Builtins::null;
-    } else {
-        throw std::runtime_error("Operator not yet implemented");
+namespace Constants {
+    std::string Function::str() {
+        return std::string();
     }
-}
 
-uint32_t Constants::Function::operator()(uint16_t argc, Runtime* runtime) {
-    runtime->callIsNative();
-    std::vector<Variable> args(argc);
-    for (uint16_t i = argc - 1; i >= 0; i++) {
-        args[argc] = runtime->pop();
+    Function::Function(Callable caller) {
+        function = std::move(caller);
     }
-    function(args);
-    return 0;
-}
 
-Constants::Constant Constants::null() {
-    static Constant instance = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
-    return instance;
+    Variable Function::callOperator(Operator o, std::vector<Variable> args) {
+        throw std::runtime_error("No longer implemented");
+    }
+
+    uint32_t Function::operator()(uint16_t argc, Runtime *runtime) {
+        runtime->callIsNative();
+        std::vector<Variable> args(argc);
+        for (uint16_t i = argc - 1; i >= 0; i++) {
+            args[argc] = runtime->pop();
+        }
+        function(argc, runtime);
+        return 0;
+    }
+
+    Function::Function(const Function::OldCallable &caller) {
+        function = [=](uint16_t argc, Runtime *runtime) { return convert(caller, argc, runtime); };
+    }
+
+    void Function::convert(const Function::OldCallable &caller, uint16_t argc, Runtime *runtime) {
+        std::vector<Variable> args(argc);
+        for (uint16_t i = argc - 1; i >= 0; i++) {
+            args[argc] = runtime->pop();
+        }
+        caller(args);
+    }
+
+    Constant null() {
+        static Constant instance = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
+        return instance;
+    }
 }
