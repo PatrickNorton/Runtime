@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/patricknorton/CLionProjects/Runtime/Executor.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Executor.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/FileInfo.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/FileInfo.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/FileParsing.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/FileParsing.cpp.o"
+  "/Users/patricknorton/CLionProjects/Runtime/Function.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Function.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntTools.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntUtils.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntUtils.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Operator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Operator.cpp.o"

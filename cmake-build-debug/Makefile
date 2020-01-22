@@ -420,6 +420,33 @@ FileParsing.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/FileParsing.cpp.s
 .PHONY : FileParsing.cpp.s
 
+Function.o: Function.cpp.o
+
+.PHONY : Function.o
+
+# target to build an object file
+Function.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Function.cpp.o
+.PHONY : Function.cpp.o
+
+Function.i: Function.cpp.i
+
+.PHONY : Function.i
+
+# target to preprocess a source file
+Function.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Function.cpp.i
+.PHONY : Function.cpp.i
+
+Function.s: Function.cpp.s
+
+.PHONY : Function.s
+
+# target to generate assembly for a file
+Function.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Function.cpp.s
+.PHONY : Function.cpp.s
+
 IntTools.o: IntTools.cpp.o
 
 .PHONY : IntTools.o
@@ -732,6 +759,9 @@ help:
 	@echo "... FileParsing.o"
 	@echo "... FileParsing.i"
 	@echo "... FileParsing.s"
+	@echo "... Function.o"
+	@echo "... Function.i"
+	@echo "... Function.s"
 	@echo "... IntTools.o"
 	@echo "... IntTools.i"
 	@echo "... IntTools.s"

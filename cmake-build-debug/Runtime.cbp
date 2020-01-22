@@ -152,6 +152,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/FileParsing.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Function.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Function.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp">
 			<Option target="Runtime"/>
 		</Unit>
