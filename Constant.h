@@ -22,6 +22,7 @@ namespace Constants {
         explicit Function(Callable caller);
         std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
+        uint32_t operator() (uint16_t, Runtime*) override;
     };
 
     typedef std::shared_ptr<_Constant> Constant;

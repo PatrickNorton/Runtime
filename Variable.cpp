@@ -16,3 +16,15 @@ Bigint _Variable::toInt() {
 _Variable::operator bool() {
     return bool(*callOperator(Operator::BOOL, {}));
 }
+
+uint32_t _Variable::operator()(uint16_t argc, Runtime* runtime) {
+    return (*(*this)[{Operator::CALL, runtime}])(argc, runtime);
+}
+
+Variable _Variable::operator[](std::pair<uint16_t, Runtime*>) {
+    throw std::runtime_error("Not yet implemented");
+}
+
+Variable _Variable::operator[](std::pair<Operator, Runtime*>) {
+    throw std::runtime_error("Not yet implemented");
+}

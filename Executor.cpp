@@ -183,7 +183,7 @@ namespace Executor {
                 break;
             case Bytecode::CALL_TOS: {
                 auto argc = IntTools::bytesTo<uint16_t>(bytes);
-                callOperator(Operator::CALL, argc, runtime);
+                runtime.call(argc);
             }
                 return;
             case Bytecode::TAIL_METHOD:
