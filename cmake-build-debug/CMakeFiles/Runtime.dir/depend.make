@@ -12,17 +12,21 @@ CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BuiltinImpl.cpp
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../StringUtils.h
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.cpp
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.cpp
@@ -37,9 +41,12 @@ CMakeFiles/Runtime.dir/Callable.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.cpp
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/Constant.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../BigDecimal.h

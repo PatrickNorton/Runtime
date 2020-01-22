@@ -32,7 +32,7 @@ public:
     uint32_t currentPos() const;
     void advance(uint32_t count);
     void call(uint16_t);
-    inline void callIsNative();
+    void callIsNative();
 };
 
 
