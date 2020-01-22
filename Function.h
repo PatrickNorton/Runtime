@@ -15,9 +15,9 @@ namespace Constants {
         uint32_t index;
     public:
         explicit StdFunction(uint32_t index);
-        uint32_t operator() (uint16_t, Runtime*);
-        Variable operator[] (std::pair<uint16_t, Runtime*>);
-        Variable operator[] (std::pair<Operator, Runtime*>);
+        uint32_t operator() (uint16_t, Runtime*) override;
+        Variable operator[] (std::pair<uint16_t, Runtime*>) override;
+        Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 }
 
