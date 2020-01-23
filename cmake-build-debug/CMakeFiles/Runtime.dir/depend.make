@@ -114,9 +114,19 @@ CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.cpp
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Variable.h
+
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.cpp
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.cpp
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.h

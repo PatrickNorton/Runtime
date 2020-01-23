@@ -8,7 +8,7 @@ Constants::StdFunction::StdFunction(uint32_t index) {
     this->index = index;
 }
 
-uint32_t Constants::StdFunction::operator()(uint16_t, Runtime *) {
+uint32_t Constants::StdFunction::operator()(const std::vector<Variable>&, Runtime *) {
     return index;
 }
 

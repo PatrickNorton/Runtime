@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/patricknorton/CLionProjects/Runtime/Function.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Function.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntTools.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntUtils.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntUtils.cpp.o"
+  "/Users/patricknorton/CLionProjects/Runtime/Method.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Method.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Operator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Operator.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Runtime.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/StandardFunction.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/StandardFunction.cpp.o"

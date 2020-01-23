@@ -2,18 +2,16 @@
 // Created by Patrick Norton on 12/1/20.
 //
 
+#include <iostream>
 #include "Executor.h"
 #include "IntTools.h"
 #include "IntUtils.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
-        std::vector<Variable> argv(argc);
-        for (uint16_t i = 0; i < argc; i++) {
-            argv[argc - i - 1] = runtime.pop();
-        }
+        std::vector<Variable> argv = runtime.loadArgs(argc);
         auto caller = runtime.pop();
-        runtime.push(caller->callOperator(o, argv));
+        (*caller->operator[]({o, &runtime}))(argv, &runtime);
     }
 
     void parse(const Bytecode b, const std::vector<uint8_t> &bytes, Runtime &runtime) {

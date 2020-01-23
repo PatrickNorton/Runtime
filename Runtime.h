@@ -25,7 +25,7 @@ public:
     Variable load_variable(uint32_t index) const;
     void store_variable(uint32_t index, Variable variable);
     Variable pop();
-    void push(Variable variable);
+    void push(const Variable& variable);
     Variable load_const(uint32_t index) const;
     Variable top() const;
     void goTo(uint32_t location);
@@ -33,6 +33,7 @@ public:
     void advance(uint32_t count);
     void call(uint16_t);
     void callIsNative();
+    std::vector<Variable> loadArgs(uint16_t);
 };
 
 

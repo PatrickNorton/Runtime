@@ -13,20 +13,19 @@ namespace Constants {
     class _Constant : public _Variable {
     };
 
-    class Function : public _Constant {
+class Function : public _Constant {
     public:
-        typedef std::function<void(uint16_t, Runtime*)> Callable;
+        typedef std::function<void(const std::vector<Variable>&, Runtime*)> Callable;
         typedef std::function<void(const std::vector<Variable>&)> OldCallable;
     private:
         Callable function;
-
-        static void convert(const OldCallable& caller, uint16_t, Runtime*);
     public:
         explicit Function(const OldCallable&);
         explicit Function(Callable caller);
         std::string str() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
-        uint32_t operator() (uint16_t, Runtime*) override;
+        uint32_t operator() (const std::vector<Variable>& , Runtime*) override;
+        Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 
     typedef std::shared_ptr<_Constant> Constant;

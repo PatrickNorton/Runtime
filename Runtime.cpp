@@ -5,6 +5,7 @@
 #include "Runtime.h"
 
 #include <utility>
+#include <iostream>
 
 
 Variable Runtime::load_variable(uint32_t index) const {
@@ -22,8 +23,8 @@ Variable Runtime::pop() {
     return var;
 }
 
-void Runtime::push(Variable variable) {
-    stack.push(std::move(variable));
+void Runtime::push(const Variable& variable) {
+    stack.push((variable));
 }
 
 Variable Runtime::load_const(uint32_t index) const {
@@ -53,8 +54,9 @@ void Runtime::advance(uint32_t count) {
 }
 
 void Runtime::call(uint16_t argc) {
+    auto args = loadArgs(argc);
     auto caller = pop();
-    auto callLoc = (*caller)(argc, this);
+    auto callLoc = (*caller)(args, this);
     if (nativeCall) {
         assert(callLoc == 0);
         nativeCall = false;
@@ -66,4 +68,12 @@ void Runtime::call(uint16_t argc) {
 
 void Runtime::callIsNative() {
     nativeCall = true;
+}
+
+std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
+    std::vector<Variable> args(argc);
+    for (uint16_t i = 0; i < argc; i++) {
+        args[argc - i - 1] = pop();
+    }
+    return args;
 }

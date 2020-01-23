@@ -19,6 +19,7 @@ namespace Constants {
         std::string str() override;
         Bigint toInt() override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
+        Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 
     class BoolConstant : public IntConstant {

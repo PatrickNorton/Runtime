@@ -22,26 +22,22 @@ namespace Constants {
         throw std::runtime_error("No longer implemented");
     }
 
-    uint32_t Function::operator()(uint16_t argc, Runtime *runtime) {
+    uint32_t Function::operator()(const std::vector<Variable>& args, Runtime *runtime) {
         runtime->callIsNative();
-        std::vector<Variable> args(argc);
-        for (uint16_t i = argc - 1; i >= 0; i++) {
-            args[argc] = runtime->pop();
-        }
-        function(argc, runtime);
+        function(args, runtime);
         return 0;
     }
 
     Function::Function(const Function::OldCallable &caller) {
-        function = [=](uint16_t argc, Runtime *runtime) { return convert(caller, argc, runtime); };
+        function = [=](const std::vector<Variable>& args, Runtime*) { return caller(args); };
     }
 
-    void Function::convert(const Function::OldCallable &caller, uint16_t argc, Runtime *runtime) {
-        std::vector<Variable> args(argc);
-        for (uint16_t i = argc - 1; i >= 0; i++) {
-            args[argc] = runtime->pop();
+    Variable Function::operator[](std::pair<Operator, Runtime *> pair) {
+        if (pair.first == Operator::CALL) {
+            return shared_from_this();
+        } else {
+            throw std::runtime_error("Not yet implemented");
         }
-        caller(args);
     }
 
     Constant null() {
