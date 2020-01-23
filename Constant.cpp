@@ -10,12 +10,12 @@
 #include "Runtime.h"
 
 namespace Constants {
-    std::string Function::str() {
+    std::string Function::str(Runtime *) {
         return std::string();
     }
 
     Function::Function(Callable caller) {
-        function = std::move(caller);
+        function = caller;
     }
 
     Variable Function::callOperator(Operator o, std::vector<Variable> args) {
@@ -26,10 +26,6 @@ namespace Constants {
         runtime->callIsNative();
         function(args, runtime);
         return 0;
-    }
-
-    Function::Function(const Function::OldCallable &caller) {
-        function = [=](const std::vector<Variable>& args, Runtime*) { return caller(args); };
     }
 
     Variable Function::operator[](std::pair<Operator, Runtime *> pair) {

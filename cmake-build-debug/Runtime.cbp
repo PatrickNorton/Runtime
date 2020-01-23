@@ -188,12 +188,6 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Runtime.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StandardFunction.cpp">
-			<Option target="Runtime"/>
-		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StandardFunction.h">
-			<Option target="Runtime"/>
-		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StdVariable.cpp">
 			<Option target="Runtime"/>
 		</Unit>

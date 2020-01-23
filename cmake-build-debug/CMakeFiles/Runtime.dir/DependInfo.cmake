@@ -21,7 +21,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/patricknorton/CLionProjects/Runtime/Method.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Method.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Operator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Operator.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Runtime.cpp.o"
-  "/Users/patricknorton/CLionProjects/Runtime/StandardFunction.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/StandardFunction.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/StdVariable.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/StdVariable.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/StringUtils.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/StringUtils.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Type.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Type.cpp.o"

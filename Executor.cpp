@@ -132,19 +132,19 @@ namespace Executor {
                 callOperator(Operator::BITWISE_NOT, 0, runtime);
                 return;
             case Bytecode::BOOL_AND: {
-                auto arg1 = bool(*runtime.pop());
-                auto arg2 = bool(*runtime.pop());
+                auto arg1 = runtime.pop()->toBool(&runtime);
+                auto arg2 = runtime.pop()->toBool(&runtime);
                 runtime.push(Constants::fromNative(arg2 && arg1));
             }
                 return;
             case Bytecode::BOOL_OR: {
-                auto arg1 = bool(*runtime.pop());
-                auto arg2 = bool(*runtime.pop());
+                auto arg1 = runtime.pop()->toBool(&runtime);
+                auto arg2 = runtime.pop()->toBool(&runtime);
                 runtime.push(Constants::fromNative(arg2 || arg1));
             }
                 return;
             case Bytecode::BOOL_NOT:
-                runtime.push(Constants::fromNative(!*runtime.pop()));
+                runtime.push(Constants::fromNative(!runtime.pop()->toBool(&runtime)));
                 return;
             case Bytecode::IDENTICAL: {
                 Variable x = runtime.pop();
@@ -163,12 +163,12 @@ namespace Executor {
             case Bytecode::JUMP:
                 runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
             case Bytecode::JUMP_FALSE:
-                if (!*runtime.pop()) {
+                if (!runtime.pop()->toBool(&runtime)) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;
             case Bytecode::JUMP_TRUE:
-                if (*runtime.pop()) {
+                if (runtime.pop()->toBool(&runtime)) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;

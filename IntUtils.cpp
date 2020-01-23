@@ -19,56 +19,56 @@ Constants::IntConstant::IntConstant(Bigint value) {
     this->value = std::move(value);
 }
 
-std::string Constants::IntConstant::str() {
+std::string Constants::IntConstant::str(Runtime *) {
     return value.to_string();
 }
 
 void intStr(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     assert(args.empty());
-    runtime->push(Constants::fromNative(self->toInt().to_string()));
+    runtime->push(Constants::fromNative(self->toInt(runtime).to_string()));
 }
 
 void intAdd(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result + arg->toInt();
+        result = result + arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intSub(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result - arg->toInt();
+        result = result - arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intUSub(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     assert(args.empty());
-    runtime->push(Constants::fromNative(-self->toInt()));
+    runtime->push(Constants::fromNative(-self->toInt(runtime)));
 }
 
 void intMul(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result * arg->toInt();
+        result = result * arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intFloorDiv(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result / arg->toInt();
+        result = result / arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intEquals(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (arg->toInt() != value) {
+        if (arg->toInt(runtime) != value) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -77,9 +77,9 @@ void intEquals(const Variable& self, const std::vector<Variable>& args, Runtime*
 }
 
 void intNotEquals(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (arg->toInt() == value) {
+        if (arg->toInt(runtime) == value) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -88,9 +88,9 @@ void intNotEquals(const Variable& self, const std::vector<Variable>& args, Runti
 }
 
 void intGreaterThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt() > value)) {
+        if (!(arg->toInt(runtime) > value)) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -99,9 +99,9 @@ void intGreaterThan(const Variable& self, const std::vector<Variable>& args, Run
 }
 
 void intLessThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt() < value)) {
+        if (!(arg->toInt(runtime) < value)) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -110,9 +110,9 @@ void intLessThan(const Variable& self, const std::vector<Variable>& args, Runtim
 }
 
 void intGreaterEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt() >= value)) {
+        if (!(arg->toInt(runtime) >= value)) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -121,9 +121,9 @@ void intGreaterEqual(const Variable& self, const std::vector<Variable>& args, Ru
 }
 
 void intLessEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt();
+    auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt() <= value)) {
+        if (!(arg->toInt(runtime) <= value)) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -138,7 +138,7 @@ void intLeftBS(const Variable& self, const std::vector<Variable>& args, Runtime*
     if ((*arg).callOperator(Operator::GREATER_THAN, {maxBsSize})) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
-    runtime->push(Constants::fromNative(self->toInt() << static_cast<size_t>(arg->toInt())));
+    runtime->push(Constants::fromNative(self->toInt(runtime) << static_cast<size_t>(arg->toInt(runtime))));
 }
 
 void intRightBS(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
@@ -148,36 +148,36 @@ void intRightBS(const Variable& self, const std::vector<Variable>& args, Runtime
     if ((*arg).callOperator(Operator::GREATER_THAN, {maxBsSize})) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
-    runtime->push(Constants::fromNative(self->toInt() >> static_cast<size_t>(arg->toInt())));
+    runtime->push(Constants::fromNative(self->toInt(runtime) >> static_cast<size_t>(arg->toInt(runtime))));
 }
 
 void intBWAnd(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result & arg->toInt();
+        result = result & arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intBWOr(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result | arg->toInt();
+        result = result | arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intBWXor(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt());
+    Bigint result(self->toInt(runtime));
     for (const auto& arg : args) {  // TODO: Type checking
-        result = result ^ arg->toInt();
+        result = result ^ arg->toInt(runtime);
     }
     runtime->push(Constants::fromNative(result));
 }
 
 void intBWNot(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     assert(args.empty());
-    runtime->push(Constants::fromNative(~self->toInt()));
+    runtime->push(Constants::fromNative(~self->toInt(runtime)));
 }
 
 void intToInt(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
@@ -187,7 +187,7 @@ void intToInt(const Variable& self, const std::vector<Variable>& args, Runtime* 
 
 void intToBool(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     assert(args.empty());
-    runtime->push(Constants::fromNative(self->toInt() != 0_B));
+    runtime->push(Constants::fromNative(self->toInt(runtime) != 0_B));
 }
 
 const std::unordered_map<Operator, void (*)(const Variable&, const std::vector<Variable>&, Runtime*)>& intMethods() {
@@ -220,8 +220,12 @@ Variable Constants::IntConstant::callOperator(Operator, std::vector<Variable>) {
     throw std::runtime_error("Old-style operator calling deprecated");
 }
 
-Bigint Constants::IntConstant::toInt() {
+Bigint Constants::IntConstant::toInt(Runtime *) {
     return value;
+}
+
+bool Constants::IntConstant::toBool(Runtime *) {
+    return value > 0_B;
 }
 
 Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair) {
@@ -244,8 +248,12 @@ Variable Constants::BoolConstant::callOperator(Operator o, std::vector<Variable>
     }
 }
 
-std::string Constants::BoolConstant::str() {
+std::string Constants::BoolConstant::str(Runtime *) {
     return value ? "true" : "false";
+}
+
+bool Constants::BoolConstant::toBool(Runtime *) {
+    return value;
 }
 
 Constants::Constant Constants::fromNative(bool val) {
@@ -278,16 +286,14 @@ Constants::Constant Constants::fromNative(const BigDecimal &val) {
 
 Constants::DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}
 
-std::string Constants::DecimalConstant::str() {
+std::string Constants::DecimalConstant::str(Runtime *) {
     return value.toString();
 }
 
-Bigint Constants::DecimalConstant::toInt() {
+Bigint Constants::DecimalConstant::toInt(Runtime *) {
     return value.round();
 }
 
-Variable Constants::DecimalConstant::callOperator(Operator o, std::vector<Variable> args) {
+Variable Constants::DecimalConstant::callOperator(Operator, std::vector<Variable>) {
     throw std::runtime_error("Decimal operators not implemented yet");
 }
-
-

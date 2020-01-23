@@ -13,7 +13,7 @@ Constants::String::String(std::string value) {
     this->value = std::move(value);
 }
 
-std::string Constants::String::str() {
+std::string Constants::String::str(Runtime *) {
     return this->value;
 }
 
@@ -23,7 +23,7 @@ Variable Constants::String::callOperator(Operator o, std::vector<Variable> args)
         case Operator::ADD: {
             std::string result = value;
             for (const auto &arg : args) {
-                result += arg->str();
+                result += arg->str(nullptr);  // TODO: Refactor to remove nullptr
             }
             return Constants::fromNative(result);
         }
@@ -33,7 +33,7 @@ Variable Constants::String::callOperator(Operator o, std::vector<Variable> args)
             break;
         case Operator::MULTIPLY: {
             assert(args.size() == 1);
-            auto arg = args[0]->toInt();
+            auto arg = args[0]->toInt(nullptr);
             auto resultSize = arg * Bigint(value.size());
             if (resultSize > Bigint(std::numeric_limits<size_t>::max())) {
                 throw std::runtime_error("Resulting string too big");

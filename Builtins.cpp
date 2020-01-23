@@ -19,8 +19,8 @@ namespace Builtins {
     };
 }
 
-void Builtins::_print(const std::vector<Variable> &args) {
+void Builtins::_print(const std::vector<Variable> &args, Runtime* runtime) {
     for (const auto& arg : args) {
-        std::cout << arg->str() << std::endl;
+        std::cout << arg->str(runtime) << std::endl;
     }
 }

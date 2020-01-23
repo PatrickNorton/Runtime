@@ -16,8 +16,9 @@ namespace Constants {
     public:
         explicit IntConstant(uint32_t value);
         explicit IntConstant(Bigint value);
-        std::string str() override;
-        Bigint toInt() override;
+        std::string str(Runtime *) override;
+        Bigint toInt(Runtime *) override;
+        bool toBool(Runtime*) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
@@ -27,7 +28,8 @@ namespace Constants {
         bool value;
     public:
         explicit BoolConstant(bool value);
-        std::string str() override;
+        std::string str(Runtime *) override;
+        bool toBool(Runtime*) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
@@ -36,8 +38,8 @@ namespace Constants {
         BigDecimal value;
     public:
         explicit DecimalConstant(BigDecimal value);
-        std::string str() override;
-        Bigint toInt() override;
+        std::string str(Runtime *) override;
+        Bigint toInt(Runtime *) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 

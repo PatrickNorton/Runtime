@@ -5,16 +5,16 @@
 #include <vector>
 #include "Variable.h"
 
-std::string _Variable::str() {
-    return callOperator(Operator::STR, {})->str();
+std::string _Variable::str(Runtime* runtime) {
+    return (*this)[{Operator::STR, runtime}]->str(runtime);
 }
 
-Bigint _Variable::toInt() {
-    return callOperator(Operator::INT, {})->toInt();
+Bigint _Variable::toInt(Runtime* runtime) {
+    return (*this)[{Operator::INT, runtime}]->toInt(runtime);
 }
 
-_Variable::operator bool() {
-    return bool(*callOperator(Operator::BOOL, {}));
+bool _Variable::toBool(Runtime* runtime) {
+    return (*this)[{Operator::BOOL, runtime}]->toBool(runtime);
 }
 
 uint32_t _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) {

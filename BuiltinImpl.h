@@ -20,7 +20,7 @@ namespace BuiltinImpl {
     class String : public _Variable {
     public:
         explicit String(std::string str);
-        std::string str() override;
+        std::string str(Runtime *) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
 
     private:
@@ -30,7 +30,7 @@ namespace BuiltinImpl {
     class NullType : public Constants::_Constant {
     public:
         explicit NullType();
-        std::string str() override;
+        std::string str(Runtime *) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 };

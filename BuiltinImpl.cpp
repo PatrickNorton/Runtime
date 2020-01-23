@@ -11,7 +11,7 @@ namespace BuiltinImpl {
         str_ = std::move(str);
     }
 
-    std::string String::str() {
+    std::string String::str(Runtime *) {
         return str_;
     }
 
@@ -21,7 +21,7 @@ namespace BuiltinImpl {
 
     NullType::NullType() = default;
 
-    std::string NullType::str() {
+    std::string NullType::str(Runtime *) {
         return "null";
     }
 

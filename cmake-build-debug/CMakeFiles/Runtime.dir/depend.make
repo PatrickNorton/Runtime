@@ -138,13 +138,6 @@ CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.cpp
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Variable.h
 
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../Bigint.h
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../Constant.h
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../Operator.h
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../StandardFunction.cpp
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../StandardFunction.h
-CMakeFiles/Runtime.dir/StandardFunction.cpp.o: ../Variable.h
-
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Operator.h
