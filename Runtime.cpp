@@ -5,7 +5,6 @@
 #include "Runtime.h"
 
 #include <utility>
-#include <iostream>
 
 
 Variable Runtime::load_variable(uint32_t index) const {
@@ -57,6 +56,17 @@ void Runtime::call(uint16_t argc) {
     auto args = loadArgs(argc);
     auto caller = pop();
     auto callLoc = (*caller)(args, this);
+    if (nativeCall) {
+        assert(callLoc == 0);
+        nativeCall = false;
+    } else {
+        returns.push(location);
+        goTo(callLoc);
+    }
+}
+
+void Runtime::call(const Variable& self, Operator o, const std::vector<Variable>& args) {
+    auto callLoc = (*(*self)[{o, this}])(args, this);
     if (nativeCall) {
         assert(callLoc == 0);
         nativeCall = false;

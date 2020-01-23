@@ -21,10 +21,6 @@ public:
     virtual uint32_t operator() (const std::vector<Variable>&, Runtime*);
     virtual Variable operator[] (std::pair<uint16_t, Runtime*>);
     virtual Variable operator[] (std::pair<Operator, Runtime*>);
-
-    inline void call(Operator o, std::vector<Variable> args, Runtime* runtime) {
-        (*(*this)[{o, runtime}])(args, runtime);
-    }
 };
 
 

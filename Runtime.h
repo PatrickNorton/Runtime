@@ -32,6 +32,7 @@ public:
     uint32_t currentPos() const;
     void advance(uint32_t count);
     void call(uint16_t);
+    void call(const Variable&, Operator, const std::vector<Variable>&);
     void callIsNative();
     std::vector<Variable> loadArgs(uint16_t);
 };

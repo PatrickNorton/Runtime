@@ -8,7 +8,7 @@
 #include "Runtime.h"
 
 namespace Constants {
-    Method::Method(Variable self, MethodPtr method) {
+    Method::Method(Variable self, NativeMethod method) {
         value = method;
         this->self = std::move(self);
     }

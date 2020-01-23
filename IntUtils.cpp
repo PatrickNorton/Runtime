@@ -135,7 +135,8 @@ void intLeftBS(const Variable& self, const std::vector<Variable>& args, Runtime*
     assert(args.size() == 1);
     auto arg = args[0];
     static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    if ((*(*arg)[{Operator::GREATER_THAN, runtime}])({maxBsSize}, runtime)) {
+    runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
+    if (runtime->pop()->toBool(runtime)) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
     runtime->push(Constants::fromNative(self->toInt(runtime) << static_cast<size_t>(arg->toInt(runtime))));
@@ -145,7 +146,8 @@ void intRightBS(const Variable& self, const std::vector<Variable>& args, Runtime
     assert(args.size() == 1);
     auto arg = args[0];
     static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    if ((*(*arg)[{Operator::GREATER_THAN, runtime}])({maxBsSize}, runtime)) {
+    runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
+    if (runtime->pop()->toBool(runtime)) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
     runtime->push(Constants::fromNative(self->toInt(runtime) >> static_cast<size_t>(arg->toInt(runtime))));

@@ -2,7 +2,6 @@
 // Created by Patrick Norton on 12/1/20.
 //
 
-#include <iostream>
 #include "Executor.h"
 #include "IntTools.h"
 #include "IntUtils.h"
@@ -11,7 +10,7 @@ namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
         std::vector<Variable> argv = runtime.loadArgs(argc);
         auto caller = runtime.pop();
-        caller->call(o, argv, &runtime);
+        runtime.call(caller, o, argv);
     }
 
     void parse(const Bytecode b, const std::vector<uint8_t> &bytes, Runtime &runtime) {
@@ -76,7 +75,7 @@ namespace Executor {
                 auto result = runtime.pop();
                 auto index = runtime.pop();
                 auto stored = runtime.pop();
-                stored->call(Operator::SET_ATTR, {index, result}, &runtime);
+                runtime.call(stored, Operator::SET_ATTR, {index, result});
             }
                 return;
             case Bytecode::PLUS:

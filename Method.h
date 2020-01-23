@@ -11,11 +11,10 @@
 namespace Constants {
     class Method : public _Constant {
     private:
-        typedef void (*MethodPtr)(const Variable&, const std::vector<Variable>&, Runtime*);
-        MethodPtr value;
+        NativeMethod value;
         Variable self;
     public:
-        Method(Variable, MethodPtr);
+        Method(Variable, NativeMethod);
         uint32_t operator() (const std::vector<Variable>& , Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };

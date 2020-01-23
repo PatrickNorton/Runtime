@@ -165,7 +165,9 @@ CMakeFiles/Runtime.dir/Type.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Variable.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Variable.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.cpp
 CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.h
 

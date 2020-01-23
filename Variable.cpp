@@ -4,17 +4,21 @@
 
 #include <vector>
 #include "Variable.h"
+#include "Runtime.h"
 
 std::string _Variable::str(Runtime* runtime) {
-    return (*this)[{Operator::STR, runtime}]->str(runtime);
+    runtime->call(shared_from_this(), Operator::STR, {});
+    return runtime->pop()->str(runtime);
 }
 
 Bigint _Variable::toInt(Runtime* runtime) {
-    return (*this)[{Operator::INT, runtime}]->toInt(runtime);
+    runtime->call(shared_from_this(), Operator::INT, {});
+    return runtime->pop()->toInt(runtime);
 }
 
 bool _Variable::toBool(Runtime* runtime) {
-    return (*this)[{Operator::BOOL, runtime}]->toBool(runtime);
+    runtime->call(shared_from_this(), Operator::BOOL, {});
+    return runtime->pop()->toBool(runtime);
 }
 
 uint32_t _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) {
