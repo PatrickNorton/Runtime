@@ -11,7 +11,7 @@ namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
         std::vector<Variable> argv = runtime.loadArgs(argc);
         auto caller = runtime.pop();
-        (*caller->operator[]({o, &runtime}))(argv, &runtime);
+        caller->call(o, argv, &runtime);
     }
 
     void parse(const Bytecode b, const std::vector<uint8_t> &bytes, Runtime &runtime) {
@@ -32,11 +32,7 @@ namespace Executor {
                 break;
             case Bytecode::LOAD_SUBSCRIPT: {
                 auto operandCount = IntTools::bytesTo<uint16_t>(bytes);
-                std::vector<Variable> args(operandCount);
-                for (int i = 0; i < operandCount; i++) {
-                    args[operandCount - i - 1] = runtime.pop();
-                }
-                runtime.push(runtime.pop()->callOperator(Operator::GET_ATTR, args));
+                callOperator(Operator::GET_ATTR, operandCount, runtime);
             }
                 return;
             case Bytecode::POP_TOP:
@@ -80,7 +76,7 @@ namespace Executor {
                 auto result = runtime.pop();
                 auto index = runtime.pop();
                 auto stored = runtime.pop();
-                stored->callOperator(Operator::SET_ATTR, {index, result});
+                stored->call(Operator::SET_ATTR, {index, result}, &runtime);
             }
                 return;
             case Bytecode::PLUS:

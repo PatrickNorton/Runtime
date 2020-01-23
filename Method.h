@@ -16,7 +16,6 @@ namespace Constants {
         Variable self;
     public:
         Method(Variable, MethodPtr);
-        Variable callOperator(Operator o, std::vector<Variable> args) override;
         uint32_t operator() (const std::vector<Variable>& , Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };

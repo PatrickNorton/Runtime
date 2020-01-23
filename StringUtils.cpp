@@ -53,10 +53,6 @@ namespace Constants {
         runtime->push(self);
     }
 
-    Variable String::callOperator(Operator, std::vector<Variable>) {
-        throw std::runtime_error("callOperator no longer implemented");
-    }
-
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {
         static const std::unordered_map<Operator, NativeMethod> strOperators{
                 {Operator::ADD,      strAdd},

@@ -21,7 +21,6 @@ namespace BuiltinImpl {
     public:
         explicit String(std::string str);
         std::string str(Runtime *) override;
-        Variable callOperator(Operator o, std::vector<Variable> args) override;
 
     private:
         std::string str_;
@@ -31,7 +30,6 @@ namespace BuiltinImpl {
     public:
         explicit NullType();
         std::string str(Runtime *) override;
-        Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 };
 

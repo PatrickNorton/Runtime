@@ -15,18 +15,10 @@ namespace BuiltinImpl {
         return str_;
     }
 
-    Variable String::callOperator(Operator o, std::vector<Variable> args) {
-        throw std::runtime_error("Operator calling not yet implemented for str");
-    }
-
     NullType::NullType() = default;
 
     std::string NullType::str(Runtime *) {
         return "null";
-    }
-
-    Variable NullType::callOperator(Operator, std::vector<Variable>) {
-        throw std::runtime_error("Cannot call functions on null");
     }
 
     Type str_t() {

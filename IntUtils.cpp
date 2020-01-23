@@ -135,7 +135,7 @@ void intLeftBS(const Variable& self, const std::vector<Variable>& args, Runtime*
     assert(args.size() == 1);
     auto arg = args[0];
     static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    if ((*arg).callOperator(Operator::GREATER_THAN, {maxBsSize})) {
+    if ((*(*arg)[{Operator::GREATER_THAN, runtime}])({maxBsSize}, runtime)) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
     runtime->push(Constants::fromNative(self->toInt(runtime) << static_cast<size_t>(arg->toInt(runtime))));
@@ -145,7 +145,7 @@ void intRightBS(const Variable& self, const std::vector<Variable>& args, Runtime
     assert(args.size() == 1);
     auto arg = args[0];
     static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    if ((*arg).callOperator(Operator::GREATER_THAN, {maxBsSize})) {
+    if ((*(*arg)[{Operator::GREATER_THAN, runtime}])({maxBsSize}, runtime)) {
         throw std::runtime_error("Bitshift value greater than max allowed");
     }
     runtime->push(Constants::fromNative(self->toInt(runtime) >> static_cast<size_t>(arg->toInt(runtime))));
@@ -216,10 +216,6 @@ const std::unordered_map<Operator, void (*)(const Variable&, const std::vector<V
     return instance;
 }
 
-Variable Constants::IntConstant::callOperator(Operator, std::vector<Variable>) {
-    throw std::runtime_error("Old-style operator calling deprecated");
-}
-
 Bigint Constants::IntConstant::toInt(Runtime *) {
     return value;
 }
@@ -237,15 +233,6 @@ Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair)
 
 Constants::BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {
     this->value = value;
-}
-
-Variable Constants::BoolConstant::callOperator(Operator o, std::vector<Variable> args) {
-    switch (o) {
-        case Operator::STR:
-            return fromNative(value ? "true" : "false", true);
-        default:
-            return IntConstant::callOperator(o, args);
-    }
 }
 
 std::string Constants::BoolConstant::str(Runtime *) {
@@ -292,8 +279,4 @@ std::string Constants::DecimalConstant::str(Runtime *) {
 
 Bigint Constants::DecimalConstant::toInt(Runtime *) {
     return value.round();
-}
-
-Variable Constants::DecimalConstant::callOperator(Operator, std::vector<Variable>) {
-    throw std::runtime_error("Decimal operators not implemented yet");
 }

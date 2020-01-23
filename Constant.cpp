@@ -18,10 +18,6 @@ namespace Constants {
         function = caller;
     }
 
-    Variable Function::callOperator(Operator o, std::vector<Variable> args) {
-        throw std::runtime_error("No longer implemented");
-    }
-
     uint32_t Function::operator()(const std::vector<Variable>& args, Runtime *runtime) {
         runtime->callIsNative();
         function(args, runtime);

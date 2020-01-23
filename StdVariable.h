@@ -14,7 +14,6 @@ private:
     Type type;
 public:
     StdVariable(Type type, std::vector<Variable> args);
-    Variable callOperator(Operator o, std::vector<Variable> args) override;
 };
 
 

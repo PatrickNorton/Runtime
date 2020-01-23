@@ -18,10 +18,6 @@ namespace Constants {
         std::unordered_map<Operator, Callable> operators;
     public:
         explicit _Type(std::unordered_map<Operator, Callable> operators);
-
-        Variable callOperator(Operator o, std::vector<Variable> args) override;
-
-        Variable callOperator(Operator o, Variable self, std::vector<Variable> args);
     };
 }
 
