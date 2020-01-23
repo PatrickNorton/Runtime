@@ -349,17 +349,19 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
         uint64_t product = y[j] * x[xStart] + carry;
         z[k] = product;
         carry = product >> NUM_BITS;
+        if (j == 0)
+            break;
     }
     z[xStart] = carry;
 
-    for (size_t i = xStart-1; i >= 0; i--) {
+    for (size_t i = xStart; i > 0; i--) {
         carry = 0;
-        for (size_t j=yStart, k=yStart+1+i; j >= 0; j--, k--) {
-            uint64_t product = y[j] * x[i] + z[k] + carry;
+        for (size_t j=yStart+1, k=yStart+1+i; j > 0; j--, k--) {
+            uint64_t product = y[j-1] * x[i-1] + z[k] + carry;
             z[k] = product;
             carry = product >> NUM_BITS;
         }
-        z[i] = carry;
+        z[i-1] = carry;
     }
 
     // Strip leading zeroes
