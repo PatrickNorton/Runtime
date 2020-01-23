@@ -10,16 +10,18 @@
 #include "Bigint.h"
 
 namespace Constants {
+    typedef void (*NativeCallable)(const std::vector<Variable>&, Runtime*);
+    typedef void (*NativeMethod)(const Variable&, const std::vector<Variable>&, Runtime*);
+
     class _Constant : public _Variable {
     };
 
 class Function : public _Constant {
     public:
-        typedef void (*Callable)(const std::vector<Variable>&, Runtime*);
     private:
-        Callable function;
+        NativeCallable function;
     public:
-        explicit Function(Callable caller);
+        explicit Function(NativeCallable caller);
         std::string str(Runtime *) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
         uint32_t operator() (const std::vector<Variable>& , Runtime*) override;

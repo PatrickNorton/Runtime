@@ -150,7 +150,9 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.cpp
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Variable.h

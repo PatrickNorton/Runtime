@@ -14,7 +14,7 @@ namespace Constants {
         return std::string();
     }
 
-    Function::Function(Callable caller) {
+    Function::Function(NativeCallable caller) {
         function = caller;
     }
 

@@ -15,6 +15,7 @@ namespace Constants {
     public:
         explicit String(std::string value);
         std::string str(Runtime *) override;
+        Variable operator[] (std::pair<Operator, Runtime*>) override;
         Variable callOperator(Operator o, std::vector<Variable> args) override;
     };
 
