@@ -66,4 +66,10 @@ namespace ConstantLoaders {
         }
         return Constants::fromNative(BigDecimal(Bigint(values, false), scale));
     }
+
+    uint32_t functionIndex(const std::vector<uint8_t>& data, size_t& index) {
+        auto fnIndex = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        return fnIndex;
+    }
 }

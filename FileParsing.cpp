@@ -11,9 +11,10 @@
 #include "Constant.h"
 #include "ConstantBytes.h"
 #include "ConstantLoaders.h"
+#include "Function.h"
 
 
-Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index) {
+Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index, std::vector<uint32_t>& functions) {
     auto constantNum = static_cast<ConstantBytes>(data[index]);
     index++;
     switch (constantNum) {
@@ -30,7 +31,8 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::BUILTIN:
             return ConstantLoaders::loadBuiltin(data, index);
         case ConstantBytes::FUNCTION:
-            break;
+            functions.push_back(ConstantLoaders::functionIndex(data, index));
+            return nullptr;
     }
     throw std::runtime_error("Unhandled constant");
 }
@@ -65,8 +67,9 @@ FileInfo parseFile(const std::string& name) {
     auto constantCount = IntTools::bytesTo<uint32_t>(data, index);
     index += Constants::INT_32_BYTES;
     std::vector<Constants::Constant> constants(constantCount);
+    std::vector<uint32_t>functionIndices {};
     for (uint32_t i = 0; i < constantCount; i++) {
-        constants[i] = loadConstant(data, index);
+        constants[i] = loadConstant(data, index, functionIndices);
     }
 
     auto functionCount = IntTools::bytesTo<uint32_t>(data, index);
@@ -77,6 +80,18 @@ FileInfo parseFile(const std::string& name) {
         index += Constants::INT_32_BYTES;
         functions[i] = std::vector<uint8_t>(data.begin() + index, data.begin() + index + functionLength);
         index += functionLength;
+    }
+
+    size_t fnCount = 0;
+    for (auto& constant : constants) {
+        if (constant == nullptr) {
+            int fnIndex = functionIndices[fnCount++];
+            int fnTotalIndex = 0;
+            for (size_t j = 0; j < fnIndex; j++) {
+                fnTotalIndex += functions[j].size();
+            }
+            constant = std::make_shared<Constants::StdFunction>(fnTotalIndex);
+        }
     }
 
     return FileInfo(constants, functions);
