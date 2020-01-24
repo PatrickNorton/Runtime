@@ -5,6 +5,7 @@
 #include "Bigint.h"
 
 #include <string>
+#include <cmath>
 
 Bigint::Bigint() {
     sign = false;
@@ -43,6 +44,20 @@ Bigint::Bigint(uint64_t value) {
 Bigint::Bigint(std::vector<uint32_t> values, bool sign) {
     this->values = std::move(values);
     this->sign = sign;
+}
+
+Bigint::Bigint(std::string value) {
+    size_t i = 0;
+    if (value[0] == '+' || value[0] == '-') {
+        sign = values[0] == '-';
+        i++;
+    }
+    sign = false;
+    Bigint result = 0_B;
+    for (; i < value.size(); i++) {
+        result += Bigint(int(values[i])) * Bigint((unsigned long long) std::pow(10, values.size() - i));
+    }
+    this->values = result.values;
 }
 
 Bigint Bigint::operator+(const Bigint& other) const {

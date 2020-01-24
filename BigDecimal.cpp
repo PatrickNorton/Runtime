@@ -29,3 +29,15 @@ std::string BigDecimal::toString() const {
 }
 
 
+BigDecimal operator ""_D(const char * value) {
+    std::string trueValue {value};
+    assert(std::count(trueValue.begin(), trueValue.end(), '.'));
+    size_t dotIndex = trueValue.find('.');
+    if (dotIndex == std::string::npos) {
+        return BigDecimal(Bigint(trueValue), 0);
+    } else {
+        std::string bigintStr = std::string(trueValue.begin(), trueValue.begin() + dotIndex)
+                + std::string(trueValue.end() - dotIndex, trueValue.end());
+        return BigDecimal(Bigint(bigintStr), trueValue.size() - dotIndex);
+    }
+}

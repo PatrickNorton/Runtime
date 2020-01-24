@@ -34,6 +34,7 @@ public:
     explicit Bigint(uint32_t i);
     explicit Bigint(int64_t);
     explicit Bigint(uint64_t);
+    explicit Bigint(std::string);
     Bigint(__vec, bool);
     Bigint operator+(const Bigint&) const;
     Bigint operator-(const Bigint&) const;

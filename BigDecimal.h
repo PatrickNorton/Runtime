@@ -20,4 +20,7 @@ public:
 };
 
 
+BigDecimal operator"" _D (const char *);
+
+
 #endif //RUNTIME_BIGDECIMAL_H
