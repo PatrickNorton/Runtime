@@ -223,7 +223,7 @@ Bigint Constants::IntConstant::toInt(Runtime *) {
 }
 
 bool Constants::IntConstant::toBool(Runtime *) {
-    return value > 0_B;
+    return value != 0_B;
 }
 
 Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair) {
