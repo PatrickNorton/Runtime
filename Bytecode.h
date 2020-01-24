@@ -47,6 +47,11 @@ enum class Bytecode : std::uint8_t {
     CALL_OP = 0x25,
     PACK_TUPLE = 0x26,
     UNPACK_TUPLE = 0x27,
+    EQUAL = 0x28,
+    LESS_THAN = 0x29,
+    GREATER_THAN = 0x2A,
+    LESS_EQUAL = 0x2B,
+    GREATER_EQUAL = 0x2C,
     // Jumps, etc.
     JUMP = 0x30,
     JUMP_FALSE = 0x31,

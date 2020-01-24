@@ -48,6 +48,11 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::BOOL_NOT:
         case Bytecode::IDENTICAL:
         case Bytecode::INSTANCEOF:
+        case Bytecode::EQUAL:
+        case Bytecode::LESS_THAN:
+        case Bytecode::GREATER_THAN:
+        case Bytecode::LESS_EQUAL:
+        case Bytecode::GREATER_EQUAL:
             return 0;
         case Bytecode::CALL_OP:
             return 2+2;

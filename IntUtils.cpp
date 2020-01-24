@@ -90,7 +90,7 @@ void intNotEquals(const Variable& self, const std::vector<Variable>& args, Runti
 void intGreaterThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt(runtime) > value)) {
+        if (!(value > arg->toInt(runtime))) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -101,7 +101,7 @@ void intGreaterThan(const Variable& self, const std::vector<Variable>& args, Run
 void intLessThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt(runtime) < value)) {
+        if (!(value < arg->toInt(runtime))) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -112,7 +112,7 @@ void intLessThan(const Variable& self, const std::vector<Variable>& args, Runtim
 void intGreaterEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt(runtime) >= value)) {
+        if (!(value >= arg->toInt(runtime))) {
             runtime->push(Constants::fromNative(false));
             return;
         }
@@ -123,7 +123,7 @@ void intGreaterEqual(const Variable& self, const std::vector<Variable>& args, Ru
 void intLessEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     auto value = self->toInt(runtime);
     for (const auto& arg : args) {
-        if (!(arg->toInt(runtime) <= value)) {
+        if (!(value <= arg->toInt(runtime))) {
             runtime->push(Constants::fromNative(false));
             return;
         }

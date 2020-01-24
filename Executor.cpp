@@ -155,6 +155,21 @@ namespace Executor {
                 break;
             case Bytecode::UNPACK_TUPLE:
                 break;
+            case Bytecode::EQUAL:
+                callOperator(Operator::EQUALS, 1, runtime);
+                break;
+            case Bytecode::LESS_THAN:
+                callOperator(Operator::LESS_THAN, 1, runtime);
+                return;
+            case Bytecode::GREATER_THAN:
+                callOperator(Operator::GREATER_THAN, 1, runtime);
+                return;
+            case Bytecode::LESS_EQUAL:
+                callOperator(Operator::LESS_EQUAL, 1, runtime);
+                return;
+            case Bytecode::GREATER_EQUAL:
+                callOperator(Operator::GREATER_EQUAL, 1, runtime);
+                return;
             case Bytecode::JUMP:
                 runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 return;
