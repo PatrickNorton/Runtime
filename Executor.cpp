@@ -157,6 +157,7 @@ namespace Executor {
                 break;
             case Bytecode::JUMP:
                 runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
+                return;
             case Bytecode::JUMP_FALSE:
                 if (!runtime.pop()->toBool(&runtime)) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
