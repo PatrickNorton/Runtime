@@ -12,7 +12,7 @@ BigDecimal::BigDecimal(Bigint value, size_t offset) {
 }
 
 Bigint BigDecimal::round() const {
-    static Bigint TEN(10);
+    static Bigint TEN = 10_B;
     auto result = TEN;
     for (size_t i = 0; i < offset; i++) {
         result *= TEN;

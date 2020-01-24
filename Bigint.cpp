@@ -422,26 +422,26 @@ Bigint::operator uint64_t() const {
 }
 
 Bigint& Bigint::operator++() {
-    const Bigint ONE(1);  // Prevent over-creation
+    const Bigint ONE = 1_B;  // Prevent over-creation
     *this = *this + ONE;
     return *this;
 }
 
 Bigint& Bigint::operator--() {
-    const Bigint ONE(1);  // Prevent over-creation
+    const Bigint ONE = 1_B;  // Prevent over-creation
     *this = *this - ONE;
     return *this;
 }
 
 Bigint Bigint::operator++(int) {
-    const Bigint ONE(1);  // Prevent over-creation
+    const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     ++*this;
     return temp;
 }
 
 Bigint Bigint::operator--(int) {
-    const Bigint ONE(1);  // Prevent over-creation
+    const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     --*this;
     return temp;

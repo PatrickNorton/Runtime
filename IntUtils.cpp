@@ -252,7 +252,7 @@ Constants::Constant Constants::fromNative(bool val) {
 }
 
 std::map<Bigint, Constants::Constant> __loadInterned() {
-    static const Bigint MAX {0xff};
+    static const Bigint MAX = 0xFF_B;
     std::map<Bigint, Constants::Constant> interns {};
     for (Bigint i = 0_B; i < MAX; ++i) {
         interns[i] = std::make_shared<Constants::IntConstant>(i);
