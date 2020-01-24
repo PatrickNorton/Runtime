@@ -13,7 +13,10 @@ Variable Runtime::load_variable(uint32_t index) const {
 
 
 void Runtime::store_variable(uint32_t index, Variable variable) {
-    this->variables[index] = std::move(variable);
+    if (variables.size() <= index) {
+        variables.resize(index + 1);
+    }
+    variables[index] = std::move(variable);
 }
 
 Variable Runtime::pop() {
