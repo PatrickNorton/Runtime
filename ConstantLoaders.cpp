@@ -72,4 +72,9 @@ namespace ConstantLoaders {
         index += Constants::INT_32_BYTES;
         return fnIndex;
     }
+
+    Constants::Constant loadBool(const std::vector<uint8_t>& data, size_t& index) {
+        auto value = data[index++];
+        return Constants::fromNative(bool(value));
+    }
 }

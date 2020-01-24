@@ -16,6 +16,7 @@ enum class ConstantBytes : uint8_t {
     IMPORT,
     BUILTIN,
     FUNCTION,
+    BOOL,
 };
 
 

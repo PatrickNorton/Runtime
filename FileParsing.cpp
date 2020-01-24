@@ -33,6 +33,8 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
         case ConstantBytes::FUNCTION:
             functions.push_back(ConstantLoaders::functionIndex(data, index));
             return nullptr;
+        case ConstantBytes::BOOL:
+            return ConstantLoaders::loadBool(data, index);
     }
     throw std::runtime_error("Unhandled constant");
 }

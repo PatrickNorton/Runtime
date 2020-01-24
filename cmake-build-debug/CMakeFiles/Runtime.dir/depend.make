@@ -93,8 +93,10 @@ CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.cpp
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Function.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Bigint.h
