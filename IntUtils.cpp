@@ -192,8 +192,8 @@ void intToBool(const Variable& self, const std::vector<Variable>& args, Runtime*
     runtime->push(Constants::fromNative(self->toInt(runtime) != 0_B));
 }
 
-const std::unordered_map<Operator, void (*)(const Variable&, const std::vector<Variable>&, Runtime*)>& intMethods() {
-    static const std::unordered_map<Operator, void (*)(const Variable&, const std::vector<Variable>&, Runtime*)> instance = {
+const std::unordered_map<Operator, Constants::NativeMethod>& intMethods() {
+    static const std::unordered_map<Operator, Constants::NativeMethod> instance = {
             {Operator::STR, intStr},
             {Operator::ADD, intAdd},
             {Operator::SUBTRACT, intSub},
@@ -228,7 +228,7 @@ bool Constants::IntConstant::toBool(Runtime *) {
 
 Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair) {
     Operator op = pair.first;
-    const std::unordered_map<Operator, void (*)(const Variable&, const std::vector<Variable>&, Runtime*)>& methods = intMethods();
+    const std::unordered_map<Operator, Constants::NativeMethod>& methods = intMethods();
     auto self = shared_from_this();
     return std::make_shared<Constants::Method>(Constants::Method(self, methods.at(op)));
 }
