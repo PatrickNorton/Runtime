@@ -84,14 +84,10 @@ FileInfo parseFile(const std::string& name) {
         index += functionLength;
     }
 
-    size_t fnCount = 0;
+    size_t fnCount = 0, fnTotalIndex = 0;
     for (auto& constant : constants) {
         if (constant == nullptr) {
-            int fnIndex = functionIndices[fnCount++];
-            int fnTotalIndex = 0;
-            for (size_t j = 0; j < fnIndex; j++) {
-                fnTotalIndex += functions[j].size();
-            }
+            fnTotalIndex += functionIndices[fnCount++];
             constant = std::make_shared<Constants::StdFunction>(fnTotalIndex);
         }
     }
