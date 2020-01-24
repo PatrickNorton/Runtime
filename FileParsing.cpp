@@ -38,6 +38,9 @@ Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index
 
 FileInfo parseFile(const std::string& name) {
     std::ifstream inStream(name, std::ios::in | std::ios::binary);
+    if (!inStream.good()) {
+        throw std::runtime_error("File \"" + name + "\" not found");
+    }
     std::vector<uint8_t> data((std::istreambuf_iterator<char>(inStream)), std::istreambuf_iterator<char>());
     size_t index = 0;
 
