@@ -19,6 +19,7 @@ namespace ConstantLoaders {
         auto size = IntTools::bytesTo<uint32_t>(data, index);
         index += Constants::INT_32_BYTES;
         std::vector<char> value {};
+        value.reserve(size);
         for (uint32_t i = 0; i < size; i++) {
             unsigned char chr;
             do {
