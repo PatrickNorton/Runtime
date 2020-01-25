@@ -18,6 +18,7 @@ namespace Constants {
         std::unordered_map<Operator, Callable> operators;
     public:
         explicit _Type(std::unordered_map<Operator, Callable> operators);
+        bool isSubclass(const Type&);
     };
 }
 

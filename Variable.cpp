@@ -5,6 +5,7 @@
 #include <vector>
 #include "Variable.h"
 #include "Runtime.h"
+#include "Type.h"
 
 std::string _Variable::str(Runtime* runtime) {
     runtime->call(shared_from_this(), Operator::STR, {});
@@ -30,5 +31,13 @@ Variable _Variable::operator[](std::pair<uint16_t, Runtime*>) {
 }
 
 Variable _Variable::operator[](std::pair<Operator, Runtime*>) {
+    throw std::runtime_error("Not yet implemented");
+}
+
+bool _Variable::instanceOf(const Variable& other) {
+    return getType()->isSubclass(other->getType());
+}
+
+Type _Variable::getType() {
     throw std::runtime_error("Not yet implemented");
 }

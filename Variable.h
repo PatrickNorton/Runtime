@@ -11,6 +11,10 @@
 #include "Bigint.h"
 
 class Runtime;  // Forward declaration to make everything work out
+namespace Constants {
+    class _Type;
+}
+typedef std::shared_ptr<Constants::_Type> Type;
 
 class _Variable : public std::enable_shared_from_this<_Variable> {
 public:
@@ -21,6 +25,8 @@ public:
     virtual uint32_t operator() (const std::vector<Variable>&, Runtime*);
     virtual Variable operator[] (std::pair<uint16_t, Runtime*>);
     virtual Variable operator[] (std::pair<Operator, Runtime*>);
+    virtual bool instanceOf(const Variable& other);
+    virtual Type getType();
 };
 
 

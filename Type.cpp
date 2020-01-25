@@ -10,4 +10,8 @@ namespace Constants {
     _Type::_Type(std::unordered_map<Operator, Callable> operators) {
         this->operators = std::move(operators);
     }
+
+    bool _Type::isSubclass(const Type&) {
+        throw std::runtime_error("Not yet implemented");
+    }
 }
