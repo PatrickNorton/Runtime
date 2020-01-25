@@ -151,11 +151,7 @@ namespace Executor {
             case Bytecode::INSTANCEOF: {
                 Variable x = runtime.pop();
                 Variable y = runtime.pop();
-                if (const Type type = std::dynamic_pointer_cast<Constants::_Type>(y)) {
-                    runtime.push(Constants::fromNative(x->instanceOf(type)));
-                } else {
-                    throw std::runtime_error("TypeError: Did not get a type as the second argument of instanceof");
-                }
+                runtime.push(Constants::fromNative(y->isTypeOf(x)));
             }
                 return;
             case Bytecode::CALL_OP:

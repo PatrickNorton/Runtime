@@ -34,10 +34,10 @@ Variable _Variable::operator[](std::pair<Operator, Runtime*>) {
     throw std::runtime_error("Not yet implemented");
 }
 
-bool _Variable::instanceOf(const Type& other) {
-    return getType()->isSubclass(other);
-}
-
 Type _Variable::getType() {
     throw std::runtime_error("Not yet implemented");
+}
+
+bool _Variable::isTypeOf(const Variable &) {
+    return false;
 }
