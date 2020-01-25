@@ -25,7 +25,7 @@ public:
     virtual uint32_t operator() (const std::vector<Variable>&, Runtime*);
     virtual Variable operator[] (std::pair<uint16_t, Runtime*>);
     virtual Variable operator[] (std::pair<Operator, Runtime*>);
-    virtual bool instanceOf(const Variable& other);
+    virtual bool instanceOf(const Type& other);
     virtual Type getType();
 };
 

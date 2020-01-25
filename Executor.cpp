@@ -5,6 +5,7 @@
 #include "Executor.h"
 #include "IntTools.h"
 #include "IntUtils.h"
+#include "Type.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
@@ -147,8 +148,16 @@ namespace Executor {
                 runtime.push(Constants::fromNative(x == y));
             }
                 return;
-            case Bytecode::INSTANCEOF:
-                break;
+            case Bytecode::INSTANCEOF: {
+                Variable x = runtime.pop();
+                Variable y = runtime.pop();
+                if (const Type type = std::dynamic_pointer_cast<Constants::_Type>(y)) {
+                    runtime.push(Constants::fromNative(x->instanceOf(type)));
+                } else {
+                    throw std::runtime_error("TypeError: Did not get a type as the second argument of instanceof");
+                }
+            }
+                return;
             case Bytecode::CALL_OP:
                 break;
             case Bytecode::PACK_TUPLE:
