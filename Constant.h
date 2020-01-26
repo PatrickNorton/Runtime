@@ -7,7 +7,6 @@
 
 
 #include "Variable.h"
-#include "Bigint.h"
 
 namespace Constants {
     typedef void (*NativeCallable)(const std::vector<Variable>&, Runtime*);
@@ -16,8 +15,7 @@ namespace Constants {
     class _Constant : public _Variable {
     };
 
-class Function : public _Constant {
-    public:
+    class Function : public _Constant {
     private:
         NativeCallable function;
     public:
