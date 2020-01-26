@@ -48,7 +48,6 @@ uint32_t Runtime::currentPos() const {
 Runtime::Runtime(const std::vector<Constants::Constant>& constants) {
     this->constants = constants;
     location = 0;
-    nativeCall = false;
 }
 
 void Runtime::advance(uint32_t count) {
@@ -58,29 +57,11 @@ void Runtime::advance(uint32_t count) {
 void Runtime::call(uint16_t argc) {
     auto args = loadArgs(argc);
     auto caller = pop();
-    auto callLoc = (*caller)(args, this);
-    if (nativeCall) {
-        assert(callLoc == 0);
-        nativeCall = false;
-    } else {
-        returns.push(location);
-        goTo(callLoc);
-    }
+    (*caller)(args, this);
 }
 
 void Runtime::call(const Variable& self, Operator o, const std::vector<Variable>& args) {
-    auto callLoc = (*(*self)[{o, this}])(args, this);
-    if (nativeCall) {
-        assert(callLoc == 0);
-        nativeCall = false;
-    } else {
-        returns.push(location);
-        goTo(callLoc);
-    }
-}
-
-void Runtime::callIsNative() {
-    nativeCall = true;
+    (*(*self)[{o, this}])(args, this);
 }
 
 std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
@@ -89,4 +70,8 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
         args[argc - i - 1] = pop();
     }
     return args;
+}
+
+void Runtime::pushStack() {
+    returns.push(location);
 }

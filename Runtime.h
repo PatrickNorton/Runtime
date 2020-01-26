@@ -18,7 +18,6 @@ private:
     std::stack<Variable> stack;
     std::stack<uint32_t> returns;
     uint32_t location;
-    bool nativeCall;
 
 public:
     explicit Runtime(const std::vector<Constants::Constant>& constants);
@@ -33,7 +32,7 @@ public:
     void advance(uint32_t count);
     void call(uint16_t);
     void call(const Variable&, Operator, const std::vector<Variable>&);
-    void callIsNative();
+    void pushStack();
     std::vector<Variable> loadArgs(uint16_t);
 };
 

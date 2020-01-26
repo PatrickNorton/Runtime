@@ -8,8 +8,9 @@ Constants::StdFunction::StdFunction(uint32_t index) {
     this->index = index;
 }
 
-uint32_t Constants::StdFunction::operator()(const std::vector<Variable>&, Runtime *) {
-    return index;
+void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+    runtime->goTo(index);
+    runtime->pushStack();
 }
 
 Variable Constants::StdFunction::operator[](std::pair<uint16_t, Runtime*>) {

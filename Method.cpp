@@ -13,10 +13,8 @@ namespace Constants {
         this->self = std::move(self);
     }
 
-    uint32_t Method::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-        runtime->callIsNative();
+    void Method::operator()(const std::vector<Variable>& args, Runtime* runtime) {
         value(self, args, runtime);
-        return 0;
     }
 
     Variable Method::operator[](std::pair<Operator, Runtime*> pair) {

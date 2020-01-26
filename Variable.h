@@ -22,7 +22,7 @@ public:
     virtual std::string str(Runtime *);
     virtual Bigint toInt(Runtime *);
     virtual bool toBool(Runtime*);
-    virtual uint32_t operator() (const std::vector<Variable>&, Runtime*);
+    virtual void operator() (const std::vector<Variable>&, Runtime*);
     virtual Variable operator[] (std::pair<uint16_t, Runtime*>);
     virtual Variable operator[] (std::pair<Operator, Runtime*>);
 

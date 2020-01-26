@@ -22,8 +22,8 @@ bool _Variable::toBool(Runtime* runtime) {
     return runtime->pop()->toBool(runtime);
 }
 
-uint32_t _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-    return (*(*this)[{Operator::CALL, runtime}])(args, runtime);
+void _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+    (*(*this)[{Operator::CALL, runtime}])(args, runtime);
 }
 
 Variable _Variable::operator[](std::pair<uint16_t, Runtime*>) {

@@ -5,7 +5,6 @@
 #include <utility>
 #include <vector>
 #include "Constant.h"
-#include "Builtins.h"
 #include "BuiltinImpl.h"
 #include "Runtime.h"
 
@@ -18,10 +17,8 @@ namespace Constants {
         function = caller;
     }
 
-    uint32_t Function::operator()(const std::vector<Variable>& args, Runtime *runtime) {
-        runtime->callIsNative();
+    void Function::operator()(const std::vector<Variable>& args, Runtime *runtime) {
         function(args, runtime);
-        return 0;
     }
 
     Variable Function::operator[](std::pair<Operator, Runtime *> pair) {

@@ -23,7 +23,7 @@ class Function : public _Constant {
     public:
         explicit Function(NativeCallable caller);
         std::string str(Runtime *) override;
-        uint32_t operator() (const std::vector<Variable>& , Runtime*) override;
+        void operator() (const std::vector<Variable>& , Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 
