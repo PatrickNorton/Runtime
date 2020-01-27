@@ -3,14 +3,14 @@
 //
 
 #include "Function.h"
+#include <exception>
 
 Constants::StdFunction::StdFunction(uint32_t index) {
     this->index = index;
 }
 
 void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-    runtime->goTo(index);
-    runtime->pushStack();
+    runtime->call(index, args);
 }
 
 Variable Constants::StdFunction::operator[](std::pair<uint16_t, Runtime*>) {

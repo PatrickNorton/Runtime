@@ -582,6 +582,33 @@ Runtime.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Runtime.cpp.s
 .PHONY : Runtime.cpp.s
 
+StackFrame.o: StackFrame.cpp.o
+
+.PHONY : StackFrame.o
+
+# target to build an object file
+StackFrame.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StackFrame.cpp.o
+.PHONY : StackFrame.cpp.o
+
+StackFrame.i: StackFrame.cpp.i
+
+.PHONY : StackFrame.i
+
+# target to preprocess a source file
+StackFrame.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StackFrame.cpp.i
+.PHONY : StackFrame.cpp.i
+
+StackFrame.s: StackFrame.cpp.s
+
+.PHONY : StackFrame.s
+
+# target to generate assembly for a file
+StackFrame.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StackFrame.cpp.s
+.PHONY : StackFrame.cpp.s
+
 StdVariable.o: StdVariable.cpp.o
 
 .PHONY : StdVariable.o
@@ -777,6 +804,9 @@ help:
 	@echo "... Runtime.o"
 	@echo "... Runtime.i"
 	@echo "... Runtime.s"
+	@echo "... StackFrame.o"
+	@echo "... StackFrame.i"
+	@echo "... StackFrame.s"
 	@echo "... StdVariable.o"
 	@echo "... StdVariable.i"
 	@echo "... StdVariable.s"

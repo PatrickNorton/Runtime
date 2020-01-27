@@ -8,15 +8,12 @@
 
 
 Variable Runtime::load_variable(uint32_t index) const {
-    return this->variables[index];
+    return frames.top()[index];
 }
 
 
 void Runtime::store_variable(uint32_t index, Variable variable) {
-    if (variables.size() <= index) {
-        variables.resize(index + 1);
-    }
-    variables[index] = std::move(variable);
+    frames.top().store(index, std::move(variable));
 }
 
 Variable Runtime::pop() {
@@ -38,20 +35,20 @@ Variable Runtime::top() const {
 }
 
 void Runtime::goTo(uint32_t pos) {
-    location = pos;
+    frames.top().jump(pos);
 }
 
 uint32_t Runtime::currentPos() const {
-    return location;
+    return frames.top().currentPos();
 }
 
 Runtime::Runtime(const std::vector<Constants::Constant>& constants) {
     this->constants = constants;
-    location = 0;
+    frames = {};
 }
 
 void Runtime::advance(uint32_t count) {
-    location += count;
+    frames.top().advance(count);
 }
 
 void Runtime::call(uint16_t argc) {
@@ -72,6 +69,20 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
     return args;
 }
 
-void Runtime::pushStack() {
-    returns.push(location);
+void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber) {
+    frames.push({varCount, functionNumber});
+}
+
+void Runtime::popStack() {
+    frames.pop();
+}
+
+Runtime::Runtime(std::vector<Constants::Constant> constants, std::vector<std::vector<uint8_t>> functions)
+    : constants(std::move(constants)), functions(std::move(functions)) {
+}
+
+void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
+    pushStack(0, functionNo);
+    frames.top().loadArgs(args);
+    popStack();
 }

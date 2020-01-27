@@ -10,17 +10,18 @@
 #include <vector>
 #include "Variable.h"
 #include "Constant.h"
+#include "StackFrame.h"
 
 class Runtime final {
 private:
+    std::vector<std::vector<uint8_t>> functions;
     std::vector<Constants::Constant> constants;
-    std::vector<Variable> variables;
     std::stack<Variable> stack;
-    std::stack<uint32_t> returns;
-    uint32_t location;
+    std::stack<StackFrame> frames;
 
 public:
     explicit Runtime(const std::vector<Constants::Constant>& constants);
+    Runtime(std::vector<Constants::Constant>, std::vector<std::vector<uint8_t>>);
     Variable load_variable(uint32_t index) const;
     void store_variable(uint32_t index, Variable variable);
     Variable pop();
@@ -32,7 +33,9 @@ public:
     void advance(uint32_t count);
     void call(uint16_t);
     void call(const Variable&, Operator, const std::vector<Variable>&);
-    void pushStack();
+    void call(uint16_t, const std::vector<Variable>&);
+    void pushStack(uint16_t, uint16_t);
+    void popStack();
     std::vector<Variable> loadArgs(uint16_t);
 };
 
