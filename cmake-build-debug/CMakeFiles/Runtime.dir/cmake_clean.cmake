@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Runtime.dir/BaseFunction.cpp.o"
   "CMakeFiles/Runtime.dir/BigDecimal.cpp.o"
   "CMakeFiles/Runtime.dir/Bigint.cpp.o"
   "CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o"

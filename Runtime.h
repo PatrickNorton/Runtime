@@ -11,17 +11,17 @@
 #include "Variable.h"
 #include "Constant.h"
 #include "StackFrame.h"
+#include "BaseFunction.h"
 
 class Runtime final {
 private:
-    std::vector<std::vector<uint8_t>> functions;
+    std::vector<BaseFunction> functions;
     std::vector<Constants::Constant> constants;
     std::stack<Variable> stack;
     std::stack<StackFrame> frames;
 
 public:
-    explicit Runtime(const std::vector<Constants::Constant>& constants);
-    Runtime(std::vector<Constants::Constant>, std::vector<std::vector<uint8_t>>);
+    Runtime(std::vector<Constants::Constant>, std::vector<BaseFunction>);
     Variable load_variable(uint32_t index) const;
     void store_variable(uint32_t index, Variable variable);
     Variable pop();

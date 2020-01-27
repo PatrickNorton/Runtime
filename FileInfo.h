@@ -8,13 +8,14 @@
 
 #include <vector>
 #include "Constant.h"
+#include "BaseFunction.h"
 
 class FileInfo {
 private:
     std::vector<Constants::Constant> constants;
-    std::vector<std::vector<uint8_t>> functions;
+    std::vector<BaseFunction> functions;
 public:
-    FileInfo(std::vector<Constants::Constant> constants, std::vector<std::vector<uint8_t>> functions);
+    FileInfo(std::vector<Constants::Constant> constants, std::vector<BaseFunction> functions);
 
     void execute();
 };

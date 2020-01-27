@@ -3,6 +3,8 @@
 //
 
 #include "Runtime.h"
+#include "BaseFunction.h"
+#include "Executor.h"
 
 #include <utility>
 
@@ -23,7 +25,7 @@ Variable Runtime::pop() {
 }
 
 void Runtime::push(const Variable& variable) {
-    stack.push((variable));
+    stack.push(variable);
 }
 
 Variable Runtime::load_const(uint32_t index) const {
@@ -42,9 +44,9 @@ uint32_t Runtime::currentPos() const {
     return frames.top().currentPos();
 }
 
-Runtime::Runtime(const std::vector<Constants::Constant>& constants) {
-    this->constants = constants;
-    frames = {};
+Runtime::Runtime(std::vector<Constants::Constant> constants, std::vector<BaseFunction> functions)
+        : constants(std::move(constants)), functions(std::move(functions)) {
+    frames.push(StackFrame(this->functions[0].getLocalCount(), 0));
 }
 
 void Runtime::advance(uint32_t count) {
@@ -77,12 +79,9 @@ void Runtime::popStack() {
     frames.pop();
 }
 
-Runtime::Runtime(std::vector<Constants::Constant> constants, std::vector<std::vector<uint8_t>> functions)
-    : constants(std::move(constants)), functions(std::move(functions)) {
-}
-
 void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
     pushStack(0, functionNo);
     frames.top().loadArgs(args);
+    Executor::execute(functions[frames.top().getFnNumber()].getBytes(), *this);
     popStack();
 }

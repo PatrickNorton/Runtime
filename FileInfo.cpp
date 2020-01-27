@@ -7,12 +7,12 @@
 
 #include <utility>
 
-FileInfo::FileInfo(std::vector<Constants::Constant> constants, std::vector<std::vector<uint8_t>> functions) {
+FileInfo::FileInfo(std::vector<Constants::Constant> constants, std::vector<BaseFunction> functions) {
     this->constants = std::move(constants);
     this->functions = std::move(functions);
 }
 
 void FileInfo::execute() {
-    auto defaultFn = functions[0];
-    Executor::execute(defaultFn, constants);
+    Runtime runtime(constants, functions);
+    Executor::execute(functions[0].getBytes(), runtime);
 }

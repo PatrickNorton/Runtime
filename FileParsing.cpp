@@ -12,6 +12,7 @@
 #include "ConstantBytes.h"
 #include "ConstantLoaders.h"
 #include "Function.h"
+#include "BaseFunction.h"
 
 
 Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index, std::vector<uint32_t>& functions) {
@@ -76,12 +77,9 @@ FileInfo parseFile(const std::string& name) {
 
     auto functionCount = IntTools::bytesTo<uint32_t>(data, index);
     index += Constants::INT_32_BYTES;
-    std::vector<std::vector<uint8_t>> functions(functionCount);
+    std::vector<BaseFunction> functions(functionCount);
     for (uint32_t i = 0; i < functionCount; i++) {
-        auto functionLength = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
-        functions[i] = std::vector<uint8_t>(data.begin() + index, data.begin() + index + functionLength);
-        index += functionLength;
+        functions[i] = BaseFunction::parse(data, index);
     }
 
     size_t fnCount = 0, fnTotalIndex = 0;

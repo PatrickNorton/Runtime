@@ -11,7 +11,7 @@
 namespace Executor {
     void parse(const std::vector<uint8_t> &bytes, const Runtime &runtime);
 
-    void execute(const std::vector<uint8_t> &bytes, const std::vector<Constants::Constant> &constants);
+    void execute(const std::vector<uint8_t>&, Runtime&);
 }
 
 #endif //RUNTIME_EXECUTOR_H
