@@ -162,7 +162,7 @@ namespace Executor {
                 break;
             case Bytecode::EQUAL:
                 callOperator(Operator::EQUALS, 1, runtime);
-                break;
+                return;
             case Bytecode::LESS_THAN:
                 callOperator(Operator::LESS_THAN, 1, runtime);
                 return;
