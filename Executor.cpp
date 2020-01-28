@@ -18,7 +18,7 @@ namespace Executor {
         switch (b) {
 
             case Bytecode::NOP:
-                return;
+                throw std::runtime_error("NOP not used as a value in any generated code yet, so an error occurred");
             case Bytecode::LOAD_NULL:
                 runtime.push(Constants::null());
                 return;
