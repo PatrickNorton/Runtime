@@ -65,6 +65,14 @@ void intFloorDiv(const Variable& self, const std::vector<Variable>& args, Runtim
     runtime->push(Constants::fromNative(result));
 }
 
+void intMod(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
+    Bigint result(self->toInt(runtime));
+    for (const auto& arg : args) {  // TODO: Type checking
+        result = result % arg->toInt(runtime);
+    }
+    runtime->push(Constants::fromNative(result));
+}
+
 void intEquals(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
     auto value = self->toInt(runtime);
     for (const auto& arg : args) {
@@ -200,6 +208,7 @@ const std::unordered_map<Operator, Constants::NativeMethod>& intMethods() {
             {Operator::U_SUBTRACT, intUSub},
             {Operator::MULTIPLY, intMul},
             {Operator::FLOOR_DIV, intFloorDiv},
+            {Operator::MODULO, intMod},
             {Operator::EQUALS, intEquals},
             {Operator::NOT_EQUALS, intNotEquals},
             {Operator::GREATER_THAN, intGreaterThan},
