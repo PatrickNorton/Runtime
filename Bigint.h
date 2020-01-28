@@ -18,11 +18,13 @@ private:
     bool sign;  // True if negative, false if positive
     int8_t compareMagnitude(const Bigint& other) const;
     uint32_t getInt(size_t index) const;
+    size_t numberOfTrailingZeros() const;
     static __vec add(const __vec& x, const __vec& y);
     static __vec _add(const __vec& x, const __vec& y);
     static __vec sub(const __vec& x, const __vec& y);
     static __vec mul(const __vec& x, const __vec& y);
     static __vec div(const __vec& x, const __vec& y);
+    static std::pair<Bigint, Bigint> div_rem(Bigint x, Bigint y);
 
     static Bigint valueOf(__vec val);
 
@@ -46,6 +48,7 @@ public:
     Bigint operator~() const;
     Bigint operator>>(const size_t&) const;
     Bigint operator<<(const size_t&) const;
+    Bigint operator%(const Bigint&) const;
     Bigint& operator++();
     Bigint& operator--();
     Bigint operator++(int);

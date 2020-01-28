@@ -6,6 +6,7 @@
 
 #include <string>
 #include <cmath>
+#include <algorithm>
 
 Bigint::Bigint() {
     sign = false;
@@ -114,7 +115,7 @@ Bigint Bigint::operator/(const Bigint& other) const {
     } else if (other > *this) {
         return 0_B;
     } else {
-        return Bigint(div(values, other.values), sign == other.sign);
+        return div_rem(*this, other).first;
     }
 }
 
@@ -206,6 +207,10 @@ Bigint Bigint::operator>>(const size_t& other) const {
     } else {
         return Bigint(result, sign);
     }
+}
+
+Bigint Bigint::operator%(const Bigint& other) const {
+    return div_rem(*this, other).second;
 }
 
 bool Bigint::operator==(const Bigint& other) const {
@@ -524,6 +529,58 @@ std::string Bigint::to_string() const {
     } else {
         throw std::runtime_error("Too big to stringify yet");
     }
+}
+
+std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
+    if (!y) {
+        throw std::runtime_error("Cannot divide by 0");
+    }
+
+    if (!x) {
+        return {0_B, 0_B};
+    }
+
+    auto cmp = x.compareMagnitude(y);
+
+    if (cmp == 0) {
+        return {1_B, 0_B};
+    }
+
+    if (cmp < 0) {
+        return {0_B, x};
+    }
+
+    if (x.values.size() == 1 && y.values.size() == 1) {
+        return {Bigint(x.values[0] / y.values[0]), Bigint(x.values[0] % y.values[0])};
+    }
+
+    bool resultSign = x.sign ^ y.sign;
+    x = x.sign ? -x : x;
+    y = y.sign ? -y : y;
+    // Shift away some of it
+    size_t shift = std::min(x.numberOfTrailingZeros(), y.numberOfTrailingZeros());
+    x >>= shift;
+    y >>= shift;
+    auto result = 0_B;
+    do {
+        y -= x;
+        result++;
+    } while (x > y);
+    return {resultSign ? -result : result, y};
+}
+
+size_t Bigint::numberOfTrailingZeros() const {
+    if (!*this)
+        return -1;
+    size_t j, b;
+    for (j=values.size()-1; (j > 0) && (values[j] == 0); j--)
+        ;
+    b = values[j];
+    if (b == 0)
+        return -1;
+    size_t trailing0s = 0;
+    for (; b % 2 == 0; b >>= 1u, trailing0s++);
+    return ((values.size()-1-j)<<5u) + trailing0s;
 }
 
 Bigint operator "" _B(unsigned long long val) {
