@@ -79,6 +79,8 @@ namespace Executor {
                 runtime.call(stored, Operator::SET_ATTR, {index, result});
             }
                 return;
+            case Bytecode::STORE_ATTR:
+                break;
             case Bytecode::PLUS:
                 callOperator(Operator::ADD, 1, runtime);
                 return;

@@ -22,6 +22,7 @@ enum class Bytecode : std::uint8_t {
     SWAP_N = 0xA,
     STORE = 0xB,
     STORE_SUBSCRIPT = 0xC,
+    STORE_ATTR = 0xD,
     // Binary operators
     PLUS = 0x10,
     MINUS = 0x11,

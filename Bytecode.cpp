@@ -26,6 +26,7 @@ int bytecode_size(Bytecode bytecode) {
             return 4;
         case Bytecode::STORE:
         case Bytecode::STORE_SUBSCRIPT:
+        case Bytecode::STORE_ATTR:
             return 2;
         case Bytecode::PLUS:
         case Bytecode::MINUS:
