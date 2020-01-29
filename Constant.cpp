@@ -30,7 +30,7 @@ namespace Constants {
     }
 
     Constant null() {
-        static Constant instance = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
+        static Constant instance = std::make_shared<BuiltinImpl::NullType>();
         return instance;
     }
 }

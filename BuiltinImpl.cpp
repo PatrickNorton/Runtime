@@ -23,7 +23,7 @@ namespace BuiltinImpl {
 
     Type str_t() {
         static const std::unordered_map<Operator, Callable> strOperators {};  // TODO: Implement operators
-        static Type instance = std::make_shared<Constants::_Type>(Constants::_Type(strOperators));
+        static Type instance = std::make_shared<Constants::_Type>(strOperators);
         return instance;
     }
 

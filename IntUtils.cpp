@@ -290,7 +290,7 @@ namespace Constants {
     }
 
     Constant fromNative(const BigDecimal &val) {
-        return std::make_shared<DecimalConstant>(DecimalConstant(val));
+        return std::make_shared<DecimalConstant>(val);
     }
 
     DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}

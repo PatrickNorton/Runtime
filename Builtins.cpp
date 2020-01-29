@@ -20,8 +20,7 @@ namespace Builtins {
     }
 
     Variable null() {
-        static Variable instance = std::make_shared<BuiltinImpl::NullType>();
-        return instance;
+        return Constants::null();
     }
 
     Constants::Constant print() {
