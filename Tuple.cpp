@@ -21,6 +21,10 @@ namespace Constants {
         );
     }
 
+    bool Tuple::toBool(Runtime*) {
+        return !values.empty();
+    }
+
     void TupleType::tupleIndex(const TuplePtr& self, const std::vector<Variable> &argv, Runtime *runtime) {
         assert(argv.size() == 1);
         runtime->push(self->values[size_t(argv[0]->toInt(runtime))].second);

@@ -25,9 +25,4 @@ namespace Constants {
             throw std::runtime_error("");
         }
     }
-
-    template<typename T>
-    GenericM<T>::GenericM(std::shared_ptr<T>, GenericMethod<T>) {
-
-    }
 }
