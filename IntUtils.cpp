@@ -9,6 +9,7 @@
 #include "StringUtils.h"
 #include "Runtime.h"
 #include "Method.h"
+#include "Builtins.h"
 
 
 namespace Constants {
@@ -228,6 +229,9 @@ namespace Constants {
             return instance.at(op);
         }
 
+    IntType::IntType() : _Type({}, {}) {
+    }
+
     Bigint IntConstant::toInt(Runtime*) {
         return value;
     }
@@ -243,6 +247,10 @@ namespace Constants {
             methods[op] = std::make_shared<GenericM<IntConstant>>(std::move(self), IntType::intMethod(op));
         }
         return methods.at(op);
+    }
+
+    Type IntConstant::getType() {
+        return Builtins::int_();
     }
 
     BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {

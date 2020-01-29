@@ -42,6 +42,7 @@ namespace Constants {
 
     public:
         static GenericMethod<Constants::IntConstant> intMethod(Operator);
+        IntType();
     };
 
     class IntConstant : public _Constant {
@@ -55,6 +56,7 @@ namespace Constants {
         std::string str(Runtime *) override;
         Bigint toInt(Runtime *) override;
         bool toBool(Runtime*) override;
+        Type getType() override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 

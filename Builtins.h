@@ -15,6 +15,8 @@ namespace Builtins {
     extern Constants::Constant print;
     extern const std::vector<Constants::Constant> values;
     void _print(const std::vector<Variable>&, Runtime*);
+
+    Type int_();
 }
 
 #endif //RUNTIME_BUILTINS_H

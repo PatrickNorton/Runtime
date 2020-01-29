@@ -2,12 +2,11 @@
 // Created by Patrick Norton on 11/1/20.
 //
 
-#include <utility>
 #include <vector>
 #include <iostream>
 #include "Builtins.h"
-#include "Operator.h"
 #include "BuiltinImpl.h"
+#include "IntUtils.h"
 
 
 namespace Builtins {
@@ -23,4 +22,9 @@ void Builtins::_print(const std::vector<Variable> &args, Runtime* runtime) {
     for (const auto& arg : args) {
         std::cout << arg->str(runtime) << std::endl;
     }
+}
+
+Type Builtins::int_() {
+    static Type instance = std::make_shared<Constants::IntType>();
+    return instance;
 }
