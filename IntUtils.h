@@ -7,12 +7,14 @@
 
 #include "Constant.h"
 #include "BigDecimal.h"
+#include "Method.h"
 
 namespace Constants {
 
     class IntConstant : public _Constant {
     private:
         Bigint value;
+        std::map<Operator, std::shared_ptr<Method>> methods;
     public:
         explicit IntConstant(uint32_t value);
         explicit IntConstant(Bigint value);

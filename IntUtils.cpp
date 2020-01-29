@@ -237,9 +237,10 @@ bool Constants::IntConstant::toBool(Runtime *) {
 
 Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair) {
     Operator op = pair.first;
-    const std::unordered_map<Operator, Constants::NativeMethod>& methods = intMethods();
-    auto self = shared_from_this();
-    return std::make_shared<Constants::Method>(Constants::Method(self, methods.at(op)));
+    if (!methods.count(op)) {
+        methods[op] = std::make_shared<Method>(shared_from_this(), intMethods().at(op));
+    }
+    return methods.at(op);
 }
 
 Constants::BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {
