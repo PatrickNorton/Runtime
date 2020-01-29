@@ -11,284 +11,287 @@
 #include "Method.h"
 
 
-Constants::IntConstant::IntConstant(uint32_t value) {
-    this->value = Bigint(static_cast<uint64_t>(value));
-}
-
-Constants::IntConstant::IntConstant(Bigint value) {
-    this->value = std::move(value);
-}
-
-std::string Constants::IntConstant::str(Runtime *) {
-    return value.to_string();
-}
-
-void intStr(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.empty());
-    runtime->push(Constants::fromNative(self->toInt(runtime).to_string()));
-}
-
-void intAdd(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result + arg->toInt(runtime);
+namespace Constants {
+    IntConstant::IntConstant(uint32_t value) {
+        this->value = Bigint(static_cast<uint64_t>(value));
     }
-    runtime->push(Constants::fromNative(result));
-}
 
-void intSub(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result - arg->toInt(runtime);
+    IntConstant::IntConstant(Bigint value) {
+        this->value = std::move(value);
     }
-    runtime->push(Constants::fromNative(result));
-}
 
-void intUSub(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.empty());
-    runtime->push(Constants::fromNative(-self->toInt(runtime)));
-}
-
-void intMul(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result * arg->toInt(runtime);
+    std::string IntConstant::str(Runtime* ) {
+        return value.to_string();
     }
-    runtime->push(Constants::fromNative(result));
-}
 
-void intFloorDiv(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result / arg->toInt(runtime);
+        void IntType::intStr(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(fromNative(self->value.to_string()));
+        }
+
+        void IntType::intAdd(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result + arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intSub(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result - arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intUSub(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(fromNative(-self->value));
+        }
+
+        void IntType::intMul(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result * arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intFloorDiv(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result / arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intMod(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result % arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intEquals(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (arg->toInt(runtime) != value) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intNotEquals(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (arg->toInt(runtime) == value) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intGreaterThan(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (!(value > arg->toInt(runtime))) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intLessThan(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (!(value < arg->toInt(runtime))) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intGreaterEqual(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (!(value >= arg->toInt(runtime))) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intLessEqual(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            auto value = self->value;
+            for (const auto& arg : args) {
+                if (!(value <= arg->toInt(runtime))) {
+                    runtime->push(fromNative(false));
+                    return;
+                }
+            }
+            runtime->push(fromNative(true));
+        }
+
+        void IntType::intLeftBS(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.size() == 1);
+            auto arg = args[0];
+            static auto maxBsSize = fromNative(Bigint(std::numeric_limits<size_t>::max()));
+            runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
+            if (runtime->pop()->toBool(runtime)) {
+                throw std::runtime_error("Bitshift value greater than max allowed");
+            }
+            runtime->push(fromNative(self->value << static_cast<size_t>(arg->toInt(runtime))));
+        }
+
+        void IntType::intRightBS(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.size() == 1);
+            auto arg = args[0];
+            static auto maxBsSize = fromNative(Bigint(std::numeric_limits<size_t>::max()));
+            runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
+            if (runtime->pop()->toBool(runtime)) {
+                throw std::runtime_error("Bitshift value greater than max allowed");
+            }
+            runtime->push(fromNative(self->value >> static_cast<size_t>(arg->toInt(runtime))));
+        }
+
+        void IntType::intBWAnd(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result & arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intBWOr(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result | arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intBWXor(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            Bigint result(self->value);
+            for (const auto& arg : args) {  // TODO: Type checking
+                result = result ^ arg->toInt(runtime);
+            }
+            runtime->push(fromNative(result));
+        }
+
+        void IntType::intBWNot(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(fromNative(~self->value));
+        }
+
+        void IntType::intToInt(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(self);
+        }
+
+        void IntType::intToBool(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(fromNative(self->value != 0_B));
+        }
+
+        GenericMethod<IntConstant> IntType::intMethod(Operator op) {
+            static const std::unordered_map<Operator, GenericMethod<IntConstant>> instance = {
+                    {Operator::STR,            intStr},
+                    {Operator::ADD,            intAdd},
+                    {Operator::SUBTRACT,       intSub},
+                    {Operator::U_SUBTRACT,     intUSub},
+                    {Operator::MULTIPLY,       intMul},
+                    {Operator::FLOOR_DIV,      intFloorDiv},
+                    {Operator::MODULO,         intMod},
+                    {Operator::EQUALS,         intEquals},
+                    {Operator::NOT_EQUALS,     intNotEquals},
+                    {Operator::GREATER_THAN,   intGreaterThan},
+                    {Operator::LESS_THAN,      intLessThan},
+                    {Operator::GREATER_EQUAL,  intGreaterEqual},
+                    {Operator::LESS_EQUAL,     intLessEqual},
+                    {Operator::LEFT_BITSHIFT,  intLeftBS},
+                    {Operator::RIGHT_BITSHIFT, intRightBS},
+                    {Operator::BITWISE_AND,    intBWAnd},
+                    {Operator::BITWISE_OR,     intBWOr},
+                    {Operator::BITWISE_XOR,    intBWXor},
+                    {Operator::BITWISE_NOT,    intBWNot},
+                    {Operator::INT,            intToInt},
+                    {Operator::BOOL,           intToBool},
+            };
+            return instance.at(op);
+        }
+
+    Bigint IntConstant::toInt(Runtime*) {
+        return value;
     }
-    runtime->push(Constants::fromNative(result));
-}
 
-void intMod(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result % arg->toInt(runtime);
+    bool IntConstant::toBool(Runtime*) {
+        return value != 0_B;
     }
-    runtime->push(Constants::fromNative(result));
-}
 
-void intEquals(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (arg->toInt(runtime) != value) {
-            runtime->push(Constants::fromNative(false));
-            return;
+    Variable IntConstant::operator[](std::pair<Operator, Runtime*> pair) {
+        Operator op = pair.first;
+        if (!methods.count(op)) {
+            auto self = std::dynamic_pointer_cast<IntConstant>(shared_from_this());
+            methods[op] = std::make_shared<GenericM<IntConstant>>(std::move(self), IntType::intMethod(op));
+        }
+        return methods.at(op);
+    }
+
+    BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {
+        this->value = value;
+    }
+
+    std::string BoolConstant::str(Runtime*) {
+        return value ? "true" : "false";
+    }
+
+    bool BoolConstant::toBool(Runtime*) {
+        return value;
+    }
+
+    Constant fromNative(bool val) {
+        static Constant t = std::make_shared<BoolConstant>(true);
+        static Constant f = std::make_shared<BoolConstant>(false);
+        return val ? t : f;
+    }
+
+    std::map<Bigint, Constant> __loadInterned() {
+        static const Bigint MAX = 0xFF_B;
+        std::map<Bigint, Constant> interns{};
+        for (Bigint i = 0_B; i < MAX; ++i) {
+            interns[i] = std::make_shared<IntConstant>(i);
+        }
+        return interns;
+    }
+
+    Constant fromNative(const Bigint &val) {
+        static std::map<Bigint, Constant> interns = __loadInterned();
+        if (interns.count(val)) {
+            return interns[val];
+        } else {
+            return std::make_shared<IntConstant>(val);
         }
     }
-    runtime->push(Constants::fromNative(true));
-}
 
-void intNotEquals(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (arg->toInt(runtime) == value) {
-            runtime->push(Constants::fromNative(false));
-            return;
-        }
+    Constant fromNative(const BigDecimal &val) {
+        return std::make_shared<DecimalConstant>(DecimalConstant(val));
     }
-    runtime->push(Constants::fromNative(true));
-}
 
-void intGreaterThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (!(value > arg->toInt(runtime))) {
-            runtime->push(Constants::fromNative(false));
-            return;
-        }
+    DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}
+
+    std::string DecimalConstant::str(Runtime*) {
+        return value.toString();
     }
-    runtime->push(Constants::fromNative(true));
-}
 
-void intLessThan(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (!(value < arg->toInt(runtime))) {
-            runtime->push(Constants::fromNative(false));
-            return;
-        }
+    Bigint DecimalConstant::toInt(Runtime*) {
+        return value.round();
     }
-    runtime->push(Constants::fromNative(true));
-}
-
-void intGreaterEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (!(value >= arg->toInt(runtime))) {
-            runtime->push(Constants::fromNative(false));
-            return;
-        }
-    }
-    runtime->push(Constants::fromNative(true));
-}
-
-void intLessEqual(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    auto value = self->toInt(runtime);
-    for (const auto& arg : args) {
-        if (!(value <= arg->toInt(runtime))) {
-            runtime->push(Constants::fromNative(false));
-            return;
-        }
-    }
-    runtime->push(Constants::fromNative(true));
-}
-
-void intLeftBS(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.size() == 1);
-    auto arg = args[0];
-    static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
-    if (runtime->pop()->toBool(runtime)) {
-        throw std::runtime_error("Bitshift value greater than max allowed");
-    }
-    runtime->push(Constants::fromNative(self->toInt(runtime) << static_cast<size_t>(arg->toInt(runtime))));
-}
-
-void intRightBS(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.size() == 1);
-    auto arg = args[0];
-    static auto maxBsSize = Constants::fromNative(Bigint(std::numeric_limits<size_t>::max()));
-    runtime->call(arg, Operator::GREATER_THAN, {maxBsSize});
-    if (runtime->pop()->toBool(runtime)) {
-        throw std::runtime_error("Bitshift value greater than max allowed");
-    }
-    runtime->push(Constants::fromNative(self->toInt(runtime) >> static_cast<size_t>(arg->toInt(runtime))));
-}
-
-void intBWAnd(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result & arg->toInt(runtime);
-    }
-    runtime->push(Constants::fromNative(result));
-}
-
-void intBWOr(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result | arg->toInt(runtime);
-    }
-    runtime->push(Constants::fromNative(result));
-}
-
-void intBWXor(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    Bigint result(self->toInt(runtime));
-    for (const auto& arg : args) {  // TODO: Type checking
-        result = result ^ arg->toInt(runtime);
-    }
-    runtime->push(Constants::fromNative(result));
-}
-
-void intBWNot(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.empty());
-    runtime->push(Constants::fromNative(~self->toInt(runtime)));
-}
-
-void intToInt(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.empty());
-    runtime->push(self);
-}
-
-void intToBool(const Variable& self, const std::vector<Variable>& args, Runtime* runtime) {
-    assert(args.empty());
-    runtime->push(Constants::fromNative(self->toInt(runtime) != 0_B));
-}
-
-const std::unordered_map<Operator, Constants::NativeMethod>& intMethods() {
-    static const std::unordered_map<Operator, Constants::NativeMethod> instance = {
-            {Operator::STR, intStr},
-            {Operator::ADD, intAdd},
-            {Operator::SUBTRACT, intSub},
-            {Operator::U_SUBTRACT, intUSub},
-            {Operator::MULTIPLY, intMul},
-            {Operator::FLOOR_DIV, intFloorDiv},
-            {Operator::MODULO, intMod},
-            {Operator::EQUALS, intEquals},
-            {Operator::NOT_EQUALS, intNotEquals},
-            {Operator::GREATER_THAN, intGreaterThan},
-            {Operator::LESS_THAN, intLessThan},
-            {Operator::GREATER_EQUAL, intGreaterEqual},
-            {Operator::LESS_EQUAL, intLessEqual},
-            {Operator::LEFT_BITSHIFT, intLeftBS},
-            {Operator::RIGHT_BITSHIFT, intRightBS},
-            {Operator::BITWISE_AND, intBWAnd},
-            {Operator::BITWISE_OR, intBWOr},
-            {Operator::BITWISE_XOR, intBWXor},
-            {Operator::BITWISE_NOT, intBWNot},
-            {Operator::INT, intToInt},
-            {Operator::BOOL, intToBool},
-    };
-    return instance;
-}
-
-Bigint Constants::IntConstant::toInt(Runtime *) {
-    return value;
-}
-
-bool Constants::IntConstant::toBool(Runtime *) {
-    return value != 0_B;
-}
-
-Variable Constants::IntConstant::operator[] (std::pair<Operator, Runtime*> pair) {
-    Operator op = pair.first;
-    if (!methods.count(op)) {
-        methods[op] = std::make_shared<Method>(shared_from_this(), intMethods().at(op));
-    }
-    return methods.at(op);
-}
-
-Constants::BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {
-    this->value = value;
-}
-
-std::string Constants::BoolConstant::str(Runtime *) {
-    return value ? "true" : "false";
-}
-
-bool Constants::BoolConstant::toBool(Runtime *) {
-    return value;
-}
-
-Constants::Constant Constants::fromNative(bool val) {
-    static Constant t = std::make_shared<BoolConstant>(true);
-    static Constant f = std::make_shared<BoolConstant>(false);
-    return val ? t : f;
-}
-
-std::map<Bigint, Constants::Constant> __loadInterned() {
-    static const Bigint MAX = 0xFF_B;
-    std::map<Bigint, Constants::Constant> interns {};
-    for (Bigint i = 0_B; i < MAX; ++i) {
-        interns[i] = std::make_shared<Constants::IntConstant>(i);
-    }
-    return interns;
-}
-
-Constants::Constant Constants::fromNative(const Bigint& val) {
-    static std::map<Bigint, Constant> interns = __loadInterned();
-    if (interns.count(val)) {
-        return interns[val];
-    } else {
-        return std::make_shared<IntConstant>(val);
-    }
-}
-
-Constants::Constant Constants::fromNative(const BigDecimal &val) {
-    return std::make_shared<DecimalConstant>(DecimalConstant(val));
-}
-
-Constants::DecimalConstant::DecimalConstant(BigDecimal value) : value(std::move(value)) {}
-
-std::string Constants::DecimalConstant::str(Runtime *) {
-    return value.toString();
-}
-
-Bigint Constants::DecimalConstant::toInt(Runtime *) {
-    return value.round();
 }
