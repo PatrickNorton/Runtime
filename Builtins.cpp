@@ -3,7 +3,6 @@
 //
 
 #include <vector>
-#include <iostream>
 #include "Builtins.h"
 #include "BuiltinImpl.h"
 #include "IntUtils.h"
@@ -20,7 +19,7 @@ namespace Builtins {
         return BuiltinImpl::str_t();
     }
 
-    Variable null_() {
+    Variable null() {
         static Variable instance = std::make_shared<BuiltinImpl::NullType>();
         return instance;
     }
