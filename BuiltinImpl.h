@@ -31,6 +31,8 @@ namespace BuiltinImpl {
         explicit NullType();
         std::string str(Runtime *) override;
     };
+
+    void print(const std::vector<Variable>&, Runtime*);
 };
 
 

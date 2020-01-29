@@ -33,7 +33,7 @@ namespace ConstantLoaders {
     Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index) {
         auto builtinIndex = IntTools::bytesTo<uint32_t>(data, index);
         index += Constants::INT_32_BYTES;
-        return Builtins::values[builtinIndex];
+        return Builtins::value(builtinIndex);
     }
 
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {

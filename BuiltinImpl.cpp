@@ -26,4 +26,10 @@ namespace BuiltinImpl {
         static Type instance = std::make_shared<Constants::_Type>(Constants::_Type(strOperators));
         return instance;
     }
+
+    void print(const std::vector<Variable> &args, Runtime* runtime) {
+        for (const auto& arg : args) {
+            std::cout << arg->str(runtime) << std::endl;
+        }
+    }
 }

@@ -24,12 +24,16 @@ CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.cpp
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Variable.h
@@ -68,6 +72,7 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Type.h
@@ -84,6 +89,7 @@ CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../StackFrame.h
@@ -135,11 +141,13 @@ CMakeFiles/Runtime.dir/IntTools.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.cpp
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StackFrame.h
@@ -152,6 +160,7 @@ CMakeFiles/Runtime.dir/Method.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Method.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.cpp
 CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/Method.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Method.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Method.cpp.o: ../StackFrame.h
@@ -192,6 +201,7 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StackFrame.h
@@ -207,6 +217,7 @@ CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../StackFrame.h

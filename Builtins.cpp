@@ -10,21 +10,30 @@
 
 
 namespace Builtins {
-    Variable null = std::make_shared<BuiltinImpl::NullType>(BuiltinImpl::NullType());
-    const Variable str = BuiltinImpl::str_t();
-    Constants::Constant print = std::make_shared<Constants::Function>(Constants::Function(Builtins::_print));
-    const std::vector<Constants::Constant> values = {
-            print
-    };
-}
 
-void Builtins::_print(const std::vector<Variable> &args, Runtime* runtime) {
-    for (const auto& arg : args) {
-        std::cout << arg->str(runtime) << std::endl;
+    Type int_() {
+        static Type instance = std::make_shared<Constants::IntType>();
+        return instance;
     }
-}
 
-Type Builtins::int_() {
-    static Type instance = std::make_shared<Constants::IntType>();
-    return instance;
+    Variable str() {
+        return BuiltinImpl::str_t();
+    }
+
+    Variable null_() {
+        static Variable instance = std::make_shared<BuiltinImpl::NullType>();
+        return instance;
+    }
+
+    Constants::Constant print() {
+        static Constants::Constant instance = std::make_shared<Constants::Function>(BuiltinImpl::print);
+        return instance;
+    }
+
+    Constants::Constant value(size_t index) {
+        static std::vector<Constants::Constant> values = {
+                print()
+        };
+        return values[index];
+    }
 }
