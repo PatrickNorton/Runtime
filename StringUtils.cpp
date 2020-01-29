@@ -30,7 +30,7 @@ namespace Constants {
 
     void strMul(const Variable &self, const std::vector<Variable> &args, Runtime *runtime) {
         assert(args.size() == 1);
-        auto arg = args[0]->toInt(nullptr);
+        auto arg = args[0]->toInt(runtime);
         auto value = self->str(runtime);
         auto resultSize = arg * Bigint(value.size());
         if (resultSize > Bigint(std::numeric_limits<size_t>::max())) {
