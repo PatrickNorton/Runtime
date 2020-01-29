@@ -29,26 +29,9 @@ namespace Constants {
         void operator() (const std::vector<Variable>& , Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
-
-    // Template definitions have to be in header file...
-    template<typename T>
-    GenericM<T>::GenericM(std::shared_ptr<T> self, GenericMethod<T> value) : self(self), value(value) {
-    }
-
-    template<typename T>
-    void GenericM<T>::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-        value(self, args, runtime);
-    }
-
-    template<typename T>
-    Variable GenericM<T>::operator[](std::pair<Operator, Runtime*> pair) {
-        if (pair.first == Operator::CALL) {
-            return shared_from_this();
-        } else {
-            throw std::runtime_error("Does not implement this operator");
-        }
-    }
 }
+
+#include "Method.inl"
 
 
 #endif //RUNTIME_METHOD_H
