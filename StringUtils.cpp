@@ -20,7 +20,7 @@ namespace Constants {
         return this->value;
     }
 
-    void strAdd(const Variable &self, const std::vector<Variable> &args, Runtime *runtime) {
+    void StringType::strAdd(const StringPtr& self, const std::vector<Variable> &args, Runtime *runtime) {
         std::string result = self->str(runtime);
         for (const auto &arg : args) {
             result += arg->str(runtime);
@@ -28,7 +28,7 @@ namespace Constants {
         runtime->push(fromNative(result));
     }
 
-    void strMul(const Variable &self, const std::vector<Variable> &args, Runtime *runtime) {
+    void StringType::strMul(const StringPtr& self, const std::vector<Variable> &args, Runtime *runtime) {
         assert(args.size() == 1);
         auto arg = args[0]->toInt(runtime);
         auto value = self->str(runtime);
@@ -43,24 +43,36 @@ namespace Constants {
         runtime->push(fromNative(std::string(result.begin(), result.end())));
     }
 
-    void strBool(const Variable &self, const std::vector<Variable> &args, Runtime *runtime) {
+    void StringType::strBool(const StringPtr& self, const std::vector<Variable> &args, Runtime *runtime) {
         assert(args.empty());
         runtime->push(fromNative(!self->str(runtime).empty()));
     }
 
-    void pushSelf(const Variable &self, const std::vector<Variable> &args, Runtime *runtime) {
+    void StringType::pushSelf(const StringPtr& self, const std::vector<Variable> &args, Runtime *runtime) {
         assert(args.empty());
         runtime->push(self);
     }
 
-    Variable String::operator[](std::pair<Operator, Runtime *> pair) {
-        static const std::unordered_map<Operator, NativeMethod> strOperators{
+    GenericMethod<String> StringType::strMethod(Operator o) {
+        static const std::unordered_map<Operator, GenericMethod<String>> strOperators {
                 {Operator::ADD,      strAdd},
                 {Operator::MULTIPLY, strMul},
                 {Operator::BOOL,     strBool},
                 {Operator::STR,      pushSelf},
         };
-        return std::make_shared<Method>(shared_from_this(), strOperators.at(pair.first));
+        return strOperators.at(o);
+    }
+
+    StringType::StringType() : _Type({}, {}) {
+    }
+
+    Variable String::operator[](std::pair<Operator, Runtime *> pair) {
+        Operator op = pair.first;
+        if (!methods.count(op)) {
+            auto self = std::dynamic_pointer_cast<String>(shared_from_this());
+            methods[op] = std::make_shared<GenericM<String>>(std::move(self), StringType::strMethod(op));
+        }
+        return methods.at(op);
     }
 
     Constant fromNative(const std::string &val) {

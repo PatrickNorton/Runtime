@@ -11,9 +11,10 @@
 #include <set>
 #include "Operator.h"
 #include "Callable.h"
+#include "Constant.h"
 
 namespace Constants {
-    class _Type : public _Variable {
+    class _Type : public _Constant {
     private:
         typedef std::shared_ptr<_Type> Type;
         std::unordered_map<Operator, Callable> operators;

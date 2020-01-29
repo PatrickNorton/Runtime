@@ -6,6 +6,7 @@
 #include "Builtins.h"
 #include "BuiltinImpl.h"
 #include "IntUtils.h"
+#include "StringUtils.h"
 
 
 namespace Builtins {
@@ -16,7 +17,8 @@ namespace Builtins {
     }
 
     Variable str() {
-        return BuiltinImpl::str_t();
+        static Type instance = std::make_shared<Constants::StringType>();
+        return instance;
     }
 
     Variable null() {
