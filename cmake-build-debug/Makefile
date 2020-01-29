@@ -690,6 +690,33 @@ StringUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/StringUtils.cpp.s
 .PHONY : StringUtils.cpp.s
 
+Tuple.o: Tuple.cpp.o
+
+.PHONY : Tuple.o
+
+# target to build an object file
+Tuple.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Tuple.cpp.o
+.PHONY : Tuple.cpp.o
+
+Tuple.i: Tuple.cpp.i
+
+.PHONY : Tuple.i
+
+# target to preprocess a source file
+Tuple.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Tuple.cpp.i
+.PHONY : Tuple.cpp.i
+
+Tuple.s: Tuple.cpp.s
+
+.PHONY : Tuple.s
+
+# target to generate assembly for a file
+Tuple.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Tuple.cpp.s
+.PHONY : Tuple.cpp.s
+
 Type.o: Type.cpp.o
 
 .PHONY : Type.o
@@ -843,6 +870,9 @@ help:
 	@echo "... StringUtils.o"
 	@echo "... StringUtils.i"
 	@echo "... StringUtils.s"
+	@echo "... Tuple.o"
+	@echo "... Tuple.i"
+	@echo "... Tuple.s"
 	@echo "... Type.o"
 	@echo "... Type.i"
 	@echo "... Type.s"

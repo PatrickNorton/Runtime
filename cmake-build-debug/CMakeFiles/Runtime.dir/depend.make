@@ -192,6 +192,21 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.cpp
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../BaseFunction.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../BigDecimal.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Callable.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Tuple.cpp
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Tuple.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Type.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Variable.h
+
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Operator.h

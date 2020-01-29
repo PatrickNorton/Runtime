@@ -12,6 +12,9 @@ namespace Constants {
     typedef void (*NativeCallable)(const std::vector<Variable>&, Runtime*);
     typedef void (*NativeMethod)(const Variable&, const std::vector<Variable>&, Runtime*);
 
+    template <typename T>
+    using GenericMethod = void (*)(const std::shared_ptr<T>&, const std::vector<Variable>&, Runtime*);
+
     class _Constant : public _Variable {
     };
 

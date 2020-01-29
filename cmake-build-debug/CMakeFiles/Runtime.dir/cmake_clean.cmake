@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Runtime.dir/StackFrame.cpp.o"
   "CMakeFiles/Runtime.dir/StdVariable.cpp.o"
   "CMakeFiles/Runtime.dir/StringUtils.cpp.o"
+  "CMakeFiles/Runtime.dir/Tuple.cpp.o"
   "CMakeFiles/Runtime.dir/Type.cpp.o"
   "CMakeFiles/Runtime.dir/Variable.cpp.o"
   "CMakeFiles/Runtime.dir/main.cpp.o"

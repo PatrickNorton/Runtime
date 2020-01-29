@@ -212,6 +212,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StringUtils.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Tuple.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Tuple.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Type.cpp">
 			<Option target="Runtime"/>
 		</Unit>
