@@ -28,6 +28,12 @@ public:
 
     virtual Type getType();
     virtual bool isTypeOf(const Variable&);
+
+protected:
+    template <typename T>
+    std::shared_ptr<T> this_ptr() {
+        return std::dynamic_pointer_cast<T>(shared_from_this());
+    }
 };
 
 

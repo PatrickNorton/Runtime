@@ -69,8 +69,7 @@ namespace Constants {
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {
         Operator op = pair.first;
         if (!methods.count(op)) {
-            auto self = std::dynamic_pointer_cast<String>(shared_from_this());
-            methods[op] = std::make_shared<GenericM<String>>(std::move(self), StringType::strMethod(op));
+            methods[op] = std::make_shared<GenericM<String>>(this_ptr<String>(), StringType::strMethod(op));
         }
         return methods.at(op);
     }

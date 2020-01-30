@@ -243,7 +243,7 @@ namespace Constants {
     Variable IntConstant::operator[](std::pair<Operator, Runtime*> pair) {
         Operator op = pair.first;
         if (!methods.count(op)) {
-            auto self = std::dynamic_pointer_cast<IntConstant>(shared_from_this());
+            auto self = this_ptr<IntConstant>();
             methods[op] = std::make_shared<GenericM<IntConstant>>(std::move(self), IntType::intMethod(op));
         }
         return methods.at(op);

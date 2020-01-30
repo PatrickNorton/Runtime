@@ -16,7 +16,7 @@ namespace Constants {
 
     Variable Tuple::operator[](std::pair<Operator, Runtime *> op) {
         return std::make_shared<GenericM<Tuple>>(
-                std::dynamic_pointer_cast<Tuple>(shared_from_this()),
+                this_ptr<Tuple>(),
                 TupleType::getOperator(op.first)
         );
     }
