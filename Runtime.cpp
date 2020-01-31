@@ -76,6 +76,10 @@ void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber) {
 }
 
 void Runtime::popStack() {
+    for (const auto& v : frames.top().getExceptions()) {
+        assert(&exceptionFrames[v].top().second == &frames.top());
+        exceptionFrames[v].pop();
+    }
     frames.pop();
 }
 
@@ -94,4 +98,12 @@ void Runtime::removeExceptionHandler(const Variable& exceptionType) {
 void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPos) {
     exceptionFrames[exceptionType].push({jumpPos, frames.top()});
     frames.top().addExceptionHandler(exceptionType);
+}
+
+void Runtime::throwExc(const Variable& exception) {
+    auto framePair = exceptionFrames[std::static_pointer_cast<_Variable>(exception->getType())].top();
+    while (&frames.top() != &framePair.second) {
+        popStack();
+    }
+    goTo(framePair.first);
 }

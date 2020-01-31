@@ -43,6 +43,7 @@ public:
 
     void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);
+    void throwExc(const Variable&);
 };
 
 

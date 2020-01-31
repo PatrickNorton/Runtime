@@ -50,3 +50,7 @@ void StackFrame::addExceptionHandler(Variable var) {
 void StackFrame::removeExceptionHandler(Variable var) {
     exceptionHandlers.erase(var);
 }
+
+const std::set<Variable>& StackFrame::getExceptions() {
+    return exceptionHandlers;
+}

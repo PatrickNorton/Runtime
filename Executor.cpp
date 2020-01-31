@@ -208,10 +208,17 @@ namespace Executor {
                 break;
             case Bytecode::RETURN:
                 break;
-            case Bytecode::THROW:
-                break;
-            case Bytecode::THROW_QUICK:
-                break;
+            case Bytecode::THROW: {
+                runtime.throwExc(runtime.pop());
+            }
+                return;
+            case Bytecode::THROW_QUICK: {  // TODO: Actually make quick
+                auto message = runtime.pop();
+                auto excType = runtime.pop();
+                runtime.call(excType, Operator::CALL, {message});
+                runtime.throwExc(runtime.pop());
+            }
+                return;
             case Bytecode::ENTER_TRY:
                 break;
             case Bytecode::EXCEPT_N:

@@ -27,6 +27,7 @@ public:
     void store(uint32_t, Variable);
     void addExceptionHandler(Variable);
     void removeExceptionHandler(Variable);
+    const std::set<Variable>& getExceptions();
 
     Variable operator[] (size_t index) const;
 };
