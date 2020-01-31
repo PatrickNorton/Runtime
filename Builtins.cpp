@@ -16,12 +16,12 @@ namespace Builtins {
         return instance;
     }
 
-    Variable str() {
+    Type str() {
         static Type instance = std::make_shared<Constants::StringType>();
         return instance;
     }
 
-    Variable null() {
+    Constants::Constant null() {
         return Constants::null();
     }
 
@@ -32,7 +32,14 @@ namespace Builtins {
 
     Constants::Constant value(size_t index) {
         static std::vector<Constants::Constant> values = {
-                print()
+                print(),
+                nullptr,  // callable
+                int_(),
+                str(),
+                nullptr,  // bool
+                nullptr,  // range
+                nullptr,  // type
+                nullptr,  // iter
         };
         return values[index];
     }

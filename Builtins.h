@@ -11,8 +11,8 @@
 
 namespace Builtins {
     Type int_();
-    Variable str();
-    Variable null();
+    Type str();
+    Constants::Constant null();
     Constants::Constant print();
     Constants::Constant value(size_t index);
     Variable stopIteration();
