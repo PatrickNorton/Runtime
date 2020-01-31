@@ -140,6 +140,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Constants.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Exception.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Exception.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Executor.cpp">
 			<Option target="Runtime"/>
 		</Unit>

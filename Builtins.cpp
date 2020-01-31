@@ -7,6 +7,7 @@
 #include "BuiltinImpl.h"
 #include "IntUtils.h"
 #include "StringUtils.h"
+#include "Exception.h"
 
 
 namespace Builtins {
@@ -27,6 +28,11 @@ namespace Builtins {
 
     Constants::Constant print() {
         static Constants::Constant instance = std::make_shared<Constants::Function>(BuiltinImpl::print);
+        return instance;
+    }
+
+    Variable stopIteration() {
+        static Variable instance = std::make_shared<Constants::Exception>("");
         return instance;
     }
 
