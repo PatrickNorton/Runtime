@@ -28,8 +28,12 @@ namespace Executor {
             case Bytecode::LOAD_VALUE:
                 runtime.push(runtime.load_variable(IntTools::bytesTo<uint16_t>(bytes)));
                 return;
-            case Bytecode::LOAD_DOT:
-                break;
+            case Bytecode::LOAD_DOT: {
+                auto dotVal = runtime.pop();
+                assert(Builtins::str()->isTypeOf(dotVal));
+                runtime.push((*runtime.pop())[{dotVal->str(&runtime), &runtime}]);
+            }
+                return;
             case Bytecode::LOAD_SUBSCRIPT: {
                 auto operandCount = IntTools::bytesTo<uint16_t>(bytes);
                 callOperator(Operator::GET_ATTR, operandCount, runtime);
@@ -236,7 +240,7 @@ namespace Executor {
             case Bytecode::FOR_ITER: {
                 auto iterated = runtime.pop();
                 runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes));
-                (*(*iterated)[{"next", &runtime}])({}, &runtime);
+                runtime.call(iterated, "name", {});
                 runtime.removeExceptionHandler(Builtins::stopIteration());
             }
                 return;

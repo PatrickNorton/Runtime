@@ -63,6 +63,10 @@ void Runtime::call(const Variable& self, Operator o, const std::vector<Variable>
     (*(*self)[{o, this}])(args, this);
 }
 
+void Runtime::call(const Variable& self, const std::string& name, const std::vector<Variable>& args) {
+    (*(*self)[{name, this}])(args, this);
+}
+
 std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
     std::vector<Variable> args(argc);
     for (uint16_t i = 0; i < argc; i++) {
