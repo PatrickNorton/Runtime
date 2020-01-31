@@ -42,3 +42,11 @@ void StackFrame::store(uint32_t index, Variable variable) {
 Variable StackFrame::operator[](size_t index) const {
     return variables[index];
 }
+
+void StackFrame::addExceptionHandler(Variable var) {
+    exceptionHandlers.insert(var);
+}
+
+void StackFrame::removeExceptionHandler(Variable var) {
+    exceptionHandlers.erase(var);
+}

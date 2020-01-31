@@ -21,6 +21,7 @@ private:
     std::stack<Variable> stack;
     std::stack<StackFrame> frames;
     std::map<Variable, std::stack<std::tuple<uint32_t, uint32_t, uint32_t>>> exceptions;
+    std::map<Variable, std::stack<std::pair<uint32_t, StackFrame&>>> exceptionFrames;
 
 public:
     Runtime(std::vector<Constants::Constant>, std::vector<BaseFunction>);
@@ -39,7 +40,8 @@ public:
     void pushStack(uint16_t, uint16_t);
     void popStack();
     std::vector<Variable> loadArgs(uint16_t);
-    void addExceptionHandler(const Variable&, uint32_t, uint32_t);
+
+    void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);
 };
 

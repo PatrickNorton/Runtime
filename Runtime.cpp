@@ -86,10 +86,12 @@ void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
     popStack();
 }
 
-void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPos, uint32_t endLoc) {
-    exceptions[exceptionType].push({currentPos(), jumpPos, endLoc});
-}
-
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
     exceptions[exceptionType].pop();
+    frames.top().removeExceptionHandler(exceptionType);
+}
+
+void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPos) {
+    exceptionFrames[exceptionType].push({jumpPos, frames.top()});
+    frames.top().addExceptionHandler(exceptionType);
 }

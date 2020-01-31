@@ -228,7 +228,7 @@ namespace Executor {
                 break;
             case Bytecode::FOR_ITER: {
                 auto iterated = runtime.pop();
-                runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes), runtime.currentPos());
+                runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes));
                 (*(*iterated)[{"next", &runtime}])({}, &runtime);
                 runtime.removeExceptionHandler(Builtins::stopIteration());
             }

@@ -6,10 +6,12 @@
 #define RUNTIME_STACKFRAME_H
 
 
+#include <set>
 #include "Variable.h"
 
 class StackFrame {
 private:
+    std::set<Variable> exceptionHandlers;
     std::vector<Variable> variables;
     uint16_t functionNumber;
     uint32_t location;
@@ -23,6 +25,8 @@ public:
     void loadArgs(const std::vector<Variable>&);
     void resetVars(size_t);
     void store(uint32_t, Variable);
+    void addExceptionHandler(Variable);
+    void removeExceptionHandler(Variable);
 
     Variable operator[] (size_t index) const;
 };
