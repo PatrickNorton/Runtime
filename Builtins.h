@@ -15,6 +15,7 @@ namespace Builtins {
     Variable null();
     Constants::Constant print();
     Constants::Constant value(size_t index);
+    Variable stopIteration();
 }
 
 #endif //RUNTIME_BUILTINS_H

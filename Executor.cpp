@@ -5,7 +5,7 @@
 #include "Executor.h"
 #include "IntTools.h"
 #include "IntUtils.h"
-#include "Type.h"
+#include "Builtins.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
@@ -226,6 +226,13 @@ namespace Executor {
                 break;
             case Bytecode::END_CLASS:
                 break;
+            case Bytecode::FOR_ITER: {
+                auto iterated = runtime.pop();
+                runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes), runtime.currentPos());
+                (*(*iterated)[{"next", &runtime}])({}, &runtime);
+                runtime.removeExceptionHandler(Builtins::stopIteration());
+            }
+                return;
         }
         throw std::runtime_error("Bytecode not implemented yet");
     }

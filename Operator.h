@@ -52,6 +52,7 @@ enum class Operator {
     STR,
     INT,
     BOOL,
+    ITER,
 };
 
 

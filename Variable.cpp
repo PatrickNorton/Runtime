@@ -26,7 +26,7 @@ void _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) 
     (*(*this)[{Operator::CALL, runtime}])(args, runtime);
 }
 
-Variable _Variable::operator[](std::pair<uint16_t, Runtime*>) {
+Variable _Variable::operator[](std::pair<std::string, Runtime*>) {
     throw std::runtime_error("Not yet implemented");
 }
 

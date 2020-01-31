@@ -73,6 +73,8 @@ enum class Bytecode : std::uint8_t {
     FUNC_DEF = 0x40,
     CLASS_DEF = 0x41,
     END_CLASS = 0x42,
+    // Loop stuff
+    FOR_ITER = 0x50,
 };
 
 

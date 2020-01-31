@@ -85,3 +85,11 @@ void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
     Executor::execute(functions[frames.top().getFnNumber()].getBytes(), *this);
     popStack();
 }
+
+void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPos, uint32_t endLoc) {
+    exceptions[exceptionType].push({currentPos(), jumpPos, endLoc});
+}
+
+void Runtime::removeExceptionHandler(const Variable& exceptionType) {
+    exceptions[exceptionType].pop();
+}

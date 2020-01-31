@@ -8,6 +8,7 @@
 
 #include <stack>
 #include <vector>
+#include <map>
 #include "Variable.h"
 #include "Constant.h"
 #include "StackFrame.h"
@@ -19,6 +20,7 @@ private:
     std::vector<Constants::Constant> constants;
     std::stack<Variable> stack;
     std::stack<StackFrame> frames;
+    std::map<Variable, std::stack<std::tuple<uint32_t, uint32_t, uint32_t>>> exceptions;
 
 public:
     Runtime(std::vector<Constants::Constant>, std::vector<BaseFunction>);
@@ -37,6 +39,8 @@ public:
     void pushStack(uint16_t, uint16_t);
     void popStack();
     std::vector<Variable> loadArgs(uint16_t);
+    void addExceptionHandler(const Variable&, uint32_t, uint32_t);
+    void removeExceptionHandler(const Variable&);
 };
 
 

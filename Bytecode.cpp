@@ -83,5 +83,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::CLASS_DEF:
         case Bytecode::END_CLASS:
             return 0;
+        case Bytecode::FOR_ITER:
+            return 2;
     }
 }
