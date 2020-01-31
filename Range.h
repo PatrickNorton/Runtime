@@ -20,6 +20,7 @@ namespace Constants {
     private:
         Bigint current;
         Bigint step;
+        Bigint stop;
 
         static void next(const std::shared_ptr<RangeIterator>&, const std::vector<Variable>&, Runtime*);
     public:

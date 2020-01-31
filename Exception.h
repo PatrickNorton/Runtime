@@ -13,7 +13,7 @@ namespace Constants {
     private:
         std::string message;
     public:
-        Exception(std::string);
+        explicit Exception(std::string);
     };
 }
 

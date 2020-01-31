@@ -79,6 +79,7 @@ namespace Constants {
     RangeIterator::RangeIterator(const RangePtr& val) {
         this->current = val->start;
         this->step = val->step;
+        this->stop = val->stop;
     }
 
     Variable RangeIterator::operator[](std::pair<std::string, Runtime*> pair) {
@@ -91,6 +92,10 @@ namespace Constants {
 
     void RangeIterator::next(const std::shared_ptr<RangeIterator>& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
+        auto result = self->current + self->step;
+        if (result >= self->stop) {
+            runtime->throwExc(Builtins::stopIteration());
+        }
         self->current += self->step;
         runtime->push(Constants::fromNative(self->current));
     }

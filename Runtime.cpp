@@ -106,7 +106,7 @@ void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPo
 }
 
 void Runtime::throwExc(const Variable& exception) {
-    auto framePair = exceptionFrames[std::static_pointer_cast<_Variable>(exception->getType())].top();
+    auto framePair = exceptionFrames[std::static_pointer_cast<_Variable>(exception)].top();
     while (&frames.top() != &framePair.second) {
         popStack();
     }
