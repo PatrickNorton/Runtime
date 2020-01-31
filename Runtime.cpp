@@ -5,6 +5,7 @@
 #include "Runtime.h"
 #include "BaseFunction.h"
 #include "Executor.h"
+#include "Type.h"
 
 #include <utility>
 

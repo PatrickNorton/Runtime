@@ -194,6 +194,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Operator.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Range.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Range.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp">
 			<Option target="Runtime"/>
 		</Unit>

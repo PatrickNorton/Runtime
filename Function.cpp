@@ -13,7 +13,7 @@ void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runti
     runtime->call(index, args);
 }
 
-Variable Constants::StdFunction::operator[](std::pair<uint16_t, Runtime*>) {
+Variable Constants::StdFunction::operator[](std::pair<std::string, Runtime*>) {
     throw std::runtime_error("Value not supported");
 }
 

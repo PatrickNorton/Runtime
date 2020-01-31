@@ -17,6 +17,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Runtime.dir/IntUtils.cpp.o"
   "CMakeFiles/Runtime.dir/Method.cpp.o"
   "CMakeFiles/Runtime.dir/Operator.cpp.o"
+  "CMakeFiles/Runtime.dir/Range.cpp.o"
   "CMakeFiles/Runtime.dir/Runtime.cpp.o"
   "CMakeFiles/Runtime.dir/StackFrame.cpp.o"
   "CMakeFiles/Runtime.dir/StdVariable.cpp.o"
