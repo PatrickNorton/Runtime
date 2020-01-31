@@ -14,6 +14,8 @@ namespace Builtins {
     Type str();
     Constants::Constant null();
     Constants::Constant print();
+    Type range();
+    Constants::Constant iter();
     Constants::Constant value(size_t index);
     Variable stopIteration();
 }

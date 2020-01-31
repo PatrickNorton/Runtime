@@ -240,8 +240,13 @@ namespace Executor {
             case Bytecode::FOR_ITER: {
                 auto iterated = runtime.pop();
                 runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes));
-                runtime.call(iterated, "name", {});
+                runtime.call(iterated, "next", {});
                 runtime.removeExceptionHandler(Builtins::stopIteration());
+                if (runtime.currentPos() != IntTools::bytesTo<uint32_t>(bytes)) {
+                    auto arg = runtime.pop();
+                    runtime.push(iterated);
+                    runtime.push(arg);
+                }
             }
                 return;
         }

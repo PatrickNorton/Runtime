@@ -84,6 +84,6 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::END_CLASS:
             return 0;
         case Bytecode::FOR_ITER:
-            return 2;
+            return 4;
     }
 }

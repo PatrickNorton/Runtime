@@ -96,7 +96,7 @@ void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
 }
 
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
-    exceptions[exceptionType].pop();
+    exceptionFrames[exceptionType].pop();
     frames.top().removeExceptionHandler(exceptionType);
 }
 
