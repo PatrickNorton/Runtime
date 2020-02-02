@@ -9,3 +9,7 @@
 Constants::Exception::Exception(std::string msg) {
     this->message = std::move(msg);
 }
+
+std::string Constants::Exception::getMessage() {
+    return message;
+}

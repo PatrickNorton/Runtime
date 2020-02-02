@@ -14,6 +14,7 @@ namespace Constants {
         std::string message;
     public:
         explicit Exception(std::string);
+        std::string getMessage();
     };
 }
 

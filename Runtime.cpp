@@ -6,8 +6,11 @@
 #include "BaseFunction.h"
 #include "Executor.h"
 #include "Type.h"
+#include "Exception.h"
+#include "Exit.h"
 
 #include <utility>
+#include <iostream>
 
 
 Variable Runtime::load_variable(uint32_t index) const {
@@ -106,7 +109,14 @@ void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPo
 }
 
 void Runtime::throwExc(const Variable& exception) {
-    auto framePair = exceptionFrames[std::static_pointer_cast<_Variable>(exception)].top();
+    // TODO: Finally blocks
+    const auto& frame = exceptionFrames[std::static_pointer_cast<_Variable>(exception)];
+    if (frame.empty()) {
+        std::cout << std::dynamic_pointer_cast<Constants::Exception>(exception)->getMessage();
+        // TODO: Get stack unwinding
+        throw Exit();
+    }
+    const auto& framePair = frame.top();
     while (&frames.top() != &framePair.second) {
         popStack();
     }
