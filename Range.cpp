@@ -96,8 +96,8 @@ namespace Constants {
         if (result >= self->stop) {
             runtime->throwExc(Builtins::stopIteration());
         }
-        self->current += self->step;
         runtime->push(Constants::fromNative(self->current));
+        self->current += self->step;
     }
 }
 

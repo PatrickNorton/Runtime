@@ -152,9 +152,6 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Executor.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Exit.cpp">
-			<Option target="Runtime"/>
-		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Exit.h">
 			<Option target="Runtime"/>
 		</Unit>

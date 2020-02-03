@@ -207,7 +207,9 @@ CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Bytecode.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Exception.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Executor.h
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Exit.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.cpp
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.h
@@ -284,6 +286,7 @@ CMakeFiles/Runtime.dir/Variable.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/main.cpp.o: ../Exit.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../FileParsing.h
 CMakeFiles/Runtime.dir/main.cpp.o: ../Operator.h
