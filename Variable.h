@@ -32,7 +32,7 @@ public:
 protected:
     template <typename T>
     std::shared_ptr<T> this_ptr() {
-        return std::dynamic_pointer_cast<T>(shared_from_this());
+        return std::static_pointer_cast<T>(shared_from_this());
     }
 };
 
