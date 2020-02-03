@@ -110,7 +110,7 @@ void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPo
 
 void Runtime::throwExc(const Variable& exception) {
     // TODO: Finally blocks
-    const auto& frame = exceptionFrames[std::static_pointer_cast<_Variable>(exception)];
+    const auto& frame = exceptionFrames[exception->getType()];
     if (frame.empty()) {
         std::cout << std::dynamic_pointer_cast<Constants::Exception>(exception)->getMessage();
         // TODO: Get stack unwinding

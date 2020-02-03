@@ -19,6 +19,11 @@ namespace Builtins {
             assert(args.size() == 1);
             runtime->call(args[0], Operator::ITER, {});
         }
+
+        void newStopIteration(const std::vector<Variable>& args, Runtime* runtime) {
+            assert(args.empty());
+            runtime->push(std::make_shared<Constants::Exception>("", stopIteration()));
+        }
     }
 
     Type int_() {
@@ -50,8 +55,22 @@ namespace Builtins {
         return instance;
     }
 
-    Variable stopIteration() {
-        static Variable instance = std::make_shared<Constants::Exception>("");
+    Type stopIteration() {
+        class StopIterType : public Constants::_Type {
+        public:
+            StopIterType() : _Type({}, {}) {
+            }
+
+            Variable operator[](std::pair<Operator, Runtime*> pair) override {
+                if (pair.first == Operator::CALL) {
+                    return std::make_shared<Constants::Function>(newStopIteration);
+                } else {
+                    throw std::runtime_error("Not implemented");
+                }
+            }
+        };
+
+        static Type instance = std::make_shared<StopIterType>();
         return instance;
     }
 

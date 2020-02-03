@@ -6,10 +6,15 @@
 
 #include <utility>
 
-Constants::Exception::Exception(std::string msg) {
+Constants::Exception::Exception(std::string msg, Type type) {
     this->message = std::move(msg);
+    this->type = std::move(type);
 }
 
 std::string Constants::Exception::getMessage() {
     return message;
+}
+
+Type Constants::Exception::getType() {
+    return type;
 }
