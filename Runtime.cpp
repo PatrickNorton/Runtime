@@ -112,7 +112,7 @@ void Runtime::throwExc(const Variable& exception) {
     // TODO: Finally blocks
     const auto& frame = exceptionFrames[exception->getType()];
     if (frame.empty()) {
-        std::cout << std::dynamic_pointer_cast<Constants::Exception>(exception)->getMessage();
+        std::cerr << std::dynamic_pointer_cast<Constants::Exception>(exception)->getMessage();
         // TODO: Get stack unwinding
         throw Exit();
     }
