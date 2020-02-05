@@ -17,6 +17,7 @@ namespace ConstantLoaders {
     Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadDecimal(const std::vector<uint8_t>& data, size_t& index);
     uint32_t functionIndex(const std::vector<uint8_t>& data, size_t& index);
+    uint32_t classIndex(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadBool(const std::vector<uint8_t>& data, size_t& index);
 }
 

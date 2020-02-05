@@ -74,6 +74,12 @@ namespace ConstantLoaders {
         return fnIndex;
     }
 
+    uint32_t classIndex(const std::vector<uint8_t>& data, size_t& index) {
+        auto clsIndex = IntTools::bytesTo<uint32_t>(data, index);
+        index += Constants::INT_32_BYTES;
+        return clsIndex;
+    }
+
     Constants::Constant loadBool(const std::vector<uint8_t>& data, size_t& index) {
         auto value = data[index++];
         return Constants::fromNative(bool(value));

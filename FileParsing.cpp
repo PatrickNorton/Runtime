@@ -15,29 +15,47 @@
 #include "BaseFunction.h"
 
 
-Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index, std::vector<uint32_t>& functions) {
-    auto constantNum = static_cast<ConstantBytes>(data[index]);
-    index++;
-    switch (constantNum) {
-        case ConstantBytes::STR:
-            return ConstantLoaders::loadStr(data, index);
-        case ConstantBytes::INT:
-            return ConstantLoaders::loadInt(data, index);
-        case ConstantBytes::BIGINT:
-            return ConstantLoaders::loadBigint(data, index);
-        case ConstantBytes::DECIMAL:
-            return ConstantLoaders::loadDecimal(data, index);
-        case ConstantBytes::IMPORT:
-            break;
-        case ConstantBytes::BUILTIN:
-            return ConstantLoaders::loadBuiltin(data, index);
-        case ConstantBytes::FUNCTION:
-            functions.push_back(ConstantLoaders::functionIndex(data, index));
-            return nullptr;
-        case ConstantBytes::BOOL:
-            return ConstantLoaders::loadBool(data, index);
+namespace {
+    Constants::Constant tempFn() {
+        class TempFn : public Constants::_Constant {};
+        static auto instance = std::make_shared<TempFn>();
+        return instance;
     }
-    throw std::runtime_error("Unhandled constant");
+
+    Constants::Constant tempClass() {
+        class TempClass : public Constants::_Constant {};
+        static auto instance = std::make_shared<TempClass>();
+        return instance;
+    }
+
+    Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index,
+            std::vector<uint32_t>& functions, std::vector<uint32_t>& classes) {
+        auto constantNum = static_cast<ConstantBytes>(data[index]);
+        index++;
+        switch (constantNum) {
+            case ConstantBytes::STR:
+                return ConstantLoaders::loadStr(data, index);
+            case ConstantBytes::INT:
+                return ConstantLoaders::loadInt(data, index);
+            case ConstantBytes::BIGINT:
+                return ConstantLoaders::loadBigint(data, index);
+            case ConstantBytes::DECIMAL:
+                return ConstantLoaders::loadDecimal(data, index);
+            case ConstantBytes::IMPORT:
+                break;
+            case ConstantBytes::BUILTIN:
+                return ConstantLoaders::loadBuiltin(data, index);
+            case ConstantBytes::FUNCTION:
+                functions.push_back(ConstantLoaders::functionIndex(data, index));
+                return tempFn();
+            case ConstantBytes::BOOL:
+                return ConstantLoaders::loadBool(data, index);
+            case ConstantBytes::CLASS:
+                classes.push_back(ConstantLoaders::classIndex(data, index));
+                return tempClass();
+        }
+        throw std::runtime_error("Unhandled constant");
+    }
 }
 
 
@@ -70,9 +88,10 @@ FileInfo parseFile(const std::string& name) {
     auto constantCount = IntTools::bytesTo<uint32_t>(data, index);
     index += Constants::INT_32_BYTES;
     std::vector<Constants::Constant> constants(constantCount);
-    std::vector<uint32_t>functionIndices {};
+    std::vector<uint32_t> functionIndices {};
+    std::vector<uint32_t> classIndices {};
     for (uint32_t i = 0; i < constantCount; i++) {
-        constants[i] = loadConstant(data, index, functionIndices);
+        constants[i] = loadConstant(data, index, functionIndices, classIndices);
     }
 
     auto functionCount = IntTools::bytesTo<uint32_t>(data, index);
@@ -82,11 +101,21 @@ FileInfo parseFile(const std::string& name) {
         functions[i] = BaseFunction::parse(data, index);
     }
 
-    size_t fnCount = 0, fnTotalIndex = 0;
+    auto classCount = IntTools::bytesTo<uint32_t>(data, index);
+    index += Constants::INT_32_BYTES;
+    std::vector<Constants::Constant> classes(classCount);
+    for (uint32_t i = 0; i < classCount; i++) {
+        classes[i] = nullptr;  // TODO: Load class properly
+    }
+
+    size_t fnCount = 0, fnTotalIndex = 0, clsCount = 0;
     for (auto& constant : constants) {
-        if (constant == nullptr) {
+        if (constant == tempFn()) {
             fnTotalIndex += functionIndices[fnCount++];
             constant = std::make_shared<Constants::StdFunction>(fnTotalIndex);
+        } else if (constant == tempClass()) {
+            clsCount++;
+            // TODO: Load class properly
         }
     }
 
