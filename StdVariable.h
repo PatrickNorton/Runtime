@@ -32,6 +32,8 @@ typedef std::shared_ptr<StdVariable> StdVariablePtr;
 namespace Constants {
     class StdType final : public _Type {
     private:
+        std::set<std::shared_ptr<StdType>> supers;
+
         std::map<std::string, uint32_t> methods;
         std::map<std::string, uint32_t> staticMethods;
         std::map<Operator, uint32_t> operators;

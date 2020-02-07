@@ -34,7 +34,7 @@ Variable _Variable::operator[](std::pair<Operator, Runtime*>) {
     throw std::runtime_error("Not yet implemented");
 }
 
-Type _Variable::getType() {
+Type<Variable> _Variable::getType() {
     throw std::runtime_error("Not yet implemented");
 }
 
