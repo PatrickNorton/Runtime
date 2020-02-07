@@ -18,8 +18,8 @@ namespace Constants {
     template<typename T>
     void Method<T>::operator() (const std::vector<Variable>& args, Runtime* runtime) {
         auto newArgs = args;
-        newArgs.insert(args.begin(), self->getType());
-        newArgs.insert(args.begin(), self);
+        newArgs.insert(newArgs.begin(), self->getType());
+        newArgs.insert(newArgs.begin(), self);
         runtime->call(index, newArgs);
     }
 

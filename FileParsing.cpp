@@ -116,8 +116,7 @@ FileInfo parseFile(const std::string& name) {
             fnTotalIndex += functionIndices[fnCount++];
             constant = std::make_shared<Constants::StdFunction>(fnTotalIndex);
         } else if (constant == tempClass()) {
-            clsCount++;
-            // TODO: Load class properly
+            constant = classes[clsCount++];
         }
     }
 

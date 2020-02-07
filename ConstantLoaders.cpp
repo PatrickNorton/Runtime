@@ -11,6 +11,7 @@
 #include "Builtins.h"
 #include "StringUtils.h"
 #include "IntUtils.h"
+#include "StdVariable.h"
 
 
 namespace ConstantLoaders {
@@ -135,7 +136,7 @@ namespace ConstantLoaders {
         auto methods = getMethods(data, index, functions);
         auto staticMethods = getMethods(data, index, functions);
 
-        return std::make_shared<Constants::_Type>(std::unordered_map<Operator, Callable>());
+        return std::make_shared<Constants::StdType>(methods, staticMethods);
     }
 
 

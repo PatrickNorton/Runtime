@@ -29,8 +29,7 @@ namespace Executor {
                 runtime.push(runtime.load_variable(IntTools::bytesTo<uint16_t>(bytes)));
                 return;
             case Bytecode::LOAD_DOT: {
-                auto dotVal = runtime.pop();
-                assert(Builtins::str()->isTypeOf(dotVal));
+                auto dotVal = runtime.load_const(IntTools::bytesTo<uint16_t>(bytes));
                 runtime.push((*runtime.pop())[{dotVal->str(&runtime), &runtime}]);
             }
                 return;

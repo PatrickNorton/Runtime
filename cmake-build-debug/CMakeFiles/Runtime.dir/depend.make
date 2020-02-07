@@ -88,6 +88,7 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StdVariable.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Variable.h

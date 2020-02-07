@@ -10,8 +10,7 @@
 
 StdVariable::StdVariable(std::shared_ptr<Constants::StdType> type, const std::vector<Variable>& args, Runtime* runtime) {
     this->type = std::move(type);
-    runtime->call(shared_from_this(), Operator::NEW, args);
-    runtime->push(shared_from_this());
+    // runtime->call(shared_from_this(), Operator::NEW, args);
 }
 
 Variable StdVariable::operator[](std::pair<std::string, Runtime*> pair) {
@@ -26,6 +25,10 @@ Variable StdVariable::operator[](std::pair<Operator, Runtime*> pair) {
         opCache[pair.first] = type->getMethod(pair.first, this_ptr<StdVariable>());
     }
     return opCache.at(pair.first);
+}
+
+Type StdVariable::getType() {
+    return type;
 }
 
 namespace Constants {
@@ -53,5 +56,9 @@ namespace Constants {
 
     Variable StdType::operator[](std::pair<Operator, Runtime*> pair) {
         return std::make_shared<StdFunction>(staticOperators.at(pair.first));
+    }
+
+    void StdType::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->push(std::make_shared<StdVariable>(this_ptr<StdType>(), args, runtime));
     }
 }

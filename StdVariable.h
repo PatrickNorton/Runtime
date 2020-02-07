@@ -24,6 +24,7 @@ public:
     StdVariable(std::shared_ptr<Constants::StdType>, const std::vector<Variable>&, Runtime*);
     Variable operator[] (std::pair<std::string, Runtime*>) override;
     Variable operator[] (std::pair<Operator, Runtime*>) override;
+    Type getType() override;
 };
 
 typedef std::shared_ptr<StdVariable> StdVariablePtr;
@@ -38,6 +39,7 @@ namespace Constants {
 
     public:
         StdType(std::map<std::string, uint32_t>, std::map<std::string, uint32_t>);
+        void operator() (const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<std::string, Runtime*>) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
         Variable getMethod(const std::string&, StdVariablePtr);
