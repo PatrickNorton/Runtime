@@ -185,9 +185,6 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntUtils.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Method.cpp">
-			<Option target="Runtime"/>
-		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Method.h">
 			<Option target="Runtime"/>
 		</Unit>

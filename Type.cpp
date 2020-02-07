@@ -25,6 +25,6 @@ namespace Constants {
     }
 
     bool _Type::isTypeOf(const Variable& var) {
-        return var->getType()->isSubclassOf(this_ptr());
+        return var->getType()->isSubclassOf(this_ptr<_Type>());
     }
 }

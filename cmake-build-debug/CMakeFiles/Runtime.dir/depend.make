@@ -13,6 +13,7 @@ CMakeFiles/Runtime.dir/BigDecimal.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.cpp
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.h
 
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BuiltinImpl.cpp
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BuiltinImpl.h
@@ -22,6 +23,8 @@ CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Variable.h
@@ -68,6 +71,7 @@ CMakeFiles/Runtime.dir/Constant.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Builtins.h
@@ -82,6 +86,8 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Variable.h
@@ -125,6 +131,7 @@ CMakeFiles/Runtime.dir/FileInfo.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../ConstantBytes.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../ConstantLoaders.h
@@ -137,6 +144,7 @@ CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../IntTools.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Function.cpp.o: ../BaseFunction.h
@@ -169,17 +177,6 @@ CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Variable.h
-
-CMakeFiles/Runtime.dir/Method.cpp.o: ../BaseFunction.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Bigint.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Constant.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.cpp
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Method.inl
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Operator.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Runtime.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../StackFrame.h
-CMakeFiles/Runtime.dir/Method.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.cpp
 CMakeFiles/Runtime.dir/Operator.cpp.o: ../Operator.h
@@ -223,10 +220,16 @@ CMakeFiles/Runtime.dir/StackFrame.cpp.o: ../StackFrame.cpp
 CMakeFiles/Runtime.dir/StackFrame.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/StackFrame.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Function.h
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../StdVariable.cpp
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../StdVariable.h
 CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Type.h

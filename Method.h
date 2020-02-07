@@ -9,12 +9,14 @@
 #include "Constant.h"
 
 namespace Constants {
+    template <typename T>
     class Method : public _Constant {
     private:
-        NativeMethod value;
-        Variable self;
+        typedef std::shared_ptr<T> self_t;
+        uint32_t index;
+        self_t self;
     public:
-        Method(Variable, NativeMethod);
+        Method(self_t, uint32_t);
         void operator() (const std::vector<Variable>& , Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };

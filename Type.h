@@ -19,10 +19,6 @@ namespace Constants {
         typedef std::shared_ptr<_Type> Type;
         std::unordered_map<Operator, Callable> operators;
         std::set<Type> supers;
-
-        inline Type this_ptr() {
-            return std::static_pointer_cast<_Type>(shared_from_this());
-        }
     public:
         explicit _Type(std::unordered_map<Operator, Callable>, std::set<Type> = {});
         bool isSubclassOf(const Type&);

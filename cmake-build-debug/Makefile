@@ -555,33 +555,6 @@ IntUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.s
 .PHONY : IntUtils.cpp.s
 
-Method.o: Method.cpp.o
-
-.PHONY : Method.o
-
-# target to build an object file
-Method.cpp.o:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Method.cpp.o
-.PHONY : Method.cpp.o
-
-Method.i: Method.cpp.i
-
-.PHONY : Method.i
-
-# target to preprocess a source file
-Method.cpp.i:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Method.cpp.i
-.PHONY : Method.cpp.i
-
-Method.s: Method.cpp.s
-
-.PHONY : Method.s
-
-# target to generate assembly for a file
-Method.cpp.s:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Method.cpp.s
-.PHONY : Method.cpp.s
-
 Operator.o: Operator.cpp.o
 
 .PHONY : Operator.o
@@ -909,9 +882,6 @@ help:
 	@echo "... IntUtils.o"
 	@echo "... IntUtils.i"
 	@echo "... IntUtils.s"
-	@echo "... Method.o"
-	@echo "... Method.i"
-	@echo "... Method.s"
 	@echo "... Operator.o"
 	@echo "... Operator.i"
 	@echo "... Operator.s"

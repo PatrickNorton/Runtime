@@ -8,6 +8,7 @@
 
 #include <vector>
 #include "Constant.h"
+#include "BaseFunction.h"
 
 
 namespace ConstantLoaders {
@@ -19,6 +20,7 @@ namespace ConstantLoaders {
     uint32_t functionIndex(const std::vector<uint8_t>& data, size_t& index);
     uint32_t classIndex(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadBool(const std::vector<uint8_t>& data, size_t& index);
+    Type loadClass(const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>&);
 }
 
 

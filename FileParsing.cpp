@@ -13,6 +13,8 @@
 #include "ConstantLoaders.h"
 #include "Function.h"
 #include "BaseFunction.h"
+#include "Callable.h"
+#include "Type.h"
 
 
 namespace {
@@ -104,8 +106,8 @@ FileInfo parseFile(const std::string& name) {
     auto classCount = IntTools::bytesTo<uint32_t>(data, index);
     index += Constants::INT_32_BYTES;
     std::vector<Constants::Constant> classes(classCount);
-    for (uint32_t i = 0; i < classCount; i++) {
-        classes[i] = nullptr;  // TODO: Load class properly
+    for (auto& cls : classes) {
+        cls = ConstantLoaders::loadClass(data, index, functions);
     }
 
     size_t fnCount = 0, fnTotalIndex = 0, clsCount = 0;
