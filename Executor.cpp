@@ -210,7 +210,8 @@ namespace Executor {
             case Bytecode::TAIL_TOS:
                 break;
             case Bytecode::RETURN:
-                break;
+                runtime.popStack();
+                return;
             case Bytecode::THROW: {
                 runtime.throwExc(runtime.pop());
             }
