@@ -253,8 +253,9 @@ namespace Executor {
         throw std::runtime_error("Bytecode not implemented yet");
     }
 
-    void execute(const std::vector<uint8_t> &bytes, Runtime& runtime) {
-        while (runtime.currentPos() != bytes.size()) {
+    void execute(Runtime& runtime) {
+        while (runtime.currentPos() != runtime.currentFn().size()) {
+            auto& bytes = runtime.currentFn();
             auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
             auto byteStart = runtime.currentPos() + 1;
             auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);

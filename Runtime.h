@@ -40,6 +40,7 @@ public:
     void pushStack(uint16_t, uint16_t);
     void popStack();
     std::vector<Variable> loadArgs(uint16_t);
+    const std::vector<uint8_t>& currentFn();
 
     void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);

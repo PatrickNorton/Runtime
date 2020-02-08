@@ -94,8 +94,6 @@ void Runtime::popStack() {
 void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
     pushStack(0, functionNo);
     frames.top().loadArgs(args);
-    Executor::execute(functions[frames.top().getFnNumber()].getBytes(), *this);
-    popStack();
 }
 
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
@@ -121,4 +119,8 @@ void Runtime::throwExc(const Variable& exception) {
         popStack();
     }
     goTo(framePair.first);
+}
+
+const std::vector<uint8_t>& Runtime::currentFn() {
+    return functions[frames.top().getFnNumber()].getBytes();
 }

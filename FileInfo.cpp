@@ -14,5 +14,5 @@ FileInfo::FileInfo(std::vector<Constants::Constant> constants, std::vector<BaseF
 
 void FileInfo::execute() {
     Runtime runtime(constants, functions);
-    Executor::execute(functions[0].getBytes(), runtime);
+    Executor::execute(runtime);
 }
