@@ -23,7 +23,7 @@ namespace Constants {
         static GenericMethod<Tuple> getOperator(Operator o);
 
     public:
-        void operator()(const std::vector<Variable>&, Runtime*) override;
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 
     class Tuple : public _Constant {

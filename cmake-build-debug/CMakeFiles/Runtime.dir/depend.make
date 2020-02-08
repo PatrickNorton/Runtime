@@ -268,10 +268,13 @@ CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Tuple.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/Type.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/Type.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/Type.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Type.cpp
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Type.cpp.o: ../Variable.h

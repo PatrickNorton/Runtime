@@ -34,7 +34,7 @@ namespace Constants {
         runtime->push(Constants::fromNative(!self->values.empty()));
     }
 
-    void TupleType::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+    Variable TupleType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
     }
 

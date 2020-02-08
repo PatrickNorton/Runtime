@@ -43,6 +43,7 @@ namespace Constants {
     public:
         static GenericMethod<Constants::IntConstant> intMethod(Operator);
         IntType();
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 
     class IntConstant : public _Constant {

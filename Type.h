@@ -23,6 +23,8 @@ namespace Constants {
         explicit _Type(std::unordered_map<Operator, Callable>, std::set<Type> = {});
         bool isSubclassOf(const Type&);
         bool isTypeOf(const Variable &var) override;
+        void operator() (const std::vector<Variable>&, Runtime*) final;
+        virtual Variable createNew(const std::vector<Variable>&, Runtime*);
     };
 }
 

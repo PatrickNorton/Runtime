@@ -51,13 +51,13 @@ namespace Constants {
         }
     }
 
-    void RangeType::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+    Variable RangeType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 3);
-        runtime->push(std::make_shared<Range>(
+        return std::make_shared<Range>(
                 args[0]->toInt(runtime),
                 args[1]->toInt(runtime),
                 args[2]->toInt(runtime)
-        ));
+        );
     }
 
     void RangeType::rangeIter(const RangePtr& self, const std::vector<Variable>& args, Runtime* runtime) {

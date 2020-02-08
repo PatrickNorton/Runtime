@@ -5,6 +5,7 @@
 #include "Type.h"
 
 #include <utility>
+#include "Runtime.h"
 
 namespace Constants {
     _Type::_Type(std::unordered_map<Operator, Callable> operators, std::set<Type> supers) {
@@ -26,5 +27,14 @@ namespace Constants {
 
     bool _Type::isTypeOf(const Variable& var) {
         return var->getType()->isSubclassOf(this_ptr<_Type>());
+    }
+
+    Variable _Type::createNew(const std::vector<Variable>& args, Runtime* runtime) {
+        operator()(args, runtime);
+        return runtime->pop();
+    }
+
+    void _Type::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->push(createNew(args, runtime));
     }
 }

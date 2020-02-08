@@ -16,9 +16,11 @@ namespace Constants {
 
 class StdVariable final : public _Variable {
 private:
+    friend class Constants::StdType;
     std::shared_ptr<Constants::StdType> type;
     std::map<std::string, Variable> cache;
     std::map<Operator, Variable> opCache;
+    std::map<std::shared_ptr<Constants::StdType>, Variable> supers;
 
 public:
     StdVariable(std::shared_ptr<Constants::StdType>, const std::vector<Variable>&, Runtime*);
@@ -41,11 +43,11 @@ namespace Constants {
 
     public:
         StdType(std::map<std::string, uint32_t>, std::map<std::string, uint32_t>);
-        void operator() (const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<std::string, Runtime*>) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
         Variable getMethod(const std::string&, StdVariablePtr);
         Variable getMethod(Operator, StdVariablePtr);
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 }
 

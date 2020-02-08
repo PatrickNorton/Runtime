@@ -232,6 +232,11 @@ namespace Constants {
     IntType::IntType() : _Type({}, {}) {
     }
 
+    Variable IntType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        return std::make_shared<IntConstant>(args[0]->toInt(runtime));
+    }
+
     Bigint IntConstant::toInt(Runtime*) {
         return value;
     }

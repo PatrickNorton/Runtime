@@ -38,7 +38,7 @@ namespace Constants {
 
     public:
         RangeType();
-        void operator() (const std::vector<Variable>&, Runtime*) override;
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
 
         static GenericMethod<Range> rangeMethod(Operator);
