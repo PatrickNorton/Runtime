@@ -45,6 +45,7 @@ public:
     void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);
     void throwExc(const Variable&);
+    void throwQuick(const Type& exception, const std::string& message);
 
     void call(const Variable& self, const std::string& name, const std::vector<Variable>& args);
 };

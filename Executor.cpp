@@ -216,11 +216,10 @@ namespace Executor {
                 runtime.throwExc(runtime.pop());
             }
                 return;
-            case Bytecode::THROW_QUICK: {  // TODO: Actually make quick
+            case Bytecode::THROW_QUICK: {
                 auto message = runtime.pop();
                 auto excType = runtime.pop();
-                runtime.call(excType, Operator::CALL, {message});
-                runtime.throwExc(runtime.pop());
+                runtime.throwQuick(std::dynamic_pointer_cast<Constants::_Type>(excType), message->str(&runtime));
             }
                 return;
             case Bytecode::ENTER_TRY:
