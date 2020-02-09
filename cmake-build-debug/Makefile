@@ -501,33 +501,6 @@ Function.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Function.cpp.s
 .PHONY : Function.cpp.s
 
-IntTools.o: IntTools.cpp.o
-
-.PHONY : IntTools.o
-
-# target to build an object file
-IntTools.cpp.o:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntTools.cpp.o
-.PHONY : IntTools.cpp.o
-
-IntTools.i: IntTools.cpp.i
-
-.PHONY : IntTools.i
-
-# target to preprocess a source file
-IntTools.cpp.i:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntTools.cpp.i
-.PHONY : IntTools.cpp.i
-
-IntTools.s: IntTools.cpp.s
-
-.PHONY : IntTools.s
-
-# target to generate assembly for a file
-IntTools.cpp.s:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntTools.cpp.s
-.PHONY : IntTools.cpp.s
-
 IntUtils.o: IntUtils.cpp.o
 
 .PHONY : IntUtils.o
@@ -876,9 +849,6 @@ help:
 	@echo "... Function.o"
 	@echo "... Function.i"
 	@echo "... Function.s"
-	@echo "... IntTools.o"
-	@echo "... IntTools.i"
-	@echo "... IntTools.s"
 	@echo "... IntUtils.o"
 	@echo "... IntUtils.i"
 	@echo "... IntUtils.s"

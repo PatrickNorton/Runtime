@@ -70,25 +70,21 @@ FileInfo parseFile(const std::string& name) {
     size_t index = 0;
 
     auto magicNumber = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     if (magicNumber != Constants::MAGIC_NUMBER) {
         throw std::runtime_error("File does not start with the magic number");
     }
 
     auto importCount = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     if (importCount) {
         throw std::runtime_error("Imports not yet supported");
     }
 
     auto exportCount = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     if (exportCount) {
         throw std::runtime_error("Imports not yet supported");
     }
 
     auto constantCount = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     std::vector<Constants::Constant> constants(constantCount);
     std::vector<uint32_t> functionIndices {};
     std::vector<uint32_t> classIndices {};
@@ -97,14 +93,12 @@ FileInfo parseFile(const std::string& name) {
     }
 
     auto functionCount = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     std::vector<BaseFunction> functions(functionCount);
     for (uint32_t i = 0; i < functionCount; i++) {
         functions[i] = BaseFunction::parse(data, index);
     }
 
     auto classCount = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     std::vector<Constants::Constant> classes(classCount);
     for (auto& cls : classes) {
         cls = ConstantLoaders::loadClass(data, index, functions);

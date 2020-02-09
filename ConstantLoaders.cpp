@@ -18,7 +18,6 @@ namespace ConstantLoaders {
     namespace {
         std::string getStr(const std::vector<uint8_t>& data, size_t& index) {
             auto size = IntTools::bytesTo<uint32_t>(data, index);
-            index += Constants::INT_32_BYTES;
             std::vector<char> value {};
             value.reserve(size);
             for (uint32_t i = 0; i < size; i++) {
@@ -38,51 +37,42 @@ namespace ConstantLoaders {
 
     Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index) {
         auto builtinIndex = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         return Builtins::value(builtinIndex);
     }
 
     Constants::Constant loadInt(const std::vector<uint8_t>& data, size_t& index) {
         auto value = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         return Constants::fromNative(Bigint(value));
     }
 
     Constants::Constant loadBigint(const std::vector<uint8_t>& data, size_t& index) {
         auto count = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         std::vector<uint32_t> values(count);
         for (uint32_t i = 0; i < count; i++) {
             auto val = IntTools::bytesTo<uint32_t>(data, index);
             values[i] = val;
-            index += Constants::INT_32_BYTES;
         }
         return Constants::fromNative(Bigint(values, false));
     }
 
     Constants::Constant loadDecimal(const std::vector<uint8_t> &data, size_t &index) {
         auto count = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         auto scale = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         std::vector<uint32_t> values(count);
         for (uint32_t i = 0; i < count; i++) {
             auto val = IntTools::bytesTo<uint32_t>(data, index);
             values[i] = val;
-            index += Constants::INT_32_BYTES;
         }
         return Constants::fromNative(BigDecimal(Bigint(values, false), scale));
     }
 
     uint32_t functionIndex(const std::vector<uint8_t>& data, size_t& index) {
         auto fnIndex = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         return fnIndex;
     }
 
     uint32_t classIndex(const std::vector<uint8_t>& data, size_t& index) {
         auto clsIndex = IntTools::bytesTo<uint32_t>(data, index);
-        index += Constants::INT_32_BYTES;
         return clsIndex;
     }
 
@@ -96,11 +86,9 @@ namespace ConstantLoaders {
                                                   std::vector<BaseFunction>& functions) {
             std::map<Operator, uint32_t> operators {};
             auto byteSize = IntTools::bytesTo<uint32_t>(data, index);
-            index += Constants::INT_32_BYTES;
             for (uint32_t i = 0; i < byteSize; i++) {
                 auto op = static_cast<Operator>(data[index++]);
                 auto methodSize = IntTools::bytesTo<uint32_t>(data, index);
-                index += Constants::INT_32_BYTES;
                 std::vector<uint8_t> values(data.begin() + index, data.begin() + index + methodSize);
                 index += methodSize;
                 operators[op] = functions.size();
@@ -113,11 +101,9 @@ namespace ConstantLoaders {
                                                    std::vector<BaseFunction>& functions) {
             std::map<std::string, uint32_t> methods {};
             auto byteSize = IntTools::bytesTo<uint32_t>(data, index);
-            index += Constants::INT_32_BYTES;
             for (uint32_t i = 0; i < byteSize; i++) {
                 auto name = getStr(data, index);
                 auto methodSize = IntTools::bytesTo<uint32_t>(data, index);
-                index += Constants::INT_32_BYTES;
                 std::vector<uint8_t> values(data.begin() + index, data.begin() + index + methodSize);
                 index += methodSize;
                 methods[name] = functions.size();
@@ -129,8 +115,9 @@ namespace ConstantLoaders {
 
     Type loadClass(const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>& functions) {
         auto name = loadStr(data, index);
-        assert(IntTools::bytesTo<uint32_t>(data, index) == 0); // No supers allowed yet
-        index += Constants::INT_32_BYTES;
+        if (IntTools::bytesTo<uint32_t>(data, index) == 0) { // No supers allowed yet
+            throw std::runtime_error("Supers not allowed yet");
+        }
         auto operators = getOperators(data, index, functions);
         auto staticOperators = getOperators(data, index, functions);
         auto methods = getMethods(data, index, functions);

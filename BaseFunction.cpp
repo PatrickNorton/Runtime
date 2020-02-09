@@ -17,7 +17,6 @@ BaseFunction::BaseFunction(std::string name, uint16_t varCount, std::vector<uint
 
 BaseFunction BaseFunction::parse(const std::vector<uint8_t>& data, size_t& index) {
     auto nameSize = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     std::vector<char> value {};
     value.reserve(nameSize);
     for (uint32_t i = 0; i < nameSize; i++) {
@@ -30,10 +29,8 @@ BaseFunction BaseFunction::parse(const std::vector<uint8_t>& data, size_t& index
     std::string name(value.begin(), value.end());
 
     auto varCount = IntTools::bytesTo<uint16_t>(data, index);
-    index += Constants::INT_16_BYTES;
 
     auto fnSize = IntTools::bytesTo<uint32_t>(data, index);
-    index += Constants::INT_32_BYTES;
     std::vector<uint8_t> values(data.begin() + index, data.begin() + index + fnSize);
     index += fnSize;
 

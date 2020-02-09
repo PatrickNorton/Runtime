@@ -5,6 +5,7 @@ CMakeFiles/Runtime.dir/BaseFunction.cpp.o: ../BaseFunction.cpp
 CMakeFiles/Runtime.dir/BaseFunction.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/BaseFunction.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/BaseFunction.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/BaseFunction.cpp.o: ../IntTools.inl
 
 CMakeFiles/Runtime.dir/BigDecimal.cpp.o: ../BigDecimal.cpp
 CMakeFiles/Runtime.dir/BigDecimal.cpp.o: ../BigDecimal.h
@@ -82,6 +83,7 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../ConstantLoaders.cpp
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../ConstantLoaders.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntTools.inl
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Method.inl
@@ -106,9 +108,11 @@ CMakeFiles/Runtime.dir/Executor.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Bytecode.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.cpp
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntTools.inl
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Method.inl
@@ -142,6 +146,7 @@ CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.cpp
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../FileParsing.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Function.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../IntTools.inl
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../StackFrame.h
@@ -157,10 +162,6 @@ CMakeFiles/Runtime.dir/Function.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Variable.h
-
-CMakeFiles/Runtime.dir/IntTools.cpp.o: ../Constants.h
-CMakeFiles/Runtime.dir/IntTools.cpp.o: ../IntTools.cpp
-CMakeFiles/Runtime.dir/IntTools.cpp.o: ../IntTools.h
 
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BigDecimal.h

@@ -173,10 +173,10 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Function.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.cpp">
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.h">
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntTools.inl">
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntUtils.cpp">
