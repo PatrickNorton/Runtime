@@ -4,6 +4,7 @@
 
 #include "BuiltinImpl.h"
 #include "StringUtils.h"
+#include "Exception.h"
 
 
 namespace BuiltinImpl {
@@ -25,5 +26,30 @@ namespace BuiltinImpl {
         std::string result;
         std::getline(std::cin, result);
         runtime->push(Constants::fromNative(result));
+    }
+
+    void iter(const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        runtime->call(args[0], Operator::ITER, {});
+    }
+
+    StopIteration::StopIteration() : Constants::_Type({}, {}) {
+    }
+
+    Variable StopIteration::operator[](std::pair<Operator, Runtime*> pair) {
+        if (pair.first == Operator::CALL) {
+            return std::make_shared<Constants::Function>(create);
+        } else {
+            throw std::runtime_error("Not implemented");
+        }
+    }
+
+    Variable StopIteration::createNew(const std::vector<Variable>& args, Runtime*) {
+        assert(args.empty());
+        return std::make_shared<Constants::Exception>("", Builtins::stopIteration());
+    }
+
+    void StopIteration::create(const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->push(Builtins::stopIteration()->createNew(args, runtime));
     }
 }

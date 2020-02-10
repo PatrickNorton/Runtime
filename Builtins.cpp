@@ -13,19 +13,6 @@
 
 
 namespace Builtins {
-
-    namespace {
-        void iterImpl(const std::vector<Variable>& args, Runtime* runtime) {
-            assert(args.size() == 1);
-            runtime->call(args[0], Operator::ITER, {});
-        }
-
-        void newStopIteration(const std::vector<Variable>& args, Runtime* runtime) {
-            assert(args.empty());
-            runtime->push(std::make_shared<Constants::Exception>("", stopIteration()));
-        }
-    }
-
     Type int_() {
         static Type instance = std::make_shared<Constants::IntType>();
         return instance;
@@ -51,7 +38,7 @@ namespace Builtins {
     }
 
     Constants::Constant iter() {
-        static Constants::Constant instance = std::make_shared<Constants::Function>(iterImpl);
+        static Constants::Constant instance = std::make_shared<Constants::Function>(BuiltinImpl::iter);
         return instance;
     }
 
@@ -61,21 +48,7 @@ namespace Builtins {
     }
 
     Type stopIteration() {
-        class StopIterType : public Constants::_Type {
-        public:
-            StopIterType() : _Type({}, {}) {
-            }
-
-            Variable operator[](std::pair<Operator, Runtime*> pair) override {
-                if (pair.first == Operator::CALL) {
-                    return std::make_shared<Constants::Function>(newStopIteration);
-                } else {
-                    throw std::runtime_error("Not implemented");
-                }
-            }
-        };
-
-        static Type instance = std::make_shared<StopIterType>();
+        static Type instance = std::make_shared<BuiltinImpl::StopIteration>();
         return instance;
     }
 
