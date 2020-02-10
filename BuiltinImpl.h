@@ -33,6 +33,7 @@ namespace BuiltinImpl {
     };
 
     void print(const std::vector<Variable>&, Runtime*);
+    void input(const std::vector<Variable>&, Runtime*);
 };
 
 

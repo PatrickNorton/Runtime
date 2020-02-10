@@ -32,4 +32,12 @@ namespace BuiltinImpl {
             std::cout << arg->str(runtime) << std::endl;
         }
     }
+
+    void input(const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        std::cout << args[0]->str(runtime) << std::flush;
+        std::string result;
+        std::getline(std::cin, result);
+        runtime->push(Constants::fromNative(result));
+    }
 }

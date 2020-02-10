@@ -55,6 +55,11 @@ namespace Builtins {
         return instance;
     }
 
+    Constants::Constant input() {
+        static Constants::Constant instance = std::make_shared<Constants::Function>(BuiltinImpl::input);
+        return instance;
+    }
+
     Type stopIteration() {
         class StopIterType : public Constants::_Type {
         public:
@@ -81,9 +86,10 @@ namespace Builtins {
                 int_(),
                 str(),
                 nullptr,  // bool
-                range(),  // range
+                range(),
                 nullptr,  // type
-                iter(),  // iter
+                iter(),
+                input(),
         };
         return values[index];
     }
