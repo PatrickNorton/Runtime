@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "Runtime.h"
+#include "Builtins.h"
 
 namespace Constants {
     _Type::_Type(std::unordered_map<Operator, Callable> operators, std::set<Type> supers) {
@@ -36,5 +37,21 @@ namespace Constants {
 
     void _Type::operator()(const std::vector<Variable>& args, Runtime* runtime) {
         runtime->push(createNew(args, runtime));
+    }
+
+    Type _Type::getType() {
+        return Builtins::type();
+    }
+
+    TypeType::TypeType() : _Type({}) {
+    }
+
+    bool TypeType::isTypeOf(const Variable& var) {
+        return true;
+    }
+
+    Variable TypeType::createNew(const std::vector<Variable>& args, Runtime*) {
+        assert(args.size() == 1);
+        return args[0]->getType();
     }
 }

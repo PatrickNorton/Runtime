@@ -57,6 +57,11 @@ namespace Builtins {
         return instance;
     }
 
+    Type type() {
+        static Type instance = std::make_shared<Constants::TypeType>();
+        return instance;
+    }
+
     Constants::Constant value(size_t index) {
         static std::vector<Constants::Constant> values = {
                 print(),
@@ -65,7 +70,7 @@ namespace Builtins {
                 str(),
                 bool_(),  // bool
                 range(),
-                nullptr,  // type
+                type(),  // type
                 iter(),
                 input(),
         };

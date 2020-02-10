@@ -25,6 +25,14 @@ namespace Constants {
         bool isTypeOf(const Variable &var) override;
         void operator() (const std::vector<Variable>&, Runtime*) final;
         virtual Variable createNew(const std::vector<Variable>&, Runtime*);
+        Type getType() final;
+    };
+
+    class TypeType : public _Type {
+    public:
+        TypeType();
+        bool isTypeOf(const Variable &var) override;
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 }
 

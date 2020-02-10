@@ -20,6 +20,7 @@ namespace Builtins {
     Type stopIteration();
     Constants::Constant input();
     Type bool_();
+    Type type();
 }
 
 #endif //RUNTIME_BUILTINS_H
