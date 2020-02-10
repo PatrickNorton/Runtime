@@ -47,6 +47,11 @@ namespace Builtins {
         return instance;
     }
 
+    Type bool_() {
+        static Type instance = std::make_shared<Constants::BoolType>();
+        return instance;
+    }
+
     Type stopIteration() {
         static Type instance = std::make_shared<BuiltinImpl::StopIteration>();
         return instance;
@@ -58,7 +63,7 @@ namespace Builtins {
                 nullptr,  // callable
                 int_(),
                 str(),
-                nullptr,  // bool
+                bool_(),  // bool
                 range(),
                 nullptr,  // type
                 iter(),

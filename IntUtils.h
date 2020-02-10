@@ -46,6 +46,12 @@ namespace Constants {
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 
+    class BoolType : public _Type {
+    public:
+        BoolType();
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
+    };
+
     class IntConstant : public _Constant {
     private:
         friend class IntType;
@@ -68,6 +74,7 @@ namespace Constants {
         explicit BoolConstant(bool value);
         std::string str(Runtime *) override;
         bool toBool(Runtime*) override;
+        Type getType() override;
     };
 
     class DecimalConstant : public _Constant {

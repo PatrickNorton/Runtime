@@ -19,6 +19,7 @@ namespace Builtins {
     Constants::Constant value(size_t index);
     Type stopIteration();
     Constants::Constant input();
+    Type bool_();
 }
 
 #endif //RUNTIME_BUILTINS_H

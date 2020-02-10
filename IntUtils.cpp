@@ -270,6 +270,10 @@ namespace Constants {
         return value;
     }
 
+    Type BoolConstant::getType() {
+        return Builtins::bool_();
+    }
+
     Constant fromNative(bool val) {
         static Constant t = std::make_shared<BoolConstant>(true);
         static Constant f = std::make_shared<BoolConstant>(false);
@@ -306,5 +310,13 @@ namespace Constants {
 
     Bigint DecimalConstant::toInt(Runtime*) {
         return value.round();
+    }
+
+    BoolType::BoolType() : Constants::_Type({}) {
+    }
+
+    Variable BoolType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        return Constants::fromNative(args[0]->toBool(runtime));
     }
 }
