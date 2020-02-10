@@ -26,6 +26,7 @@ namespace Constants {
     public:
         StringType();
         static GenericMethod<String> strMethod(Operator o);
+        Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 
     class String : public _Constant {

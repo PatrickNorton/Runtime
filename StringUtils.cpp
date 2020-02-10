@@ -66,6 +66,11 @@ namespace Constants {
     StringType::StringType() : _Type({}, {}) {
     }
 
+    Variable StringType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        return Constants::fromNative(args[1]->str(runtime));
+    }
+
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {
         Operator op = pair.first;
         if (!methods.count(op)) {
