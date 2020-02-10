@@ -15,16 +15,6 @@
 
 
 namespace BuiltinImpl {
-    Type str_t();
-
-    class String : public _Variable {
-    public:
-        explicit String(std::string str);
-        std::string str(Runtime *) override;
-
-    private:
-        std::string str_;
-    };
 
     class NullType : public Constants::_Constant {
     public:
