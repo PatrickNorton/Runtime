@@ -93,8 +93,7 @@ namespace Constants {
     void RangeIterator::next(const std::shared_ptr<RangeIterator>& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
         if (self->current >= self->stop) {
-            (*Builtins::stopIteration())({}, runtime);
-            runtime->throwExc(runtime->pop());
+            runtime->throwQuick(Builtins::stopIteration(), "");
         }
         runtime->push(Constants::fromNative(self->current));
         self->current += self->step;
