@@ -6,7 +6,6 @@
 
 #include <vector>
 #include "IntTools.h"
-#include "Constants.h"
 #include "ConstantBytes.h"
 #include "Builtins.h"
 #include "StringUtils.h"
@@ -123,7 +122,7 @@ namespace ConstantLoaders {
         auto methods = getMethods(data, index, functions);
         auto staticMethods = getMethods(data, index, functions);
 
-        return std::make_shared<Constants::StdType>(methods, staticMethods);
+        return std::make_shared<Constants::StdType>(operators, staticOperators, methods, staticMethods);
     }
 
 

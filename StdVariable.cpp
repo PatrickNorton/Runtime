@@ -31,8 +31,9 @@ Type StdVariable::getType() {
 }
 
 namespace Constants {
-    StdType::StdType(std::map<std::string, uint32_t> methods, std::map<std::string, uint32_t> staticM)
-            : _Type({}) {
+    StdType::StdType(std::map<Operator, uint32_t> operators, std::map<Operator, uint32_t> staticOps,
+            std::map<std::string, uint32_t> methods, std::map<std::string, uint32_t> staticM)
+            : _Type({}), operators(std::move(operators)), staticOperators(std::move(staticOps)) {
         this->methods = std::move(methods);
         this->staticMethods = std::move(staticM);
     }
