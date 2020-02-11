@@ -42,7 +42,7 @@ public:
     void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);
     const std::vector<uint8_t>& currentFn();
-    bool isNative();
+    bool isNative() const;
 
     void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);

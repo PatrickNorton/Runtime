@@ -125,9 +125,9 @@ void Runtime::throwQuick(const Type& exception, const std::string& message) {
         // TODO: Get stack unwinding
         throw Exit();
     }
-    bool isN = isNative();
-    while (isNative()) {
-        popStack();
+    if (isNative()) {
+        while (isNative()) popStack();
+        throw NativeExc(exception, message);
     }
     const auto& framePair = frame.top();
     while (&frames.top() != &framePair.second) {
@@ -137,7 +137,6 @@ void Runtime::throwQuick(const Type& exception, const std::string& message) {
         popStack();
     }
     goTo(framePair.first);
-    if (isN) pushNativeFrame();
 }
 
 const std::vector<uint8_t>& Runtime::currentFn() {
@@ -148,6 +147,6 @@ void Runtime::pushNativeFrame() {
     frames.push({});
 }
 
-bool Runtime::isNative() {
+bool Runtime::isNative() const {
     return frames.top().isNative();
 }

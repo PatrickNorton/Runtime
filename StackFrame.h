@@ -29,8 +29,8 @@ public:
     void store(uint32_t, Variable);
     void addExceptionHandler(Variable);
     void removeExceptionHandler(Variable);
-    const std::set<Variable>& getExceptions();
-    bool isNative();
+    const std::set<Variable>& getExceptions() const;
+    bool isNative() const;
 
     Variable operator[] (size_t index) const;
 };

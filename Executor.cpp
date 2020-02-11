@@ -256,13 +256,17 @@ namespace Executor {
     void execute(Runtime& runtime) {
         try {
             while (!runtime.isNative() && runtime.currentPos() != runtime.currentFn().size()) {
-                auto& bytes = runtime.currentFn();
-                auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
-                auto byteStart = runtime.currentPos() + 1;
-                auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
-                std::vector<uint8_t> varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
-                runtime.advance(bytecode_size(b) + 1);
-                parse(b, varBytes, runtime);
+                try {
+                    auto& bytes = runtime.currentFn();
+                    auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
+                    auto byteStart = runtime.currentPos() + 1;
+                    auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
+                    std::vector<uint8_t> varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
+                    runtime.advance(bytecode_size(b) + 1);
+                    parse(b, varBytes, runtime);
+                } catch (NativeExc& error) {
+                    runtime.throwQuick(error.getType(), error.getMessage());
+                }
             }
         } catch (ThrownExc& error) {
             assert(runtime.isNative());

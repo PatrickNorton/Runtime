@@ -54,10 +54,10 @@ void StackFrame::removeExceptionHandler(Variable var) {
     exceptionHandlers.erase(var);
 }
 
-const std::set<Variable>& StackFrame::getExceptions() {
+const std::set<Variable>& StackFrame::getExceptions() const {
     return exceptionHandlers;
 }
 
-bool StackFrame::isNative() {
+bool StackFrame::isNative() const {
     return native;
 }

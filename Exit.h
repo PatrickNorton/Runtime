@@ -30,5 +30,22 @@ public:
     }
 };
 
+class NativeExc final : public std::exception {
+private:
+    Type type;
+    std::string value;
+public:
+    NativeExc(Type type, std::string msg) : type(std::move(type)), value(std::move(msg)) {
+    }
+
+    Type getType() {
+        return type;
+    }
+
+    std::string getMessage() {
+        return value;
+    }
+};
+
 
 #endif //RUNTIME_EXIT_H
