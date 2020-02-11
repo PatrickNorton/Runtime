@@ -7,9 +7,27 @@
 
 
 #include <exception>
+#include <utility>
 
 class Exit final : public std::exception {
 
+};
+
+class ThrownExc final : public std::exception {
+private:
+    Type type;
+    std::string value;
+public:
+    ThrownExc(Type type, std::string msg) : type(std::move(type)), value(std::move(msg)) {
+    }
+
+    Type getType() {
+        return type;
+    }
+
+    std::string getMessage() {
+        return value;
+    }
 };
 
 

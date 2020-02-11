@@ -6,6 +6,7 @@
 #include "IntTools.h"
 #include "IntUtils.h"
 #include "Builtins.h"
+#include "Exit.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
@@ -240,8 +241,8 @@ namespace Executor {
                 auto iterated = runtime.pop();
                 runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes));
                 runtime.call(iterated, "next", {});
-                runtime.removeExceptionHandler(Builtins::stopIteration());
                 if (runtime.currentPos() != IntTools::bytesTo<uint32_t>(bytes)) {
+                    runtime.removeExceptionHandler(Builtins::stopIteration());
                     auto arg = runtime.pop();
                     runtime.push(iterated);
                     runtime.push(arg);
@@ -253,14 +254,20 @@ namespace Executor {
     }
 
     void execute(Runtime& runtime) {
-        while (!runtime.isNative() && runtime.currentPos() != runtime.currentFn().size()) {
-            auto& bytes = runtime.currentFn();
-            auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
-            auto byteStart = runtime.currentPos() + 1;
-            auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
-            std::vector<uint8_t> varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
-            runtime.advance(bytecode_size(b) + 1);
-            parse(b, varBytes, runtime);
+        try {
+            while (!runtime.isNative() && runtime.currentPos() != runtime.currentFn().size()) {
+                auto& bytes = runtime.currentFn();
+                auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
+                auto byteStart = runtime.currentPos() + 1;
+                auto byteEnd = runtime.currentPos() + 1 + bytecode_size(b);
+                std::vector<uint8_t> varBytes(bytes.begin() + byteStart, bytes.begin() + byteEnd);
+                runtime.advance(bytecode_size(b) + 1);
+                parse(b, varBytes, runtime);
+            }
+        } catch (ThrownExc& error) {
+            assert(runtime.isNative());
+            runtime.popStack();
+            runtime.throwQuick(error.getType(), error.getMessage());
         }
     }
 }

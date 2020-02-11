@@ -94,6 +94,7 @@ namespace Constants {
         assert(args.empty());
         if (self->current >= self->stop) {
             runtime->throwQuick(Builtins::stopIteration(), "");
+            return;
         }
         runtime->push(Constants::fromNative(self->current));
         self->current += self->step;
