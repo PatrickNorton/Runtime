@@ -114,7 +114,7 @@ namespace ConstantLoaders {
 
     Type loadClass(const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>& functions) {
         auto name = loadStr(data, index);
-        if (IntTools::bytesTo<uint32_t>(data, index) == 0) { // No supers allowed yet
+        if (IntTools::bytesTo<uint32_t>(data, index) != 0) { // No supers allowed yet
             throw std::runtime_error("Supers not allowed yet");
         }
         auto operators = getOperators(data, index, functions);
