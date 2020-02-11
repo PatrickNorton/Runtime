@@ -18,7 +18,9 @@ namespace Constants {
     }
 
     void Function::operator()(const std::vector<Variable>& args, Runtime *runtime) {
+        runtime->pushNativeFrame();
         function(args, runtime);
+        runtime->popStack();
     }
 
     Variable Function::operator[](std::pair<Operator, Runtime *> pair) {

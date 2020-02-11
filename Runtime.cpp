@@ -80,7 +80,13 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
 }
 
 void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber) {
-    frames.push({varCount, functionNumber});
+    if (isNative()) {
+        frames.push({varCount, functionNumber});
+        Executor::execute(*this);
+        assert(isNative());
+    } else {
+        frames.push({varCount, functionNumber});
+    }
 }
 
 void Runtime::popStack() {
@@ -128,4 +134,12 @@ void Runtime::throwQuick(const Type& exception, const std::string& message) {
 
 const std::vector<uint8_t>& Runtime::currentFn() {
     return functions[frames.top().getFnNumber()].getBytes();
+}
+
+void Runtime::pushNativeFrame() {
+    frames.push({});
+}
+
+bool Runtime::isNative() {
+    return frames.top().isNative();
 }

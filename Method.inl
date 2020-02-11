@@ -38,7 +38,9 @@ namespace Constants {
 
     template<typename T>
     void GenericM<T>::operator()(const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->pushNativeFrame();
         value(self, args, runtime);
+        runtime->popStack();
     }
 
     template<typename T>

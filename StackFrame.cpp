@@ -5,7 +5,10 @@
 #include "StackFrame.h"
 
 StackFrame::StackFrame(size_t varCount, uint16_t functionNumber)
-    : variables(varCount), location(0), functionNumber(functionNumber) {
+    : variables(varCount), location(0), functionNumber(functionNumber), native(false) {
+}
+
+StackFrame::StackFrame() : native(true) {
 }
 
 uint32_t StackFrame::currentPos() const {
@@ -53,4 +56,8 @@ void StackFrame::removeExceptionHandler(Variable var) {
 
 const std::set<Variable>& StackFrame::getExceptions() {
     return exceptionHandlers;
+}
+
+bool StackFrame::isNative() {
+    return native;
 }

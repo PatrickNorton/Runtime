@@ -15,8 +15,10 @@ private:
     std::vector<Variable> variables;
     uint16_t functionNumber;
     uint32_t location;
+    bool native;
 public:
     StackFrame(size_t varCount, uint16_t functionNumber);
+    StackFrame();
 
     uint32_t currentPos() const;
     void advance(uint32_t);
@@ -28,6 +30,7 @@ public:
     void addExceptionHandler(Variable);
     void removeExceptionHandler(Variable);
     const std::set<Variable>& getExceptions();
+    bool isNative();
 
     Variable operator[] (size_t index) const;
 };

@@ -39,8 +39,10 @@ public:
     void call(uint16_t, const std::vector<Variable>&);
     void pushStack(uint16_t, uint16_t);
     void popStack();
+    void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);
     const std::vector<uint8_t>& currentFn();
+    bool isNative();
 
     void addExceptionHandler(const Variable&, uint32_t);
     void removeExceptionHandler(const Variable&);

@@ -253,7 +253,7 @@ namespace Executor {
     }
 
     void execute(Runtime& runtime) {
-        while (runtime.currentPos() != runtime.currentFn().size()) {
+        while (!runtime.isNative() && runtime.currentPos() != runtime.currentFn().size()) {
             auto& bytes = runtime.currentFn();
             auto b = static_cast<Bytecode>(bytes[runtime.currentPos()]);
             auto byteStart = runtime.currentPos() + 1;
