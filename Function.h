@@ -12,7 +12,9 @@
 namespace Constants {
     class StdFunction : public _Constant {
     private:
+        typedef std::shared_ptr<StdFunction> FnPtr;
         uint32_t index;
+        static void fnStr(const FnPtr&, const std::vector<Variable>&, Runtime*);
     public:
         explicit StdFunction(uint32_t index);
         void operator() (const std::vector<Variable>&, Runtime*) override;

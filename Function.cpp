@@ -3,6 +3,7 @@
 //
 
 #include "Function.h"
+#include "StringUtils.h"
 #include <exception>
 
 Constants::StdFunction::StdFunction(uint32_t index) {
@@ -19,9 +20,17 @@ Variable Constants::StdFunction::operator[](std::pair<std::string, Runtime*>) {
 
 Variable Constants::StdFunction::operator[](std::pair<Operator, Runtime*> pair) {
     Operator op = pair.first;
-    if (op == Operator::CALL) {
-        return shared_from_this();
-    } else {
-        throw std::runtime_error("Operator not supported");
+    switch (op) {
+        case Operator::CALL:
+            return shared_from_this();
+        case Operator::STR:
+            return std::make_shared<GenericM<StdFunction>>(this_ptr<StdFunction>(), fnStr);
+        default:
+            throw std::runtime_error("Operator not supported");
     }
+}
+
+void Constants::StdFunction::fnStr(const FnPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+    assert(args.empty());
+    runtime->push(Constants::fromNative(runtime->fnName(self->index)));
 }

@@ -150,3 +150,7 @@ void Runtime::pushNativeFrame() {
 bool Runtime::isNative() const {
     return frames.top().isNative();
 }
+
+std::string Runtime::fnName(uint32_t i) {
+    return functions[i].getName();
+}
