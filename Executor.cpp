@@ -134,24 +134,27 @@ namespace Executor {
                 callOperator(Operator::BITWISE_NOT, 0, runtime);
                 return;
             case Bytecode::BOOL_AND: {
-                auto arg1 = runtime.pop()->toBool(&runtime);
-                auto arg2 = runtime.pop()->toBool(&runtime);
-                runtime.push(Constants::fromNative(arg2 && arg1));
+                runtime.push(Constants::fromNative(
+                        runtime.pop()->toBool(&runtime)
+                        && runtime.pop()->toBool(&runtime)
+                ));
             }
                 return;
             case Bytecode::BOOL_OR: {
-                auto arg1 = runtime.pop()->toBool(&runtime);
-                auto arg2 = runtime.pop()->toBool(&runtime);
-                runtime.push(Constants::fromNative(arg2 || arg1));
+                runtime.push(Constants::fromNative(
+                        runtime.pop()->toBool(&runtime)
+                        || runtime.pop()->toBool(&runtime)
+                ));
             }
                 return;
             case Bytecode::BOOL_NOT:
                 runtime.push(Constants::fromNative(!runtime.pop()->toBool(&runtime)));
                 return;
             case Bytecode::BOOL_XOR: {
-                auto arg1 = runtime.pop()->toBool(&runtime);
-                auto arg2 = runtime.pop()->toBool(&runtime);
-                runtime.push(Constants::fromNative(arg2 ^ arg1));
+                runtime.push(Constants::fromNative(
+                        runtime.pop()->toBool(&runtime)
+                        ^ runtime.pop()->toBool(&runtime)
+                ));
             }
                 return;
             case Bytecode::IDENTICAL: {
