@@ -4,13 +4,12 @@
 
 #include "Tuple.h"
 #include "Runtime.h"
-#include "Type.h"
 #include "IntUtils.h"
 #include "Method.h"
 
 namespace Constants {
 
-    Tuple::Tuple(std::vector<std::pair<Type, Variable>> values) {
+    Tuple::Tuple(std::vector<Variable> values) {
         this->values = std::move(values);
     }
 
@@ -27,15 +26,15 @@ namespace Constants {
 
     void TupleType::tupleIndex(const TuplePtr& self, const std::vector<Variable> &argv, Runtime *runtime) {
         assert(argv.size() == 1);
-        runtime->push(self->values[size_t(argv[0]->toInt(runtime))].second);
+        runtime->push(self->values[size_t(argv[0]->toInt(runtime))]);
     }
 
     void TupleType::tupleBool(const TupleType::TuplePtr& self, const std::vector<Variable>&, Runtime* runtime) {
         runtime->push(Constants::fromNative(!self->values.empty()));
     }
 
-    Variable TupleType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
-        assert(args.size() == 1);
+    Variable TupleType::createNew(const std::vector<Variable>& args, Runtime*) {
+        return std::make_shared<Tuple>(args);
     }
 
     GenericMethod<Tuple> TupleType::getOperator(Operator o) {

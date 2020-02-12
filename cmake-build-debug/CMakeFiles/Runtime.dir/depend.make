@@ -156,12 +156,17 @@ CMakeFiles/Runtime.dir/FileParsing.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Function.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Function.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Function.cpp
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Function.h
+CMakeFiles/Runtime.dir/Function.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/Function.cpp.o: ../Method.inl
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/Function.cpp.o: ../StringUtils.h
+CMakeFiles/Runtime.dir/Function.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Function.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BaseFunction.h

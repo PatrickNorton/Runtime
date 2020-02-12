@@ -29,9 +29,9 @@ namespace Constants {
     class Tuple : public _Constant {
     private:
         friend class TupleType;
-        std::vector<std::pair<Type, Variable>> values;
+        std::vector<Variable> values;
     public:
-        explicit Tuple(std::vector<std::pair<Type, Variable>> values);
+        explicit Tuple(std::vector<Variable> values);
         bool toBool(Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
