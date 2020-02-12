@@ -10,7 +10,6 @@
 #include <unordered_map>
 #include <set>
 #include "Operator.h"
-#include "Callable.h"
 #include "Constant.h"
 
 namespace Constants {
