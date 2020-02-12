@@ -29,7 +29,6 @@ namespace Constants {
     };
 
     typedef std::shared_ptr<_Constant> Constant;
-    Constant null();
 }
 
 

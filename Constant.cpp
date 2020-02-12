@@ -30,9 +30,4 @@ namespace Constants {
             throw std::runtime_error("Not yet implemented");
         }
     }
-
-    Constant null() {
-        static Constant instance = std::make_shared<BuiltinImpl::NullType>();
-        return instance;
-    }
 }

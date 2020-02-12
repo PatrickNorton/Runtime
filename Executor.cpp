@@ -21,7 +21,7 @@ namespace Executor {
             case Bytecode::NOP:
                 throw std::runtime_error("NOP not used as a value in any generated code yet, so an error occurred");
             case Bytecode::LOAD_NULL:
-                runtime.push(Constants::null());
+                runtime.push(Builtins::null());
                 return;
             case Bytecode::LOAD_CONST:
                 runtime.push(runtime.load_const(IntTools::bytesTo<uint16_t>(bytes)));
@@ -204,7 +204,7 @@ namespace Executor {
                 }
                 return;
             case Bytecode::JUMP_NN:
-                if (runtime.pop() == Constants::null()) {
+                if (runtime.pop() == Builtins::null()) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;
