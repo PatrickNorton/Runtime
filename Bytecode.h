@@ -8,7 +8,7 @@
 
 #include <cstdint>
 
-enum class Bytecode : std::uint8_t {
+enum class Bytecode : uint8_t {
     NOP = 0x0,
     LOAD_NULL = 0x1,
     LOAD_CONST = 0x2,
@@ -43,16 +43,17 @@ enum class Bytecode : std::uint8_t {
     BOOL_AND = 0x20,
     BOOL_OR = 0x21,
     BOOL_NOT = 0x22,
-    IDENTICAL = 0x23,
-    INSTANCEOF = 0x24,
-    CALL_OP = 0x25,
-    PACK_TUPLE = 0x26,
-    UNPACK_TUPLE = 0x27,
-    EQUAL = 0x28,
-    LESS_THAN = 0x29,
-    GREATER_THAN = 0x2A,
-    LESS_EQUAL = 0x2B,
-    GREATER_EQUAL = 0x2C,
+    BOOL_XOR = 0x23,
+    IDENTICAL = 0x24,
+    INSTANCEOF = 0x25,
+    CALL_OP = 0x26,
+    PACK_TUPLE = 0x27,
+    UNPACK_TUPLE = 0x28,
+    EQUAL = 0x29,
+    LESS_THAN = 0x2A,
+    GREATER_THAN = 0x2B,
+    LESS_EQUAL = 0x2C,
+    GREATER_EQUAL = 0x2D,
     // Jumps, etc.
     JUMP = 0x30,
     JUMP_FALSE = 0x31,

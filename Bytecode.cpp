@@ -47,6 +47,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::BOOL_AND:
         case Bytecode::BOOL_OR:
         case Bytecode::BOOL_NOT:
+        case Bytecode::BOOL_XOR:
         case Bytecode::IDENTICAL:
         case Bytecode::INSTANCEOF:
         case Bytecode::EQUAL:
