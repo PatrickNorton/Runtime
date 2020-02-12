@@ -17,10 +17,8 @@ namespace Constants {
     class _Type : public _Constant {
     private:
         typedef std::shared_ptr<_Type> Type;
-        std::unordered_map<Operator, Callable> operators;
         std::set<Type> supers;
     public:
-        explicit _Type(std::unordered_map<Operator, Callable>, std::set<Type> = {});
         bool isSubclassOf(const Type&);
         bool isTypeOf(const Variable &var) override;
         void operator() (const std::vector<Variable>&, Runtime*) final;
@@ -30,7 +28,6 @@ namespace Constants {
 
     class TypeType : public _Type {
     public:
-        TypeType();
         bool isTypeOf(const Variable &var) override;
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };

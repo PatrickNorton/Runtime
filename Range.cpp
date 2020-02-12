@@ -12,9 +12,6 @@
 
 namespace Constants {
 
-    RangeType::RangeType() : _Type({}, {}) {
-    }
-
     void RangeType::rangeStr(const RangePtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
         std::string str = "[" + self->start.to_string() + ":" + self->stop.to_string() + ":" + self->step.to_string();

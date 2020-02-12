@@ -25,7 +25,6 @@ namespace Constants {
         static void pushSelf(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
 
     public:
-        StringType();
         static GenericMethod<String> strMethod(Operator o);
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };

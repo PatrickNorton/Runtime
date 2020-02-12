@@ -4,15 +4,10 @@
 
 #include "Type.h"
 
-#include <utility>
 #include "Runtime.h"
 #include "Builtins.h"
 
 namespace Constants {
-    _Type::_Type(std::unordered_map<Operator, Callable> operators, std::set<Type> supers) {
-        this->operators = std::move(operators);
-        this->supers = std::move(supers);
-    }
 
     bool _Type::isSubclassOf(const Type& type) {
         if (shared_from_this() == type) {
@@ -41,9 +36,6 @@ namespace Constants {
 
     Type _Type::getType() {
         return Builtins::type();
-    }
-
-    TypeType::TypeType() : _Type({}) {
     }
 
     bool TypeType::isTypeOf(const Variable& var) {

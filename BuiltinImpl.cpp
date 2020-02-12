@@ -8,7 +8,6 @@
 
 
 namespace BuiltinImpl {
-    NullType::NullType() = default;
 
     std::string NullType::str(Runtime *) {
         return "null";
@@ -33,9 +32,6 @@ namespace BuiltinImpl {
         runtime->call(args[0], Operator::ITER, {});
     }
 
-    StopIteration::StopIteration() : Constants::_Type({}, {}) {
-    }
-
     Variable StopIteration::operator[](std::pair<Operator, Runtime*> pair) {
         if (pair.first == Operator::CALL) {
             return std::make_shared<Constants::Function>(create);
@@ -55,9 +51,6 @@ namespace BuiltinImpl {
 
     void ValueError::create(const std::vector<Variable>& args, Runtime* runtime) {
         runtime->push(Builtins::valueError()->createNew(args, runtime));
-    }
-
-    ValueError::ValueError() : _Type({}) {
     }
 
     Variable ValueError::operator[](std::pair<Operator, Runtime*> pair) {

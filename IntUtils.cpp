@@ -229,9 +229,6 @@ namespace Constants {
         return instance.at(op);
     }
 
-    IntType::IntType() : _Type({}, {}) {
-    }
-
     Variable IntType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
         return std::make_shared<IntConstant>(args[0]->toInt(runtime));
@@ -310,9 +307,6 @@ namespace Constants {
 
     Bigint DecimalConstant::toInt(Runtime*) {
         return value.round();
-    }
-
-    BoolType::BoolType() : Constants::_Type({}) {
     }
 
     Variable BoolType::createNew(const std::vector<Variable>& args, Runtime* runtime) {

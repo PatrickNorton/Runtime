@@ -18,7 +18,6 @@ namespace BuiltinImpl {
 
     class NullType : public Constants::_Constant {
     public:
-        explicit NullType();
         std::string str(Runtime *) override;
     };
 
@@ -26,7 +25,6 @@ namespace BuiltinImpl {
     private:
         static void create(const std::vector<Variable>&, Runtime*);
     public:
-        explicit StopIteration();
         Variable operator[](std::pair<Operator, Runtime*> pair) override;
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
@@ -35,7 +33,6 @@ namespace BuiltinImpl {
     private:
         static void create(const std::vector<Variable>&, Runtime*);
     public:
-        explicit ValueError();
         Variable operator[](std::pair<Operator, Runtime*> pair) override;
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };

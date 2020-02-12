@@ -37,7 +37,6 @@ namespace Constants {
         static void rangeIter(const RangePtr&, const std::vector<Variable>&, Runtime*);
 
     public:
-        RangeType();
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
 

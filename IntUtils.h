@@ -42,13 +42,11 @@ namespace Constants {
 
     public:
         static GenericMethod<Constants::IntConstant> intMethod(Operator);
-        IntType();
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 
     class BoolType : public _Type {
     public:
-        BoolType();
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
     };
 

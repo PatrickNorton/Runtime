@@ -64,9 +64,6 @@ namespace Constants {
         return strOperators.at(o);
     }
 
-    StringType::StringType() : _Type({}, {}) {
-    }
-
     Variable StringType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
         return Constants::fromNative(args[0]->str(runtime));

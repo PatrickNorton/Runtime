@@ -15,6 +15,8 @@ namespace Constants {
 
     class TupleType : public _Type {
     private:
+        TupleType() = default;
+
         friend class Tuple;
         typedef std::shared_ptr<Tuple> TuplePtr;
         static void tupleIndex(const TuplePtr&, const std::vector<Variable>&, Runtime*);
