@@ -52,4 +52,25 @@ namespace BuiltinImpl {
     void StopIteration::create(const std::vector<Variable>& args, Runtime* runtime) {
         runtime->push(Builtins::stopIteration()->createNew(args, runtime));
     }
+
+    void ValueError::create(const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->push(Builtins::valueError()->createNew(args, runtime));
+    }
+
+    ValueError::ValueError() : _Type({}) {
+    }
+
+    Variable ValueError::operator[](std::pair<Operator, Runtime*> pair) {
+        if (pair.first == Operator::CALL) {
+            return std::make_shared<Constants::Function>(create);
+        } else {
+            throw std::runtime_error("Not implemented");
+        }
+    }
+
+    Variable ValueError::createNew(const std::vector<Variable>& args, Runtime* runtime) {
+        return std::make_shared<Constants::Exception>("", Builtins::valueError());
+    }
+
+
 }

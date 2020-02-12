@@ -8,6 +8,16 @@
 #include <cmath>
 #include <algorithm>
 
+namespace {
+    int intOf(char c) {
+        if (!isdigit(c)) {
+            throw std::invalid_argument("Given argument is not a digit");
+        } else {
+            return c - 48;
+        }
+    }
+}
+
 Bigint::Bigint() {
     sign = false;
     values = {0};
@@ -56,7 +66,7 @@ Bigint::Bigint(std::string value) {
     sign = false;
     Bigint result = 0_B;
     for (; i < value.size(); i++) {
-        result += Bigint(int(values[i])) * Bigint((unsigned long long) std::pow(10, values.size() - i));
+        result += Bigint(intOf(values[i])) * Bigint((unsigned long long) std::pow(10, values.size() - i));
     }
     this->values = result.values;
 }

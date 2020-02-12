@@ -7,9 +7,7 @@
 #include "BuiltinImpl.h"
 #include "IntUtils.h"
 #include "StringUtils.h"
-#include "Exception.h"
 #include "Range.h"
-#include "Runtime.h"
 
 
 namespace Builtins {
@@ -59,6 +57,11 @@ namespace Builtins {
 
     Type type() {
         static Type instance = std::make_shared<Constants::TypeType>();
+        return instance;
+    }
+
+    Type valueError() {
+        static Type instance = std::make_shared<BuiltinImpl::ValueError>();
         return instance;
     }
 

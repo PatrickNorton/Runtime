@@ -4,12 +4,12 @@
 
 #include "StringUtils.h"
 
-#include <unordered_set>
 #include <unordered_map>
 
 #include "IntUtils.h"
 #include "Runtime.h"
 #include "Method.h"
+#include "Builtins.h"
 
 namespace Constants {
     String::String(std::string value) {
@@ -58,6 +58,7 @@ namespace Constants {
                 {Operator::ADD,      strAdd},
                 {Operator::MULTIPLY, strMul},
                 {Operator::BOOL,     strBool},
+                {Operator::INT,      strInt},
                 {Operator::STR,      pushSelf},
         };
         return strOperators.at(o);
@@ -69,6 +70,15 @@ namespace Constants {
     Variable StringType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
         return Constants::fromNative(args[0]->str(runtime));
+    }
+
+    void StringType::strInt(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.empty());
+        try {
+            runtime->push(Constants::fromNative(Bigint(self->value)));
+        } catch (std::invalid_argument&) {
+            runtime->throwQuick(Builtins::valueError(), "Cannot convert " + self->value + " to int");
+        }
     }
 
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {

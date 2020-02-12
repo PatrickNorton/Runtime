@@ -21,6 +21,7 @@ namespace Builtins {
     Constants::Constant input();
     Type bool_();
     Type type();
+    Type valueError();
 }
 
 #endif //RUNTIME_BUILTINS_H
