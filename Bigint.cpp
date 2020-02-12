@@ -13,7 +13,7 @@ namespace {
         if (!isdigit(c)) {
             throw std::invalid_argument("Given argument is not a digit");
         } else {
-            return c - 48;
+            return c - '0';
         }
     }
 }
