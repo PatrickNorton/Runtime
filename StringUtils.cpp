@@ -68,7 +68,7 @@ namespace Constants {
 
     Variable StringType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
-        return Constants::fromNative(args[1]->str(runtime));
+        return Constants::fromNative(args[0]->str(runtime));
     }
 
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {
