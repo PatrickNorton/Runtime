@@ -39,7 +39,6 @@ CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.cpp
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Constant.h
-CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Exception.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Method.inl
@@ -242,6 +241,7 @@ CMakeFiles/Runtime.dir/StdVariable.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Callable.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../IntUtils.h

@@ -104,11 +104,10 @@ FileInfo parseFile(const std::string& name) {
         cls = ConstantLoaders::loadClass(data, index, functions);
     }
 
-    size_t fnCount = 0, fnTotalIndex = 0, clsCount = 0;
+    size_t fnCount = 0, clsCount = 0;
     for (auto& constant : constants) {
         if (constant == tempFn()) {
-            fnTotalIndex += functionIndices[fnCount++];
-            constant = std::make_shared<Constants::StdFunction>(fnTotalIndex);
+            constant = std::make_shared<Constants::StdFunction>(functionIndices[fnCount++]);
         } else if (constant == tempClass()) {
             constant = classes[clsCount++];
         }
