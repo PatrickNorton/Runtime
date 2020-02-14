@@ -5,6 +5,7 @@
 #ifndef RUNTIME_METHOD_INL
 #define RUNTIME_METHOD_INL
 
+#include "Method.h"
 
 #include "Constant.h"
 #include "Runtime.h"

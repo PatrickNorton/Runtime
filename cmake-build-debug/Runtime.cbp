@@ -116,12 +116,6 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Bytecode.h">
 			<Option target="Runtime"/>
 		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Callable.cpp">
-			<Option target="Runtime"/>
-		</Unit>
-		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Callable.h">
-			<Option target="Runtime"/>
-		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Constant.cpp">
 			<Option target="Runtime"/>
 		</Unit>

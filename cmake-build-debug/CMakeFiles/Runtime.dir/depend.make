@@ -51,12 +51,6 @@ CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.cpp
 CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.h
 
-CMakeFiles/Runtime.dir/Callable.cpp.o: ../Bigint.h
-CMakeFiles/Runtime.dir/Callable.cpp.o: ../Callable.cpp
-CMakeFiles/Runtime.dir/Callable.cpp.o: ../Callable.h
-CMakeFiles/Runtime.dir/Callable.cpp.o: ../Operator.h
-CMakeFiles/Runtime.dir/Callable.cpp.o: ../Variable.h
-
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../BuiltinImpl.h

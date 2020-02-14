@@ -285,33 +285,6 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
-Callable.o: Callable.cpp.o
-
-.PHONY : Callable.o
-
-# target to build an object file
-Callable.cpp.o:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.o
-.PHONY : Callable.cpp.o
-
-Callable.i: Callable.cpp.i
-
-.PHONY : Callable.i
-
-# target to preprocess a source file
-Callable.cpp.i:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.i
-.PHONY : Callable.cpp.i
-
-Callable.s: Callable.cpp.s
-
-.PHONY : Callable.s
-
-# target to generate assembly for a file
-Callable.cpp.s:
-	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Callable.cpp.s
-.PHONY : Callable.cpp.s
-
 Constant.o: Constant.cpp.o
 
 .PHONY : Constant.o
@@ -825,9 +798,6 @@ help:
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
-	@echo "... Callable.o"
-	@echo "... Callable.i"
-	@echo "... Callable.s"
 	@echo "... Constant.o"
 	@echo "... Constant.i"
 	@echo "... Constant.s"
