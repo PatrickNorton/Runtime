@@ -14,6 +14,9 @@ namespace IntTools {
 
     template <typename T>
     T bytesTo(std::vector<uint8_t> bytes, size_t& start);
+
+    template <typename T>
+    T bytesTo(std::vector<uint8_t> bytes, uint32_t& start);
 }
 
 #include "IntTools.inl"

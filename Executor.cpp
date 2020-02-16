@@ -232,14 +232,26 @@ namespace Executor {
                 runtime.throwQuick(std::dynamic_pointer_cast<Constants::_Type>(excType), message->str(&runtime));
             }
                 return;
-            case Bytecode::ENTER_TRY:
-                break;
+            case Bytecode::ENTER_TRY: {
+                auto excPos = IntTools::bytesTo<uint32_t>(bytes);
+                while (static_cast<Bytecode>(runtime.currentFn()[excPos]) == Bytecode::EXCEPT_N) {
+                    excPos++;
+                    auto excType = runtime.load_const(IntTools::bytesTo<uint32_t>(runtime.currentFn(), excPos));
+                    runtime.addExceptionHandler(excType, excPos);
+                }
+            }
+                return;
             case Bytecode::EXCEPT_N:
                 break;
             case Bytecode::FINALLY:
                 break;
-            case Bytecode::END_TRY:
-                break;
+            case Bytecode::END_TRY: {
+                auto count = IntTools::bytesTo<uint16_t>(bytes);
+                for (uint16_t i = 0; i < count; i++) {
+                    runtime.popHandler();  // FIXME: Pop the correct # of handlers when they are pre-popped through throw
+                }
+            }
+                return;
             case Bytecode::FUNC_DEF:
                 break;
             case Bytecode::CLASS_DEF:
@@ -248,10 +260,11 @@ namespace Executor {
                 break;
             case Bytecode::FOR_ITER: {
                 auto iterated = runtime.pop();
-                runtime.addExceptionHandler(Builtins::stopIteration(), IntTools::bytesTo<uint32_t>(bytes));
+                auto jumpLoc = IntTools::bytesTo<uint32_t>(bytes);
+                runtime.addExceptionHandler(Builtins::stopIteration(), jumpLoc);
                 runtime.call(iterated, "next", {});
-                if (runtime.currentPos() != IntTools::bytesTo<uint32_t>(bytes)) {
-                    runtime.removeExceptionHandler(Builtins::stopIteration());
+                if (runtime.currentPos() != jumpLoc) {
+                    runtime.popHandler();
                     auto arg = runtime.pop();
                     runtime.push(iterated);
                     runtime.push(arg);

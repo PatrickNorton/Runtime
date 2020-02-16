@@ -22,6 +22,9 @@ private:
     std::stack<StackFrame> frames;
     std::map<Variable, std::stack<std::tuple<uint32_t, uint32_t, uint32_t>>> exceptions;
     std::map<Variable, std::stack<std::pair<uint32_t, StackFrame&>>> exceptionFrames;
+    std::stack<Variable> exceptionStack;
+
+    void removeExceptionHandler(const Variable&);
 
 public:
     Runtime(std::vector<Constants::Constant>, std::vector<BaseFunction>);
@@ -44,8 +47,8 @@ public:
     const std::vector<uint8_t>& currentFn();
     bool isNative() const;
 
+    void popHandler();
     void addExceptionHandler(const Variable&, uint32_t);
-    void removeExceptionHandler(const Variable&);
     void throwExc(const Variable&);
     void throwQuick(const Type& exception, const std::string& message);
 

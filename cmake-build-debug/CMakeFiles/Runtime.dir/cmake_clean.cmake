@@ -5,7 +5,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o"
   "CMakeFiles/Runtime.dir/Builtins.cpp.o"
   "CMakeFiles/Runtime.dir/Bytecode.cpp.o"
-  "CMakeFiles/Runtime.dir/Callable.cpp.o"
   "CMakeFiles/Runtime.dir/Constant.cpp.o"
   "CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o"
   "CMakeFiles/Runtime.dir/Exception.cpp.o"

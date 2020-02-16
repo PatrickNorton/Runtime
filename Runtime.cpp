@@ -8,6 +8,7 @@
 #include "Type.h"
 #include "Exception.h"
 #include "Exit.h"
+#include "IntTools.h"
 
 #include <utility>
 #include <iostream>
@@ -93,6 +94,7 @@ void Runtime::popStack() {
     for (const auto& v : frames.top().getExceptions()) {
         assert(&exceptionFrames[v].top().second == &frames.top());
         exceptionFrames[v].pop();
+        exceptionStack.pop();
     }
     frames.pop();
 }
@@ -110,6 +112,7 @@ void Runtime::removeExceptionHandler(const Variable& exceptionType) {
 void Runtime::addExceptionHandler(const Variable& exceptionType, uint32_t jumpPos) {
     exceptionFrames[exceptionType].push({jumpPos, frames.top()});
     frames.top().addExceptionHandler(exceptionType);
+    exceptionStack.push(exceptionType);
 }
 
 void Runtime::throwExc(const Variable& exception) {
@@ -153,4 +156,9 @@ bool Runtime::isNative() const {
 
 std::string Runtime::fnName(uint32_t i) {
     return functions[i].getName();
+}
+
+void Runtime::popHandler() {
+    removeExceptionHandler(exceptionStack.top());
+    exceptionStack.pop();
 }
