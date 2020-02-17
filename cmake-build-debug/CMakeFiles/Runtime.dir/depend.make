@@ -196,9 +196,12 @@ CMakeFiles/Runtime.dir/Runtime.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Bytecode.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Constants.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Exception.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Exit.h
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../IntTools.h
+CMakeFiles/Runtime.dir/Runtime.cpp.o: ../IntTools.inl
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.cpp
 CMakeFiles/Runtime.dir/Runtime.cpp.o: ../Runtime.h

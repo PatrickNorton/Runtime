@@ -15,8 +15,9 @@ namespace BuiltinImpl {
 
     void print(const std::vector<Variable> &args, Runtime* runtime) {
         for (const auto& arg : args) {
-            std::cout << arg->str(runtime) << std::endl;
+            std::cout << arg->str(runtime) << " ";
         }
+        std::cout << std::endl;
     }
 
     void input(const std::vector<Variable>& args, Runtime* runtime) {
