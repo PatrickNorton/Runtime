@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/patricknorton/CLionProjects/Runtime/FileParsing.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/FileParsing.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Function.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Function.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/IntUtils.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/IntUtils.cpp.o"
+  "/Users/patricknorton/CLionProjects/Runtime/ObjectIterator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/ObjectIterator.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Operator.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Operator.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Range.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Range.cpp.o"
   "/Users/patricknorton/CLionProjects/Runtime/Runtime.cpp" "/Users/patricknorton/CLionProjects/Runtime/cmake-build-debug/CMakeFiles/Runtime.dir/Runtime.cpp.o"

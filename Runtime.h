@@ -13,6 +13,7 @@
 #include "Constant.h"
 #include "StackFrame.h"
 #include "BaseFunction.h"
+#include "ObjectIterator.h"
 
 class Runtime final {
 private:
@@ -39,6 +40,7 @@ public:
     void advance(uint32_t count);
     void call(uint16_t);
     void call(const Variable&, Operator, const std::vector<Variable>&);
+    void call(const Variable&, const std::string&, const std::vector<Variable>&);
     void call(uint16_t, const std::vector<Variable>&);
     void pushStack(uint16_t, uint16_t);
     void popStack();
@@ -51,8 +53,9 @@ public:
     void addExceptionHandler(const Variable&, uint32_t);
     void throwExc(const Variable&);
     void throwQuick(const Type& exception, const std::string& message);
+    ObjectIterator iterTop();
+    ObjectIterator iter(Variable);
 
-    void call(const Variable& self, const std::string& name, const std::vector<Variable>& args);
 
     std::string fnName(uint32_t);
 };

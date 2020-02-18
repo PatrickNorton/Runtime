@@ -501,6 +501,33 @@ IntUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.s
 .PHONY : IntUtils.cpp.s
 
+ObjectIterator.o: ObjectIterator.cpp.o
+
+.PHONY : ObjectIterator.o
+
+# target to build an object file
+ObjectIterator.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ObjectIterator.cpp.o
+.PHONY : ObjectIterator.cpp.o
+
+ObjectIterator.i: ObjectIterator.cpp.i
+
+.PHONY : ObjectIterator.i
+
+# target to preprocess a source file
+ObjectIterator.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ObjectIterator.cpp.i
+.PHONY : ObjectIterator.cpp.i
+
+ObjectIterator.s: ObjectIterator.cpp.s
+
+.PHONY : ObjectIterator.s
+
+# target to generate assembly for a file
+ObjectIterator.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ObjectIterator.cpp.s
+.PHONY : ObjectIterator.cpp.s
+
 Operator.o: Operator.cpp.o
 
 .PHONY : Operator.o
@@ -822,6 +849,9 @@ help:
 	@echo "... IntUtils.o"
 	@echo "... IntUtils.i"
 	@echo "... IntUtils.s"
+	@echo "... ObjectIterator.o"
+	@echo "... ObjectIterator.i"
+	@echo "... ObjectIterator.s"
 	@echo "... Operator.o"
 	@echo "... Operator.i"
 	@echo "... Operator.s"

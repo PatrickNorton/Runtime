@@ -182,6 +182,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Method.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/ObjectIterator.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/ObjectIterator.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Operator.cpp">
 			<Option target="Runtime"/>
 		</Unit>

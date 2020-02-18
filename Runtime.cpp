@@ -162,3 +162,11 @@ void Runtime::popHandler() {
     removeExceptionHandler(exceptionStack.top());
     exceptionStack.pop();
 }
+
+ObjectIterator Runtime::iterTop() {
+    return {pop(), this};
+}
+
+ObjectIterator Runtime::iter(Variable var) {
+    return {std::move(var), this};
+}
