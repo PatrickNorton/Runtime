@@ -16,6 +16,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::LOAD_VALUE:
         case Bytecode::LOAD_DOT:
         case Bytecode::LOAD_SUBSCRIPT:
+        case Bytecode::LOAD_OP:
             return 2;
         case Bytecode::POP_TOP:
         case Bytecode::DUP_TOP:

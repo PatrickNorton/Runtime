@@ -39,6 +39,12 @@ namespace Executor {
                 callOperator(Operator::GET_ATTR, operandCount, runtime);
             }
                 return;
+            case Bytecode::LOAD_OP: {
+                auto top = runtime.pop();
+                auto index = IntTools::bytesTo<uint16_t>(bytes);
+                runtime.push(top->operator[]({static_cast<Operator>(index), &runtime}));
+            }
+                return;
             case Bytecode::POP_TOP:
                 runtime.pop();
                 return;
