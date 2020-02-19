@@ -37,6 +37,7 @@ namespace Constants {
         static std::map<Operator, GenericMethod<TempList>> operators = {
                 {Operator::STR, listStr},
                 {Operator::GET_ATTR, listIndex},
+                {Operator::ITER, listIter},
         };
         return operators.at(op);
     }
@@ -51,6 +52,25 @@ namespace Constants {
         };
         return operators.at(str);
     }
+
+    void ListType::listIter(const ListPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        runtime->push(std::make_shared<ListIter>(self));
+    }
+
+    void ListIter::next(const std::shared_ptr<ListIter>& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.empty());
+        runtime->push((*self->value)[self->index++]);
+    }
+
+    ListIter::ListIter(ListPtr value) : value(std::move(value)), index(0) {}
+
+    Variable ListIter::operator[](std::pair<std::string, Runtime*> pair) {
+        if (pair.first == "next") {
+            return std::make_shared<GenericM<ListIter>>(this_ptr<ListIter>(), next);
+        } else {
+            throw std::runtime_error("Illegal name for operator");
+        }
+    }
 }
 
 TempList::TempList() = default;
@@ -64,4 +84,8 @@ Variable TempList::operator[](std::pair<std::string, Runtime*> pair) {
 
 Variable TempList::operator[](std::pair<Operator, Runtime*> pair) {
     return std::make_shared<Constants::GenericM<TempList>>(this_ptr<TempList>(), Constants::ListType::methodOf(pair.first));
+}
+
+Variable TempList::operator[](size_t index) {
+    return internal[index];
 }
