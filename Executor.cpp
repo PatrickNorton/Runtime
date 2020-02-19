@@ -7,6 +7,7 @@
 #include "IntUtils.h"
 #include "Builtins.h"
 #include "Exit.h"
+#include "TempList.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
@@ -277,6 +278,26 @@ namespace Executor {
                 }
             }
                 return;
+            case Bytecode::LIST_CREATE: {
+                auto argc = IntTools::bytesTo<uint16_t>(bytes);
+                runtime.push(Builtins::list()->createNew(runtime.loadArgs(argc), &runtime));
+            }
+                return;
+            case Bytecode::SET_CREATE:
+                break;
+            case Bytecode::DICT_CREATE:
+                break;
+            case Bytecode::LIST_ADD: {
+                auto added = runtime.pop();
+                auto list = runtime.pop();
+                runtime.call(list, "add", {added});
+                runtime.push(list);
+            }
+                return;
+            case Bytecode::SET_ADD:
+                break;
+            case Bytecode::DICT_ADD:
+                break;
         }
         throw std::runtime_error("Bytecode not implemented yet");
     }

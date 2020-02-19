@@ -87,5 +87,13 @@ int bytecode_size(Bytecode bytecode) {
             return 0;
         case Bytecode::FOR_ITER:
             return 4;
+        case Bytecode::LIST_CREATE:
+        case Bytecode::SET_CREATE:
+        case Bytecode::DICT_CREATE:
+            return 2;
+        case Bytecode::LIST_ADD:
+        case Bytecode::SET_ADD:
+        case Bytecode::DICT_ADD:
+            return 0;
     }
 }

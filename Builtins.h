@@ -22,6 +22,7 @@ namespace Builtins {
     Type bool_();
     Type type();
     Type valueError();
+    Type list();
 }
 
 #endif //RUNTIME_BUILTINS_H

@@ -77,6 +77,12 @@ enum class Bytecode : uint8_t {
     END_CLASS = 0x42,
     // Loop stuff
     FOR_ITER = 0x50,
+    LIST_CREATE = 0x51,
+    SET_CREATE = 0x52,
+    DICT_CREATE = 0x53,
+    LIST_ADD = 0x54,
+    SET_ADD = 0x55,
+    DICT_ADD = 0x56,
 };
 
 

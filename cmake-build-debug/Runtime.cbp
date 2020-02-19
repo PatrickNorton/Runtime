@@ -224,6 +224,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StringUtils.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempList.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempList.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Tuple.cpp">
 			<Option target="Runtime"/>
 		</Unit>

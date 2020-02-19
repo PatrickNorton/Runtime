@@ -8,6 +8,7 @@
 #include "IntUtils.h"
 #include "StringUtils.h"
 #include "Range.h"
+#include "TempList.h"
 
 
 namespace Builtins {
@@ -63,6 +64,11 @@ namespace Builtins {
 
     Type valueError() {
         static Type instance = std::make_shared<BuiltinImpl::ValueError>();
+        return instance;
+    }
+
+    Type list() {
+        static Type instance = std::make_shared<Constants::ListType>();
         return instance;
     }
 
