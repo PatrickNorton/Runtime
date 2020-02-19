@@ -13,12 +13,11 @@ namespace Constants {
     void ListType::listStr(const ListPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
         std::string result = "[";
-        for (int i = 0; i < self->internal.size(); i++) {
-            result += self->internal[i]->str(runtime);
-            if (i != self->internal.size() - 1) {
-                result += ", ";
-            }
+        for (auto& i : self->internal) {
+            result += i->str(runtime);
+            result += ", ";
         }
+        result.erase(result.end() - 2, result.end());
         result += "]";
         runtime->push(Constants::fromNative(result));
     }
