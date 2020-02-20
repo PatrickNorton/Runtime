@@ -117,13 +117,12 @@ namespace ConstantLoaders {
         if (IntTools::bytesTo<uint32_t>(data, index) != 0) { // No supers allowed yet
             throw std::runtime_error("Supers not allowed yet");
         }
+        auto genericSize = IntTools::bytesTo<uint16_t>(data, index);
         auto operators = getOperators(data, index, functions);
         auto staticOperators = getOperators(data, index, functions);
         auto methods = getMethods(data, index, functions);
         auto staticMethods = getMethods(data, index, functions);
 
-        return std::make_shared<Constants::StdType>(operators, staticOperators, methods, staticMethods);
+        return std::make_shared<Constants::StdType>(genericSize, operators, staticOperators, methods, staticMethods);
     }
-
-
 }

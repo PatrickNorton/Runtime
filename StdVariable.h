@@ -42,7 +42,7 @@ namespace Constants {
         std::map<Operator, uint32_t> staticOperators;
 
     public:
-        StdType(std::map<Operator, uint32_t>, std::map<Operator, uint32_t>,
+        StdType(uint16_t, std::map<Operator, uint32_t>, std::map<Operator, uint32_t>,
                 std::map<std::string, uint32_t>, std::map<std::string, uint32_t>);
         Variable operator[] (std::pair<std::string, Runtime*>) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;

@@ -8,7 +8,7 @@
 
 #include <utility>
 
-StdVariable::StdVariable(std::shared_ptr<Constants::StdType> type, const std::vector<Variable>& args, Runtime* runtime) {
+StdVariable::StdVariable(std::shared_ptr<Constants::StdType> type, const std::vector<Variable>& args, Runtime*) {
     this->type = std::move(type);
 }
 
@@ -31,7 +31,7 @@ Type StdVariable::getType() {
 }
 
 namespace Constants {
-    StdType::StdType(std::map<Operator, uint32_t> operators, std::map<Operator, uint32_t> staticOps,
+    StdType::StdType(uint16_t, std::map<Operator, uint32_t> operators, std::map<Operator, uint32_t> staticOps,
             std::map<std::string, uint32_t> methods, std::map<std::string, uint32_t> staticM)
             : operators(std::move(operators)), staticOperators(std::move(staticOps)) {
         this->methods = std::move(methods);
@@ -55,6 +55,9 @@ namespace Constants {
     }
 
     Variable StdType::operator[](std::pair<Operator, Runtime*> pair) {
+        if (pair.first == Operator::GET_ATTR) {
+            return shared_from_this();  // TODO: Get generics done properly
+        }
         return std::make_shared<StdFunction>(staticOperators.at(pair.first));
     }
 
