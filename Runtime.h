@@ -42,12 +42,13 @@ public:
     void call(const Variable&, Operator, const std::vector<Variable>&);
     void call(const Variable&, const std::string&, const std::vector<Variable>&);
     void call(uint16_t, const std::vector<Variable>&);
-    void pushStack(uint16_t, uint16_t);
+    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&);
     void popStack();
     void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);
     const std::vector<uint8_t>& currentFn();
     bool isNative() const;
+    bool isBottomOfStack() const;
 
     void popHandler();
     void addExceptionHandler(const Variable&, uint32_t);

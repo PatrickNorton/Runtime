@@ -41,3 +41,7 @@ Type _Variable::getType() {
 bool _Variable::isTypeOf(const Variable &) {
     return false;
 }
+
+void _Variable::set(const std::string&, const Variable&, Runtime*) {
+    throw std::runtime_error("Not yet implemented");
+}

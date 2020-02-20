@@ -81,6 +81,17 @@ namespace ConstantLoaders {
     }
 
     namespace {
+        std::set<std::string> getVariables(const std::vector<uint8_t>& data, size_t& index) {
+            std::set<std::string> variables {};
+            auto byteSize = IntTools::bytesTo<uint32_t>(data, index);
+            for (uint32_t i = 0; i < byteSize; i++) {
+                auto name = getStr(data, index);
+                IntTools::bytesTo<uint16_t>(data, index);  // TODO: Get classes properly
+                variables.insert(name);
+            }
+            return variables;
+        }
+
         std::map<Operator, uint32_t> getOperators(const std::vector<uint8_t>& data, size_t& index,
                                                   std::vector<BaseFunction>& functions) {
             std::map<Operator, uint32_t> operators {};
@@ -118,6 +129,8 @@ namespace ConstantLoaders {
             throw std::runtime_error("Supers not allowed yet");
         }
         auto genericSize = IntTools::bytesTo<uint16_t>(data, index);
+        getVariables(data, index);
+        getVariables(data, index);
         auto operators = getOperators(data, index, functions);
         auto staticOperators = getOperators(data, index, functions);
         auto methods = getMethods(data, index, functions);

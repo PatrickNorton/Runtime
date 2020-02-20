@@ -80,13 +80,15 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
     return args;
 }
 
-void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber) {
+void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args) {
     if (isNative()) {
         frames.push({varCount, functionNumber});
+        frames.top().loadArgs(args);
         Executor::execute(*this);
         assert(isNative());
     } else {
         frames.push({varCount, functionNumber});
+        frames.top().loadArgs(args);
     }
 }
 
@@ -100,8 +102,7 @@ void Runtime::popStack() {
 }
 
 void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
-    pushStack(0, functionNo);
-    frames.top().loadArgs(args);
+    pushStack(0, functionNo, args);
 }
 
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
@@ -169,4 +170,8 @@ ObjectIterator Runtime::iterTop() {
 
 ObjectIterator Runtime::iter(Variable var) {
     return {std::move(var), this};
+}
+
+bool Runtime::isBottomOfStack() const {
+    return frames.size() == 1;
 }

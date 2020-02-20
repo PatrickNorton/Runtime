@@ -90,8 +90,13 @@ namespace Executor {
                 runtime.call(stored, Operator::SET_ATTR, {index, result});
             }
                 return;
-            case Bytecode::STORE_ATTR:
-                break;
+            case Bytecode::STORE_ATTR: {
+                auto stored = runtime.pop();
+                auto value = runtime.pop();
+                auto attrName = runtime.load_const(IntTools::bytesTo<uint16_t>(bytes));
+                value->set(attrName->str(&runtime), stored, &runtime);
+            }
+                return;
             case Bytecode::PLUS:
                 callOperator(Operator::ADD, 1, runtime);
                 return;
@@ -315,6 +320,9 @@ namespace Executor {
                     parse(b, varBytes, runtime);
                 } catch (NativeExc& error) {
                     runtime.throwQuick(error.getType(), error.getMessage());
+                }
+                if (runtime.currentPos() == runtime.currentFn().size() && !runtime.isBottomOfStack()) {
+                    runtime.popStack();
                 }
             }
         } catch (ThrownExc& error) {

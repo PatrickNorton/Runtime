@@ -30,6 +30,10 @@ Type StdVariable::getType() {
     return type;
 }
 
+void StdVariable::set(const std::string& attr, const Variable& var, Runtime*) {
+    cache[attr] = var;
+}
+
 namespace Constants {
     StdType::StdType(uint16_t, std::map<Operator, uint32_t> operators, std::map<Operator, uint32_t> staticOps,
             std::map<std::string, uint32_t> methods, std::map<std::string, uint32_t> staticM)
@@ -56,7 +60,7 @@ namespace Constants {
 
     Variable StdType::operator[](std::pair<Operator, Runtime*> pair) {
         if (pair.first == Operator::GET_ATTR) {
-            return shared_from_this();  // TODO: Get generics done properly
+            return std::make_shared<GenericM<StdType>>(this_ptr<StdType>(), generify);  // TODO: Get generics done properly
         }
         return std::make_shared<StdFunction>(staticOperators.at(pair.first));
     }
@@ -71,5 +75,9 @@ namespace Constants {
             }
         }
         return instance;
+    }
+
+    void StdType::generify(const std::shared_ptr<StdType>& self, const std::vector<Variable>&, Runtime* runtime) {
+        runtime->push(self);
     }
 }

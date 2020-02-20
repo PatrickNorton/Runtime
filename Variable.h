@@ -28,6 +28,7 @@ public:
 
     virtual Type getType();
     virtual bool isTypeOf(const Variable&);
+    virtual void set(const std::string&, const Variable&, Runtime*);
 
 protected:
     template <typename T>
