@@ -22,6 +22,7 @@ public:
     Variable operator[] (std::pair<std::string, Runtime*>) override;
     Variable operator[] (std::pair<Operator, Runtime*>) override;
     Variable operator[] (size_t);
+    size_t size();
 };
 
 typedef std::shared_ptr<TempList> ListPtr;

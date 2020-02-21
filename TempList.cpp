@@ -7,6 +7,7 @@
 #include <utility>
 #include "Runtime.h"
 #include "StringUtils.h"
+#include "Builtins.h"
 
 namespace Constants {
 
@@ -58,6 +59,10 @@ namespace Constants {
 
     void ListIter::next(const std::shared_ptr<ListIter>& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
+        if (self->index == self->value->size()) {
+            runtime->throwQuick(Builtins::stopIteration(), "");
+            return;
+        }
         runtime->push((*self->value)[self->index++]);
     }
 
@@ -87,4 +92,8 @@ Variable TempList::operator[](std::pair<Operator, Runtime*> pair) {
 
 Variable TempList::operator[](size_t index) {
     return internal[index];
+}
+
+size_t TempList::size() {
+    return internal.size();
 }
