@@ -23,6 +23,7 @@ namespace Builtins {
     Type type();
     Type valueError();
     Type list();
+    Type set();
 }
 
 #endif //RUNTIME_BUILTINS_H

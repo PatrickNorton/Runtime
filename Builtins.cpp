@@ -9,6 +9,7 @@
 #include "StringUtils.h"
 #include "Range.h"
 #include "TempList.h"
+#include "TempSet.h"
 
 
 namespace Builtins {
@@ -69,6 +70,11 @@ namespace Builtins {
 
     Type list() {
         static Type instance = std::make_shared<Constants::ListType>();
+        return instance;
+    }
+
+    Type set() {
+        static Type instance = std::make_shared<Constants::SetType>();
         return instance;
     }
 

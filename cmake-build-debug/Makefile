@@ -717,6 +717,33 @@ TempList.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/TempList.cpp.s
 .PHONY : TempList.cpp.s
 
+TempSet.o: TempSet.cpp.o
+
+.PHONY : TempSet.o
+
+# target to build an object file
+TempSet.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/TempSet.cpp.o
+.PHONY : TempSet.cpp.o
+
+TempSet.i: TempSet.cpp.i
+
+.PHONY : TempSet.i
+
+# target to preprocess a source file
+TempSet.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/TempSet.cpp.i
+.PHONY : TempSet.cpp.i
+
+TempSet.s: TempSet.cpp.s
+
+.PHONY : TempSet.s
+
+# target to generate assembly for a file
+TempSet.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/TempSet.cpp.s
+.PHONY : TempSet.cpp.s
+
 Tuple.o: Tuple.cpp.o
 
 .PHONY : Tuple.o
@@ -900,6 +927,9 @@ help:
 	@echo "... TempList.o"
 	@echo "... TempList.i"
 	@echo "... TempList.s"
+	@echo "... TempSet.o"
+	@echo "... TempSet.i"
+	@echo "... TempSet.s"
 	@echo "... Tuple.o"
 	@echo "... Tuple.i"
 	@echo "... Tuple.s"

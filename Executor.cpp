@@ -288,8 +288,11 @@ namespace Executor {
                 runtime.push(Builtins::list()->createNew(runtime.loadArgs(argc), &runtime));
             }
                 return;
-            case Bytecode::SET_CREATE:
-                break;
+            case Bytecode::SET_CREATE: {
+                auto argc = IntTools::bytesTo<uint16_t>(bytes);
+                runtime.push(Builtins::set()->createNew(runtime.loadArgs(argc), &runtime));
+            }
+                return;
             case Bytecode::DICT_CREATE:
                 break;
             case Bytecode::LIST_ADD: {
@@ -299,8 +302,13 @@ namespace Executor {
                 runtime.push(list);
             }
                 return;
-            case Bytecode::SET_ADD:
-                break;
+            case Bytecode::SET_ADD: {
+                auto added = runtime.pop();
+                auto set = runtime.pop();
+                runtime.call(set, "add", {added});
+                runtime.push(set);
+            }
+                return;
             case Bytecode::DICT_ADD:
                 break;
         }

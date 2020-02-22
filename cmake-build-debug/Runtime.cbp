@@ -230,6 +230,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempList.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempSet.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempSet.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Tuple.cpp">
 			<Option target="Runtime"/>
 		</Unit>
