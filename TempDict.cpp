@@ -102,7 +102,6 @@ namespace Constants {
         runtime->push(result);
     }
 
-    // TODO: Grow properly
     void DictType::dictSet(const DictPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         if (self->size + 1 > 3*self->internal.size()/4) {
             self->grow(runtime);
