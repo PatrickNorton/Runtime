@@ -24,6 +24,7 @@ namespace Builtins {
     Type valueError();
     Type list();
     Type set();
+    Type dict();
 }
 
 #endif //RUNTIME_BUILTINS_H

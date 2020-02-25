@@ -202,6 +202,11 @@ namespace Constants {
         runtime->push(fromNative(self->value != 0_B));
     }
 
+    void IntType::intHash(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.empty());
+        runtime->push(self);
+    }
+
     GenericMethod<IntConstant> IntType::intMethod(Operator op) {
         static const std::unordered_map<Operator, GenericMethod<IntConstant>> instance = {
                 {Operator::STR,            intStr},
@@ -225,6 +230,7 @@ namespace Constants {
                 {Operator::BITWISE_NOT,    intBWNot},
                 {Operator::INT,            intToInt},
                 {Operator::BOOL,           intToBool},
+                {Operator::HASH,           intHash},
         };
         return instance.at(op);
     }

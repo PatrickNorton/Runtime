@@ -39,10 +39,12 @@ namespace Constants {
         static void intBWNot(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intToInt(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intToBool(const IntPtr&, const std::vector<Variable>&, Runtime*);
+        static void intHash(const IntPtr&, const std::vector<Variable>&, Runtime*);
 
     public:
         static GenericMethod<Constants::IntConstant> intMethod(Operator);
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
+
     };
 
     class BoolType : public _Type {

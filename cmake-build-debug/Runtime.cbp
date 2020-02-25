@@ -134,6 +134,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Constants.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/DictUtils.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/DictUtils.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Exception.cpp">
 			<Option target="Runtime"/>
 		</Unit>
@@ -222,6 +228,12 @@
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/StringUtils.h">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempDict.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempDict.h">
 			<Option target="Runtime"/>
 		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/TempList.cpp">

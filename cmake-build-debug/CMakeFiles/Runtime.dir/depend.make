@@ -91,6 +91,17 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Variable.h
 
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../BaseFunction.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../DictUtils.cpp
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../DictUtils.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../ObjectIterator.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Variable.h
+
 CMakeFiles/Runtime.dir/Exception.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Exception.cpp.o: ../Exception.cpp
 CMakeFiles/Runtime.dir/Exception.cpp.o: ../Exception.h
@@ -104,6 +115,7 @@ CMakeFiles/Runtime.dir/Executor.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Bytecode.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Constants.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../DictUtils.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.cpp
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Executor.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Exit.h
@@ -116,6 +128,7 @@ CMakeFiles/Runtime.dir/Executor.cpp.o: ../ObjectIterator.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Operator.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Runtime.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/Executor.cpp.o: ../TempDict.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../TempList.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/Executor.cpp.o: ../Variable.h
@@ -276,6 +289,22 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.cpp
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Variable.h
+
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../BaseFunction.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../DictUtils.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Method.inl
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../ObjectIterator.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../StringUtils.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../TempDict.cpp
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../TempDict.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Type.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Bigint.h

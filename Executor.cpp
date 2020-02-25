@@ -8,6 +8,7 @@
 #include "Builtins.h"
 #include "Exit.h"
 #include "TempList.h"
+#include "TempDict.h"
 
 namespace Executor {
     void callOperator(Operator o, uint16_t argc, Runtime& runtime) {
@@ -293,8 +294,17 @@ namespace Executor {
                 runtime.push(Builtins::set()->createNew(runtime.loadArgs(argc), &runtime));
             }
                 return;
-            case Bytecode::DICT_CREATE:
-                break;
+            case Bytecode::DICT_CREATE: {
+                auto count = IntTools::bytesTo<uint16_t>(bytes);
+                std::vector<Variable> keys(count);
+                std::vector<Variable> values(count);
+                for (size_t i = 0; i < count; i++) {
+                    values[count - i - 1] = runtime.pop();
+                    keys[count - i - 1] = runtime.pop();
+                }
+                runtime.push(std::make_shared<TempDict>(keys, values, &runtime));
+            }
+                return;
             case Bytecode::LIST_ADD: {
                 auto added = runtime.pop();
                 auto list = runtime.pop();
@@ -309,8 +319,14 @@ namespace Executor {
                 runtime.push(set);
             }
                 return;
-            case Bytecode::DICT_ADD:
-                break;
+            case Bytecode::DICT_ADD: {
+                auto value = runtime.pop();
+                auto key = runtime.pop();
+                auto dict = runtime.pop();
+                runtime.call(dict, Operator::SET_ATTR, {key, value});
+                runtime.push(dict);
+            }
+                return;
         }
         throw std::runtime_error("Bytecode not implemented yet");
     }
