@@ -20,11 +20,13 @@ namespace DictUtils {
         DictPair();
         DictPair(Variable, Variable, size_t);
         explicit operator bool() const;
-        void emplace(Variable, Variable, size_t, Runtime*);
+        bool emplace(Variable, Variable, size_t, Runtime*);
+        bool emplace(DictPair, Runtime*);
         Variable operator[](std::pair<Variable, Runtime*>);
         Variable getKey() const;
         Variable getValue() const;
         DictPair& getNext() const;
+        size_t getHash() const;
         bool hasNext() const;
     };
 }

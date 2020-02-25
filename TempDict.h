@@ -17,8 +17,12 @@ class TempDict : public _Variable {
 private:
     friend class Constants::DictType;
     std::vector<DictUtils::DictPair> internal;
+    size_t size;
+
     static size_t hash(const Variable&, Runtime*);
     static size_t highestOneBit(size_t);
+
+    void grow(Runtime*);
 
 public:
     TempDict();

@@ -5,12 +5,13 @@
 #include "TempDict.h"
 #include "Method.h"
 #include "StringUtils.h"
+#include "Builtins.h"
 
-TempDict::TempDict() : internal() {
+TempDict::TempDict() : internal(), size() {
 }
 
 TempDict::TempDict(const std::vector<Variable>& keys, const std::vector<Variable>& values, Runtime* runtime)
-: internal(highestOneBit(keys.size())) {
+: internal(highestOneBit(keys.size())), size(keys.size()) {
     assert(keys.size() == values.size());
     for (int i = 0; i < keys.size(); i++) {
         auto hash = TempDict::hash(keys[i], runtime);
@@ -37,6 +38,7 @@ size_t TempDict::hash(const Variable& var, Runtime* runtime) {
 }
 
 size_t TempDict::highestOneBit(size_t val) {
+    if (!val) return 0;
     size_t result = 0;
     for (; val > 0; val >>= 1u) {
         result++;
@@ -47,6 +49,20 @@ size_t TempDict::highestOneBit(size_t val) {
 Variable TempDict::operator[](const std::pair<Variable, Runtime*>& pair) {
     auto hash = TempDict::hash(pair.first, pair.second);
     return internal[hash % internal.size()][pair];
+}
+
+void TempDict::grow(Runtime* runtime) {
+    auto old = std::move(internal);
+    internal = std::vector<DictUtils::DictPair>(old.empty() ? 1 : old.size() << 1u);
+    for (auto& value : old) {
+        if (value) {
+            while (true) {
+                internal[value.getHash() % internal.size()].emplace(value, runtime);
+                if (!value.hasNext()) break;
+                value = value.getNext();
+            }
+        }
+    }
 }
 
 namespace Constants {
@@ -68,6 +84,10 @@ namespace Constants {
                 }
             }
         }
+        if (result.size() == 1) {
+            runtime->push(Constants::fromNative("{:}"));
+            return;
+        }
         result.erase(result.end() - 2, result.end());
         result += "}";
         runtime->push(Constants::fromNative(result));
@@ -76,13 +96,21 @@ namespace Constants {
     void DictType::dictGet(const DictPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
         auto result = (*self)[{args[0], runtime}];
+        if (result == nullptr) {
+            runtime->throwQuick(Builtins::valueError(), "Key not found");
+        }
         runtime->push(result);
     }
 
+    // TODO: Grow properly
     void DictType::dictSet(const DictPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        if (self->size + 1 > 3*self->internal.size()/4) {
+            self->grow(runtime);
+        }
         assert(args.size() == 2);
         auto hash = TempDict::hash(args[0], runtime);
-        self->internal[hash % self->internal.size()].emplace(args[0], args[1], hash, runtime);
+        bool wasChanged = self->internal[hash % self->internal.size()].emplace(args[0], args[1], hash, runtime);
+        if (wasChanged) self->size++;
     }
 
     void DictType::dictClear(const DictPtr& self, const std::vector<Variable>& args, Runtime*) {

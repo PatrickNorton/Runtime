@@ -292,6 +292,7 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../DictUtils.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Method.h
