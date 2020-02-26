@@ -217,7 +217,7 @@ namespace Executor {
                 }
                 return;
             case Bytecode::JUMP_NN:
-                if (runtime.pop() == Builtins::null()) {
+                if (runtime.pop() != Builtins::null()) {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;
