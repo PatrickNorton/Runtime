@@ -14,7 +14,7 @@ namespace Constants {
 
     void RangeType::rangeStr(const RangePtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.empty());
-        std::string str = "[" + self->start.to_string() + ":" + self->stop.to_string() + ":" + self->step.to_string();
+        std::string str = "[" + self->start.to_string() + ":" + self->stop.to_string() + ":" + self->step.to_string() + "]";
         runtime->push(Constants::fromNative(str));
     }
 
@@ -62,6 +62,18 @@ namespace Constants {
         runtime->push(std::make_shared<RangeIterator>(self));
     }
 
+    void RangeType::rangeSlice(const RangePtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 3);
+        auto start = args[0]->toInt(runtime);
+        auto stop = args[1]->toInt(runtime);
+        auto step = args[2]->toInt(runtime);
+        runtime->push(std::make_shared<Range>(
+                self->start + start * step,
+                self->start + stop * step,
+                self->step * step
+        ));
+    }
+
     GenericMethod<Range> RangeType::rangeMethod(Operator o) {
         static std::map<Operator, GenericMethod<Range>> operators = {
                 {Operator::STR, rangeStr},
@@ -69,6 +81,7 @@ namespace Constants {
                 {Operator::IN, rangeContains},
                 {Operator::GET_ATTR, rangeAttr},
                 {Operator::ITER, rangeIter},
+                {Operator::GET_SLICE, rangeSlice},
         };
         return operators.at(o);
     }

@@ -35,6 +35,7 @@ namespace Constants {
         static void rangeContains(const RangePtr&, const std::vector<Variable>&, Runtime*);
         static void rangeAttr(const RangePtr&, const std::vector<Variable>&, Runtime*);
         static void rangeIter(const RangePtr&, const std::vector<Variable>&, Runtime*);
+        static void rangeSlice(const RangePtr&, const std::vector<Variable>&, Runtime*);
 
     public:
         Variable createNew(const std::vector<Variable>&, Runtime*) override;
