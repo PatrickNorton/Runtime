@@ -182,8 +182,14 @@ namespace Executor {
                 runtime.push(Constants::fromNative(y->isTypeOf(x)));
             }
                 return;
-            case Bytecode::CALL_OP:
-                break;
+            case Bytecode::CALL_OP: {
+                static size_t index = 0;
+                auto op = static_cast<Operator>(IntTools::bytesTo<uint16_t>(bytes, index));
+                auto argc = IntTools::bytesTo<uint16_t>(bytes, index);
+                auto argv = runtime.loadArgs(argc);
+                runtime.call(runtime.pop(), op, argv);
+            }
+                return;
             case Bytecode::PACK_TUPLE:
                 break;
             case Bytecode::UNPACK_TUPLE:
