@@ -333,6 +333,16 @@ namespace Executor {
                 runtime.push(dict);
             }
                 return;
+            case Bytecode::DOTIMES: {
+                auto value = runtime.pop()->toInt(&runtime);
+                auto jump = IntTools::bytesTo<uint32_t>(bytes);
+                if (!value) {
+                    runtime.goTo(jump);
+                } else {
+                    runtime.push(Constants::fromNative(--value));
+                }
+            }
+                return;
         }
         throw std::runtime_error("Bytecode not implemented yet");
     }

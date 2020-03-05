@@ -95,5 +95,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::SET_ADD:
         case Bytecode::DICT_ADD:
             return 0;
+        case Bytecode::DOTIMES:
+            return 4;
     }
 }

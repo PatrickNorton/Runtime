@@ -83,6 +83,7 @@ enum class Bytecode : uint8_t {
     LIST_ADD = 0x54,
     SET_ADD = 0x55,
     DICT_ADD = 0x56,
+    DOTIMES = 0x57,
 };
 
 
