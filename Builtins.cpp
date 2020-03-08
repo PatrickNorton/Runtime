@@ -10,6 +10,7 @@
 #include "Range.h"
 #include "TempList.h"
 #include "TempSet.h"
+#include "CharUtils.h"
 
 
 namespace Builtins {
@@ -78,17 +79,25 @@ namespace Builtins {
         return instance;
     }
 
+    Type char_() {
+        static Type instance = std::make_shared<Constants::CharType>();
+        return instance;
+    }
+
     Constants::Constant value(size_t index) {
         static std::vector<Constants::Constant> values = {
                 print(),
                 nullptr,  // callable
                 int_(),
                 str(),
-                bool_(),  // bool
+                bool_(),
                 range(),
-                type(),  // type
+                type(),
                 iter(),
                 input(),
+                nullptr,  // list
+                nullptr,  // set
+                char_(),
         };
         return values[index];
     }

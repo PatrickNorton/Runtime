@@ -285,6 +285,33 @@ Bytecode.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Bytecode.cpp.s
 .PHONY : Bytecode.cpp.s
 
+CharUtils.o: CharUtils.cpp.o
+
+.PHONY : CharUtils.o
+
+# target to build an object file
+CharUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/CharUtils.cpp.o
+.PHONY : CharUtils.cpp.o
+
+CharUtils.i: CharUtils.cpp.i
+
+.PHONY : CharUtils.i
+
+# target to preprocess a source file
+CharUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/CharUtils.cpp.i
+.PHONY : CharUtils.cpp.i
+
+CharUtils.s: CharUtils.cpp.s
+
+.PHONY : CharUtils.s
+
+# target to generate assembly for a file
+CharUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/CharUtils.cpp.s
+.PHONY : CharUtils.cpp.s
+
 Constant.o: Constant.cpp.o
 
 .PHONY : Constant.o
@@ -933,6 +960,9 @@ help:
 	@echo "... Bytecode.o"
 	@echo "... Bytecode.i"
 	@echo "... Bytecode.s"
+	@echo "... CharUtils.o"
+	@echo "... CharUtils.i"
+	@echo "... CharUtils.s"
 	@echo "... Constant.o"
 	@echo "... Constant.i"
 	@echo "... Constant.s"

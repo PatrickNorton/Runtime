@@ -25,6 +25,7 @@ namespace Builtins {
     Type list();
     Type set();
     Type dict();
+    Type char_();
 }
 
 #endif //RUNTIME_BUILTINS_H

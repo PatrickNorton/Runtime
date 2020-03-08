@@ -22,6 +22,7 @@ public:
     virtual std::string str(Runtime *);
     virtual Bigint toInt(Runtime *);
     virtual bool toBool(Runtime*);
+    virtual char16_t toChar(Runtime*);
     virtual void operator() (const std::vector<Variable>&, Runtime*);
     virtual Variable operator[] (std::pair<std::string, Runtime*>);
     virtual Variable operator[] (std::pair<Operator, Runtime*>);

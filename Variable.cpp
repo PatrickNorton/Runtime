@@ -22,6 +22,11 @@ bool _Variable::toBool(Runtime* runtime) {
     return runtime->pop()->toBool(runtime);
 }
 
+char16_t _Variable::toChar(Runtime* runtime) {
+    runtime->call(shared_from_this(), Operator::STR, {});
+    return runtime->pop()->str(runtime).at(0);
+}
+
 void _Variable::operator()(const std::vector<Variable>& args, Runtime* runtime) {
     (*(*this)[{Operator::CALL, runtime}])(args, runtime);
 }

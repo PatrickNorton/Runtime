@@ -116,6 +116,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Bytecode.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/CharUtils.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/CharUtils.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Constant.cpp">
 			<Option target="Runtime"/>
 		</Unit>
