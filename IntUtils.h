@@ -63,6 +63,7 @@ namespace Constants {
         std::string str(Runtime *) override;
         Bigint toInt(Runtime *) override;
         bool toBool(Runtime*) override;
+        char16_t toChar(Runtime*) override;
         Type getType() override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };

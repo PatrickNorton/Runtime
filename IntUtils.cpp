@@ -261,6 +261,10 @@ namespace Constants {
         return Builtins::int_();
     }
 
+    char16_t IntConstant::toChar(Runtime*) {
+        return size_t(value);
+    }
+
     BoolConstant::BoolConstant(bool value) : IntConstant(value ? 1 : 0) {
         this->value = value;
     }
