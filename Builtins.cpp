@@ -95,8 +95,8 @@ namespace Builtins {
                 type(),
                 iter(),
                 input(),
-                nullptr,  // list
-                nullptr,  // set
+                list(),
+                set(),
                 char_(),
         };
         return values[index];
