@@ -227,6 +227,11 @@ namespace Executor {
                     runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 }
                 return;
+            case Bytecode::JUMP_NULL:
+                if (runtime.pop() == Builtins::null()) {
+                    runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
+                }
+                return;
             case Bytecode::CALL_METHOD:
                 break;
             case Bytecode::CALL_TOS: {

@@ -66,6 +66,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::JUMP_FALSE:
         case Bytecode::JUMP_TRUE:
         case Bytecode::JUMP_NN:
+        case Bytecode::JUMP_NULL:
             return 4;
         case Bytecode::CALL_METHOD:
         case Bytecode::CALL_TOS:
