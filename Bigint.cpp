@@ -425,7 +425,7 @@ Bigint::operator size_t() const {
     constexpr auto byteCount = 1 + (sizeBytes - 1) / NUM_BITS;  // Ceiling division
     size_t result = 0;
     for (size_t i = 0; i < byteCount; i++) {
-        result |= values[values.size() - i - 1] << (NUM_BITS * i);
+        result |= values.size() > i ? values[values.size() - i - 1] << (NUM_BITS * i) : 0;
     }
     return result;
 }

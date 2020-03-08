@@ -10,6 +10,7 @@
 #include "Runtime.h"
 #include "Method.h"
 #include "Builtins.h"
+#include "CharUtils.h"
 
 namespace Constants {
     String::String(std::string value) {
@@ -60,6 +61,7 @@ namespace Constants {
                 {Operator::BOOL,     strBool},
                 {Operator::INT,      strInt},
                 {Operator::STR,      pushSelf},
+                {Operator::GET_ATTR, strIndex},
         };
         return strOperators.at(o);
     }
@@ -76,6 +78,13 @@ namespace Constants {
         } catch (std::invalid_argument&) {
             runtime->throwQuick(Builtins::valueError(), "Cannot convert " + self->value + " to int");
         }
+    }
+
+    void StringType::strIndex(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        auto index = size_t(args[0]->toInt(runtime));
+        char16_t val = self->value[index];
+        runtime->push(Constants::fromNative(val));
     }
 
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {

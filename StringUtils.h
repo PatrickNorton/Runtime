@@ -22,6 +22,7 @@ namespace Constants {
         static void strMul(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
         static void strBool(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
         static void strInt(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
+        static void strIndex(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
         static void pushSelf(const StringPtr& self, const std::vector<Variable>& args, Runtime* runtime);
 
     public:

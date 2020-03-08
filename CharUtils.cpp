@@ -6,6 +6,7 @@
 #include "Runtime.h"
 #include "StringUtils.h"
 #include "Builtins.h"
+#include "IntUtils.h"
 
 namespace Constants {
     void CharType::charStr(const CharPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
@@ -15,13 +16,25 @@ namespace Constants {
 
     void CharType::charPlus(const CharPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         assert(args.size() == 1);
-        runtime->push(Constants::fromNative(args[0]->toChar(runtime)));
+        runtime->push(Constants::fromNative(static_cast<char16_t>(self->value + args[0]->toChar(runtime))));
+    }
+
+    void CharType::charMinus(const CharPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.size() == 1);
+        runtime->push(Constants::fromNative(static_cast<char16_t>(self->value - args[0]->toChar(runtime))));
+    }
+
+    void CharType::charInt(const CharPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        assert(args.empty());
+        runtime->push(Constants::fromNative(Bigint(uint16_t(self->value))));
     }
 
     GenericMethod<CharConstant> CharType::charMethod(Operator op) {
         static const std::unordered_map<Operator, GenericMethod<CharConstant>> values = {
                 {Operator::STR, charStr},
                 {Operator::ADD, charPlus},
+                {Operator::SUBTRACT, charMinus},
+                {Operator::INT, charInt},
         };
         return values.at(op);
     }

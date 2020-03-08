@@ -37,6 +37,7 @@ CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../BuiltinImpl.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.cpp
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/Builtins.cpp.o: ../CharUtils.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Method.h
@@ -54,6 +55,24 @@ CMakeFiles/Runtime.dir/Builtins.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.cpp
 CMakeFiles/Runtime.dir/Bytecode.cpp.o: ../Bytecode.h
+
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../BaseFunction.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../BigDecimal.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../CharUtils.cpp
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../CharUtils.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Method.inl
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../ObjectIterator.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../StringUtils.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Type.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Constant.cpp.o: ../Bigint.h
@@ -277,6 +296,7 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Builtins.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../CharUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Constant.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Method.h

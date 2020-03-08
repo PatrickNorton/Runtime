@@ -19,6 +19,9 @@ namespace Constants {
     private:
         static void charStr(const CharPtr&, const std::vector<Variable>&, Runtime*);
         static void charPlus(const CharPtr&, const std::vector<Variable>&, Runtime*);
+        static void charMinus(const CharPtr&, const std::vector<Variable>&, Runtime*);
+        static void charInt(const CharPtr&, const std::vector<Variable>&, Runtime*);
+
 
     public:
         static GenericMethod<CharConstant> charMethod(Operator);
