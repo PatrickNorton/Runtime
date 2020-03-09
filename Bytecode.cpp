@@ -77,7 +77,9 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::THROW:
             return 0;
         case Bytecode::THROW_QUICK:
+            return 2;
         case Bytecode::ENTER_TRY:
+            return 4;
         case Bytecode::EXCEPT_N:
             return 2;
         case Bytecode::FINALLY:
