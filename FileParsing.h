@@ -8,6 +8,6 @@
 #include <string>
 #include "FileInfo.h"
 
-FileInfo parseFile(const std::string& name);
+FileInfo* parseFile(const std::string& name);
 
 #endif //RUNTIME_FILEPARSING_H

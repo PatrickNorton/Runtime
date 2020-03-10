@@ -8,7 +8,11 @@ StackFrame::StackFrame(size_t varCount, uint16_t functionNumber)
     : variables(varCount), location(0), functionNumber(functionNumber), native(false) {
 }
 
-StackFrame::StackFrame() : native(true) {
+StackFrame::StackFrame() : native(true), newFile(false) {
+}
+
+StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, bool)
+        : variables(varCount), functionNumber(functionNumber), native(false), location(0), newFile(true) {
 }
 
 uint32_t StackFrame::currentPos() const {
@@ -46,11 +50,11 @@ Variable StackFrame::operator[](size_t index) const {
     return variables[index];
 }
 
-void StackFrame::addExceptionHandler(Variable var) {
+void StackFrame::addExceptionHandler(const Variable& var) {
     exceptionHandlers.insert(var);
 }
 
-void StackFrame::removeExceptionHandler(Variable var) {
+void StackFrame::removeExceptionHandler(const Variable& var) {
     exceptionHandlers.erase(var);
 }
 
@@ -60,4 +64,8 @@ const std::set<Variable>& StackFrame::getExceptions() const {
 
 bool StackFrame::isNative() const {
     return native;
+}
+
+bool StackFrame::isNewFile() const {
+    return newFile;
 }

@@ -13,7 +13,7 @@
 namespace Constants {
 
     template<typename T>
-    Method<T>::Method(self_t self, uint32_t index) : self(self), index(index) {
+    Method<T>::Method(self_t self, uint32_t index) : self(self), index(index), info(nullptr) {
     }
 
     template<typename T>
@@ -21,7 +21,7 @@ namespace Constants {
         auto newArgs = args;
         newArgs.insert(newArgs.begin(), self->getType());
         newArgs.insert(newArgs.begin(), self);
-        runtime->call(index, newArgs);
+        runtime->call(index, nullptr, newArgs);
     }
 
     template<typename T>
@@ -31,6 +31,10 @@ namespace Constants {
         } else {
             throw std::runtime_error("Operator not implemented");
         }
+    }
+
+    template<typename T>
+    Method<T>::Method(self_t self, FileInfo* file, uint32_t index) : self(self), index(index), info(file) {
     }
 
     template<typename T>

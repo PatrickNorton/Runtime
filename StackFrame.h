@@ -16,7 +16,10 @@ private:
     uint16_t functionNumber;
     uint32_t location;
     bool native;
+    bool newFile;
+
 public:
+    StackFrame(size_t, uint16_t, bool);
     StackFrame(size_t varCount, uint16_t functionNumber);
     StackFrame();
 
@@ -27,10 +30,11 @@ public:
     void loadArgs(const std::vector<Variable>&);
     void resetVars(size_t);
     void store(uint32_t, Variable);
-    void addExceptionHandler(Variable);
-    void removeExceptionHandler(Variable);
+    void addExceptionHandler(const Variable&);
+    void removeExceptionHandler(const Variable&);
     const std::set<Variable>& getExceptions() const;
     bool isNative() const;
+    bool isNewFile() const;
 
     Variable operator[] (size_t index) const;
 };

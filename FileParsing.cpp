@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 #include <unordered_map>
+#include <sstream>
+#include <iostream>
 #include "FileParsing.h"
 #include "IntTools.h"
 #include "Constants.h"
@@ -30,7 +32,8 @@ namespace {
     }
 
     Constants::Constant loadConstant(const std::vector<uint8_t>& data, size_t& index,
-            std::vector<uint32_t>& functions, std::vector<uint32_t>& classes) {
+            std::vector<uint32_t>& functions, std::vector<uint32_t>& classes,
+            const std::vector<Constants::Constant>& imports) {
         auto constantNum = static_cast<ConstantBytes>(data[index]);
         index++;
         switch (constantNum) {
@@ -43,7 +46,7 @@ namespace {
             case ConstantBytes::DECIMAL:
                 return ConstantLoaders::loadDecimal(data, index);
             case ConstantBytes::IMPORT:
-                break;
+                return imports[IntTools::bytesTo<uint32_t>(data, index)];
             case ConstantBytes::BUILTIN:
                 return ConstantLoaders::loadBuiltin(data, index);
             case ConstantBytes::FUNCTION:
@@ -60,8 +63,9 @@ namespace {
 }
 
 
-FileInfo parseFile(const std::string& name) {
+FileInfo* parseFile(const std::string& name) {
     std::ifstream inStream(name, std::ios::in | std::ios::binary);
+    auto thisFile = new FileInfo({}, {});  // Temporary file pointer, made correct at the end of the file
     if (!inStream.good()) {
         throw std::runtime_error("File \"" + name + "\" not found");
     }
@@ -74,13 +78,33 @@ FileInfo parseFile(const std::string& name) {
     }
 
     auto importCount = IntTools::bytesTo<uint32_t>(data, index);
+    static std::unordered_map<std::string, FileInfo*> files {};
+    std::vector<Constants::Constant> imports(importCount);
     if (importCount) {
-        throw std::runtime_error("Imports not yet supported");
+        for (uint32_t i = 0; i < importCount; i++) {
+            auto usedName = ConstantLoaders::loadStr(data, index)->str(nullptr);
+            auto fullName = ConstantLoaders::loadStr(data, index)->str(nullptr);
+            std::vector<std::string> names{};
+            std::istringstream nameStream(fullName);
+            std::string result;
+            while (std::getline(nameStream, result, '.')) {
+                names.push_back(result);
+            }
+            auto parentFolder = std::string(name.begin(), name.begin() + name.find_last_of('/'));
+            auto fileName = parentFolder + "/" + names[0] + ".nbyte";
+            auto otherFile = files.count(fileName) ? files.at(fileName) : parseFile(fileName);
+            imports[i] = otherFile->getExport(names[1]);  //  TODO: Get nested dots
+        }
     }
 
     auto exportCount = IntTools::bytesTo<uint32_t>(data, index);
+    std::unordered_map<std::string, uint32_t> exports {};
     if (exportCount) {
-        throw std::runtime_error("Imports not yet supported");
+        for (int i = 0; i < exportCount; i++) {
+            auto exportName = ConstantLoaders::loadStr(data, index)->str(nullptr);
+            auto constNo = IntTools::bytesTo<uint32_t>(data, index);
+            exports[exportName] = constNo;
+        }
     }
 
     auto constantCount = IntTools::bytesTo<uint32_t>(data, index);
@@ -88,7 +112,7 @@ FileInfo parseFile(const std::string& name) {
     std::vector<uint32_t> functionIndices {};
     std::vector<uint32_t> classIndices {};
     for (uint32_t i = 0; i < constantCount; i++) {
-        constants[i] = loadConstant(data, index, functionIndices, classIndices);
+        constants[i] = loadConstant(data, index, functionIndices, classIndices, imports);
     }
 
     auto functionCount = IntTools::bytesTo<uint32_t>(data, index);
@@ -100,17 +124,19 @@ FileInfo parseFile(const std::string& name) {
     auto classCount = IntTools::bytesTo<uint32_t>(data, index);
     std::vector<Constants::Constant> classes(classCount);
     for (auto& cls : classes) {
-        cls = ConstantLoaders::loadClass(data, index, functions);
+        cls = ConstantLoaders::loadClass(thisFile, data, index, functions);
     }
 
     size_t fnCount = 0, clsCount = 0;
     for (auto& constant : constants) {
         if (constant == tempFn()) {
-            constant = std::make_shared<Constants::StdFunction>(functionIndices[fnCount++]);
+            constant = std::make_shared<Constants::StdFunction>(thisFile, functionIndices[fnCount++]);
         } else if (constant == tempClass()) {
             constant = classes[clsCount++];
         }
     }
 
-    return FileInfo(constants, functions);
+    *thisFile = {name, constants, functions, exports};
+    files[name] = thisFile;
+    return thisFile;
 }

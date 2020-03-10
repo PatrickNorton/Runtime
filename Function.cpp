@@ -6,12 +6,11 @@
 #include "StringUtils.h"
 #include <exception>
 
-Constants::StdFunction::StdFunction(uint32_t index) {
-    this->index = index;
+Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index) : info(info), index(index) {
 }
 
 void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-    runtime->call(index, args);
+    runtime->call(index, info, args);
 }
 
 Variable Constants::StdFunction::operator[](std::pair<std::string, Runtime*>) {

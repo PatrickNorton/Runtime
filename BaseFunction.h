@@ -18,11 +18,11 @@ private:
 public:
     BaseFunction();
     BaseFunction(std::string, uint16_t, std::vector<uint8_t>);
-    const std::string& getName();
-    const uint16_t& getLocalCount();
-    const std::vector<uint8_t>& getBytes();
+    const std::string& getName() const;
+    const uint16_t& getLocalCount() const;
+    const std::vector<uint8_t>& getBytes() const;
 
-    uint8_t operator[] (size_t index);
+    uint8_t operator[] (size_t index) const;
 
     static BaseFunction parse(const std::vector<uint8_t>&, size_t&);
 };

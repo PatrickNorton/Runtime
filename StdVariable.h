@@ -9,6 +9,7 @@
 #include <map>
 #include "Variable.h"
 #include "Type.h"
+#include "FileInfo.h"
 
 namespace Constants {
     class StdType;
@@ -35,6 +36,8 @@ typedef std::shared_ptr<StdVariable> StdVariablePtr;
 namespace Constants {
     class StdType final : public _Type {
     private:
+        FileInfo* file;
+
         std::set<std::shared_ptr<StdType>> supers;
 
         std::set<std::string> vars;  // TODO: Static variables
@@ -46,7 +49,7 @@ namespace Constants {
         static void generify(const std::shared_ptr<StdType>&, const std::vector<Variable>&, Runtime*);
 
     public:
-        StdType(uint16_t, std::map<Operator, uint32_t>, std::map<Operator, uint32_t>,
+        StdType(FileInfo*, uint16_t, std::map<Operator, uint32_t>, std::map<Operator, uint32_t>,
                 std::map<std::string, uint32_t>, std::map<std::string, uint32_t>);
         Variable operator[] (std::pair<std::string, Runtime*>) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;

@@ -123,7 +123,7 @@ namespace ConstantLoaders {
         }
     }
 
-    Type loadClass(const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>& functions) {
+    Type loadClass(FileInfo* file, const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>& functions) {
         auto name = loadStr(data, index);
         if (IntTools::bytesTo<uint32_t>(data, index) != 0) { // No supers allowed yet
             throw std::runtime_error("Supers not allowed yet");
@@ -136,6 +136,6 @@ namespace ConstantLoaders {
         auto methods = getMethods(data, index, functions);
         auto staticMethods = getMethods(data, index, functions);
 
-        return std::make_shared<Constants::StdType>(genericSize, operators, staticOperators, methods, staticMethods);
+        return std::make_shared<Constants::StdType>(file, genericSize, operators, staticOperators, methods, staticMethods);
     }
 }

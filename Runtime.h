@@ -14,11 +14,11 @@
 #include "StackFrame.h"
 #include "BaseFunction.h"
 #include "ObjectIterator.h"
+#include "FileInfo.h"
 
 class Runtime final {
 private:
-    std::vector<BaseFunction> functions;
-    std::vector<Constants::Constant> constants;
+    std::stack<FileInfo*> files;
     std::stack<Variable> stack;
     std::stack<StackFrame> frames;
     std::map<Variable, std::stack<std::tuple<uint32_t, uint32_t, uint32_t>>> exceptions;
@@ -28,7 +28,7 @@ private:
     void removeExceptionHandler(const Variable&);
 
 public:
-    Runtime(std::vector<Constants::Constant>, std::vector<BaseFunction>);
+    explicit Runtime(FileInfo* file);
     Variable load_variable(uint32_t index) const;
     void store_variable(uint32_t index, Variable variable);
     Variable pop();
@@ -41,8 +41,8 @@ public:
     void call(uint16_t);
     void call(const Variable&, Operator, const std::vector<Variable>&);
     void call(const Variable&, const std::string&, const std::vector<Variable>&);
-    void call(uint16_t, const std::vector<Variable>&);
-    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&);
+    void call(uint16_t, FileInfo*, const std::vector<Variable>&);
+    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*);
     void popStack();
     void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);
@@ -56,7 +56,6 @@ public:
     void throwQuick(const Type& exception, const std::string& message);
     ObjectIterator iterTop();
     ObjectIterator iter(Variable);
-
 
     std::string fnName(uint32_t);
 };

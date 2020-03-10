@@ -37,18 +37,18 @@ BaseFunction BaseFunction::parse(const std::vector<uint8_t>& data, size_t& index
     return {name, varCount, values};
 }
 
-const std::string& BaseFunction::getName() {
+const std::string& BaseFunction::getName() const {
     return name;
 }
 
-const uint16_t& BaseFunction::getLocalCount() {
+const uint16_t& BaseFunction::getLocalCount() const {
     return localCount;
 }
 
-const std::vector<uint8_t>& BaseFunction::getBytes() {
+const std::vector<uint8_t>& BaseFunction::getBytes() const {
     return bytes;
 }
 
-uint8_t BaseFunction::operator[](size_t index) {
+uint8_t BaseFunction::operator[](size_t index) const {
     return bytes[index];
 }

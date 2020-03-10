@@ -3,7 +3,6 @@
 //
 
 #include "Runtime.h"
-#include "BaseFunction.h"
 #include "Executor.h"
 #include "Type.h"
 #include "Exception.h"
@@ -34,7 +33,7 @@ void Runtime::push(const Variable& variable) {
 }
 
 Variable Runtime::load_const(uint32_t index) const {
-    return constants[index];
+    return files.top()->getConstants()[index];
 }
 
 Variable Runtime::top() const {
@@ -49,9 +48,9 @@ uint32_t Runtime::currentPos() const {
     return frames.top().currentPos();
 }
 
-Runtime::Runtime(std::vector<Constants::Constant> constants, std::vector<BaseFunction> functions)
-        : constants(std::move(constants)), functions(std::move(functions)) {
-    frames.push(StackFrame(this->functions[0].getLocalCount(), 0));
+Runtime::Runtime(FileInfo* file) {
+    frames.push(StackFrame(file->getFunctions()[0].getLocalCount(), 0));
+    files.push(file);
 }
 
 void Runtime::advance(uint32_t count) {
@@ -80,15 +79,17 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
     return args;
 }
 
-void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args) {
-    if (isNative()) {
+void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args, FileInfo* info) {
+    if (info == files.top()) {
         frames.push({varCount, functionNumber});
-        frames.top().loadArgs(args);
+    } else {
+        frames.push({varCount, functionNumber, true});
+        files.push(info);
+    }
+    frames.top().loadArgs(args);
+    if (isNative()) {
         Executor::execute(*this);
         assert(isNative());
-    } else {
-        frames.push({varCount, functionNumber});
-        frames.top().loadArgs(args);
     }
 }
 
@@ -98,11 +99,14 @@ void Runtime::popStack() {
         exceptionFrames[v].pop();
         exceptionStack.pop();
     }
+    if (frames.top().isNewFile()) {
+        files.pop();
+    }
     frames.pop();
 }
 
-void Runtime::call(uint16_t functionNo, const std::vector<Variable>& args) {
-    pushStack(0, functionNo, args);
+void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variable>& args) {
+    pushStack(0, functionNo, args, file);
 }
 
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
@@ -144,7 +148,7 @@ void Runtime::throwQuick(const Type& exception, const std::string& message) {
 }
 
 const std::vector<uint8_t>& Runtime::currentFn() {
-    return functions[frames.top().getFnNumber()].getBytes();
+    return files.top()->getFunctions()[frames.top().getFnNumber()].getBytes();
 }
 
 void Runtime::pushNativeFrame() {
@@ -156,7 +160,7 @@ bool Runtime::isNative() const {
 }
 
 std::string Runtime::fnName(uint32_t i) {
-    return functions[i].getName();
+    return files.top()->getFunctions()[i].getName();
 }
 
 void Runtime::popHandler() {
@@ -175,3 +179,4 @@ ObjectIterator Runtime::iter(Variable var) {
 bool Runtime::isBottomOfStack() const {
     return frames.size() == 1;
 }
+
