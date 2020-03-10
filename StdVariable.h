@@ -37,7 +37,7 @@ namespace Constants {
     private:
         std::set<std::shared_ptr<StdType>> supers;
 
-        std::set<std::string> vars;
+        std::set<std::string> vars;  // TODO: Static variables
         std::map<std::string, uint32_t> methods;
         std::map<std::string, uint32_t> staticMethods;
         std::map<Operator, uint32_t> operators;
