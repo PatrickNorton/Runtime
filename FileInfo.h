@@ -22,7 +22,6 @@ public:
     FileInfo(std::vector<Constants::Constant> constants, std::vector<BaseFunction> functions);
     const std::vector<Constants::Constant>& getConstants() const;
     const std::vector<BaseFunction>& getFunctions() const;
-    size_t functionNoOf(uint16_t, Operator);
     Constants::Constant getExport(const std::string&) const;
 
     void execute();
