@@ -80,6 +80,7 @@ std::vector<Variable> Runtime::loadArgs(uint16_t argc) {
 }
 
 void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args, FileInfo* info) {
+    bool native = isNative();
     if (info == files.top()) {
         frames.push({varCount, functionNumber});
     } else {
@@ -87,7 +88,7 @@ void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::v
         files.push(info);
     }
     frames.top().loadArgs(args);
-    if (isNative()) {
+    if (native) {
         Executor::execute(*this);
         assert(isNative());
     }
