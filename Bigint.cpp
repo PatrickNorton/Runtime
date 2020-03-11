@@ -66,7 +66,7 @@ Bigint::Bigint(std::string value) {
     sign = false;
     Bigint result = 0_B;
     for (; i < value.size(); i++) {
-        result += Bigint(intOf(values[i])) * Bigint((unsigned long long) std::pow(10, values.size() - i));
+        result += Bigint(intOf(value[i])) * Bigint((unsigned long long) std::pow(10, value.size() - i - 1));
     }
     this->values = result.values;
 }
