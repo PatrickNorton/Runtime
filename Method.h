@@ -19,8 +19,7 @@ namespace Constants {
         self_t self;
     public:
         Method(self_t, FileInfo*, uint32_t);
-        Method(self_t, uint32_t);
-        void operator() (const std::vector<Variable>& , Runtime*) override;
+        void operator() (const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;
     };
 

@@ -13,15 +13,11 @@
 namespace Constants {
 
     template<typename T>
-    Method<T>::Method(self_t self, uint32_t index) : self(self), index(index), info(nullptr) {
-    }
-
-    template<typename T>
     void Method<T>::operator() (const std::vector<Variable>& args, Runtime* runtime) {
         auto newArgs = args;
         newArgs.insert(newArgs.begin(), self->getType());
         newArgs.insert(newArgs.begin(), self);
-        runtime->call(index, nullptr, newArgs);
+        runtime->call(index, info, newArgs);
     }
 
     template<typename T>
