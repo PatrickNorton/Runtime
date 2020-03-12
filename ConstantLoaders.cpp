@@ -14,24 +14,22 @@
 
 
 namespace ConstantLoaders {
-    namespace {
-        std::string getStr(const std::vector<uint8_t>& data, size_t& index) {
-            auto size = IntTools::bytesTo<uint32_t>(data, index);
-            std::vector<char> value {};
-            value.reserve(size);
-            for (uint32_t i = 0; i < size; i++) {
-                unsigned char chr;
-                do {
-                    chr = data[index++];
-                    value.push_back(chr);
-                } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
-            }
-            return {value.begin(), value.end()};
+    std::string loadStdStr(const std::vector<uint8_t>& data, size_t& index) {
+        auto size = IntTools::bytesTo<uint32_t>(data, index);
+        std::vector<char> value{};
+        value.reserve(size);
+        for (uint32_t i = 0; i < size; i++) {
+            unsigned char chr;
+            do {
+                chr = data[index++];
+                value.push_back(chr);
+            } while (chr >= 0b11000000);  // UTF-8 min value for continuation byte
         }
+        return {value.begin(), value.end()};
     }
 
     Constants::Constant loadStr(const std::vector<uint8_t>& data, size_t& index) {
-        return Constants::fromNative(getStr(data, index), true);
+        return Constants::fromNative(loadStdStr(data, index), true);
     }
 
     Constants::Constant loadBuiltin(const std::vector<uint8_t>& data, size_t& index) {
@@ -85,7 +83,7 @@ namespace ConstantLoaders {
             std::set<std::string> variables {};
             auto byteSize = IntTools::bytesTo<uint32_t>(data, index);
             for (uint32_t i = 0; i < byteSize; i++) {
-                auto name = getStr(data, index);
+                auto name = loadStdStr(data, index);
                 IntTools::bytesTo<uint16_t>(data, index);  // TODO: Get classes properly
                 variables.insert(name);
             }
@@ -112,7 +110,7 @@ namespace ConstantLoaders {
             std::map<std::string, uint32_t> methods {};
             auto byteSize = IntTools::bytesTo<uint32_t>(data, index);
             for (uint32_t i = 0; i < byteSize; i++) {
-                auto name = getStr(data, index);
+                auto name = loadStdStr(data, index);
                 auto methodSize = IntTools::bytesTo<uint32_t>(data, index);
                 std::vector<uint8_t> values(data.begin() + index, data.begin() + index + methodSize);
                 index += methodSize;

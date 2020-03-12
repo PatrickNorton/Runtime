@@ -22,6 +22,7 @@ namespace ConstantLoaders {
     uint32_t classIndex(const std::vector<uint8_t>& data, size_t& index);
     Constants::Constant loadBool(const std::vector<uint8_t>& data, size_t& index);
     Type loadClass(FileInfo*, const std::vector<uint8_t>& data, size_t& index, std::vector<BaseFunction>&);
+    std::string loadStdStr(const std::vector<uint8_t>& data, size_t& index);
 }
 
 

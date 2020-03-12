@@ -6,7 +6,6 @@
 #include <vector>
 #include <unordered_map>
 #include <sstream>
-#include <iostream>
 #include "FileParsing.h"
 #include "IntTools.h"
 #include "Constants.h"
@@ -82,8 +81,8 @@ FileInfo* parseFile(const std::string& name) {
     std::vector<Constants::Constant> imports(importCount);
     if (importCount) {
         for (uint32_t i = 0; i < importCount; i++) {
-            auto usedName = ConstantLoaders::loadStr(data, index)->str(nullptr);
-            auto fullName = ConstantLoaders::loadStr(data, index)->str(nullptr);
+            auto usedName = ConstantLoaders::loadStdStr(data, index);
+            auto fullName = ConstantLoaders::loadStdStr(data, index);
             std::vector<std::string> names{};
             std::istringstream nameStream(fullName);
             std::string result;
@@ -101,7 +100,7 @@ FileInfo* parseFile(const std::string& name) {
     std::unordered_map<std::string, uint32_t> exports {};
     if (exportCount) {
         for (int i = 0; i < exportCount; i++) {
-            auto exportName = ConstantLoaders::loadStr(data, index)->str(nullptr);
+            auto exportName = ConstantLoaders::loadStdStr(data, index);
             auto constNo = IntTools::bytesTo<uint32_t>(data, index);
             exports[exportName] = constNo;
         }
