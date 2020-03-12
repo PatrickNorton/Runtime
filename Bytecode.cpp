@@ -56,6 +56,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::GREATER_THAN:
         case Bytecode::LESS_EQUAL:
         case Bytecode::GREATER_EQUAL:
+        case Bytecode::CONTAINS:
             return 0;
         case Bytecode::CALL_OP:
             return 2+2;

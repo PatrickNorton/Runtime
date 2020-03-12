@@ -209,6 +209,8 @@ namespace Executor {
             case Bytecode::GREATER_EQUAL:
                 callOperator(Operator::GREATER_EQUAL, 1, runtime);
                 return;
+            case Bytecode::CONTAINS:
+                callOperator(Operator::IN, 1, runtime);
             case Bytecode::JUMP:
                 runtime.goTo(IntTools::bytesTo<uint32_t>(bytes));
                 return;
