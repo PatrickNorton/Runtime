@@ -14,7 +14,7 @@ Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index, FramePtr fra
 }
 
 void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-    if (frame->isNative()) {  // StdFunction will never have a native frame as a parent, so the parent is invalid
+    if (frame == nullptr) {  // StdFunction will never have a native frame as a parent, so the parent is invalid
         runtime->call(index, info, args);
     } else {
         runtime->call(index, info, args, frame);
