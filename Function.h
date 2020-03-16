@@ -15,9 +15,13 @@ namespace Constants {
         typedef std::shared_ptr<StdFunction> FnPtr;
         FileInfo* info;
         uint32_t index;
+        StackFrame frame;
+
         static void fnStr(const FnPtr&, const std::vector<Variable>&, Runtime*);
+
     public:
         StdFunction(FileInfo*, uint32_t);
+        StdFunction(FileInfo*, uint32_t, StackFrame);
         void operator() (const std::vector<Variable>&, Runtime*) override;
         Variable operator[] (std::pair<std::string, Runtime*>) override;
         Variable operator[] (std::pair<Operator, Runtime*>) override;

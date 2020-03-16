@@ -17,10 +17,15 @@ private:
     uint32_t location;
     bool native;
     bool newFile;
+    StackFrame* parent;
+
+    size_t size() const;
 
 public:
     StackFrame(size_t, uint16_t, bool);
     StackFrame(size_t varCount, uint16_t functionNumber);
+    StackFrame(size_t, uint16_t, StackFrame&);
+    StackFrame(size_t, uint16_t, StackFrame&, bool);
     StackFrame();
 
     uint32_t currentPos() const;

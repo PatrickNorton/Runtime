@@ -350,6 +350,12 @@ namespace Executor {
                 }
             }
                 return;
+            case Bytecode::LOAD_FUNCTION: {
+                size_t i = 0;
+                auto fnIndex = IntTools::bytesTo<uint16_t>(bytes, i);
+                runtime.push(runtime.loadFn(fnIndex));
+            }
+                return;
         }
         throw std::runtime_error("Bytecode not implemented yet");
     }

@@ -34,6 +34,7 @@ public:
     Variable pop();
     void push(const Variable& variable);
     Variable load_const(uint32_t index) const;
+    Variable loadFn(uint32_t) const;
     Variable top() const;
     void goTo(uint32_t location);
     uint32_t currentPos() const;
@@ -42,7 +43,9 @@ public:
     void call(const Variable&, Operator, const std::vector<Variable>&);
     void call(const Variable&, const std::string&, const std::vector<Variable>&);
     void call(uint16_t, FileInfo*, const std::vector<Variable>&);
+    void call(uint16_t, FileInfo*, const std::vector<Variable>&, StackFrame&);
     void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*);
+    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*, StackFrame&);
     void popStack();
     void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);

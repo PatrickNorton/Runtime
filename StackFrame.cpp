@@ -5,14 +5,22 @@
 #include "StackFrame.h"
 
 StackFrame::StackFrame(size_t varCount, uint16_t functionNumber)
-    : variables(varCount), location(0), functionNumber(functionNumber), native(false) {
+    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(nullptr) {
 }
 
-StackFrame::StackFrame() : native(true), newFile(false) {
+StackFrame::StackFrame() : native(true), newFile(false), parent(nullptr) {
 }
 
 StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, bool)
-        : variables(varCount), functionNumber(functionNumber), native(false), location(0), newFile(true) {
+        : variables(varCount), functionNumber(functionNumber), native(false), location(0), newFile(true), parent(nullptr) {
+}
+
+StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, StackFrame& parent)
+    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(&parent), newFile(false) {
+}
+
+StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, StackFrame& parent, bool)
+        : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(&parent), newFile(true) {
 }
 
 uint32_t StackFrame::currentPos() const {
@@ -47,7 +55,8 @@ void StackFrame::store(uint32_t index, Variable variable) {
 }
 
 Variable StackFrame::operator[](size_t index) const {
-    return variables[index];
+    size_t parentSize = parent == nullptr ? 0 : parent->size();
+    return parentSize <= index ? variables[index - parentSize] : (*parent)[index];
 }
 
 void StackFrame::addExceptionHandler(const Variable& var) {
@@ -68,4 +77,8 @@ bool StackFrame::isNative() const {
 
 bool StackFrame::isNewFile() const {
     return newFile;
+}
+
+size_t StackFrame::size() const {
+    return parent == nullptr ? variables.size() : parent->size() + variables.size();
 }

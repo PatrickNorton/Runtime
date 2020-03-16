@@ -101,5 +101,7 @@ int bytecode_size(Bytecode bytecode) {
             return 0;
         case Bytecode::DOTIMES:
             return 4;
+        case Bytecode::LOAD_FUNCTION:
+            return 2;
     }
 }

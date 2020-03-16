@@ -8,6 +8,7 @@
 #include "Exception.h"
 #include "Exit.h"
 #include "IntTools.h"
+#include "Function.h"
 
 #include <utility>
 #include <iostream>
@@ -16,7 +17,6 @@
 Variable Runtime::load_variable(uint32_t index) const {
     return frames.top()[index];
 }
-
 
 void Runtime::store_variable(uint32_t index, Variable variable) {
     frames.top().store(index, std::move(variable));
@@ -94,6 +94,21 @@ void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::v
     }
 }
 
+void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args, FileInfo* info, StackFrame& frame) {
+    bool native = isNative();
+    if (info == files.top()) {
+        frames.push({varCount, functionNumber, frame});
+    } else {
+        frames.push({varCount, functionNumber, frame, true});
+        files.push(info);
+    }
+    frames.top().loadArgs(args);
+    if (native) {
+        Executor::execute(*this);
+        assert(isNative());
+    }
+}
+
 void Runtime::popStack() {
     for (const auto& v : frames.top().getExceptions()) {
         assert(&exceptionFrames[v].top().second == &frames.top());
@@ -108,6 +123,10 @@ void Runtime::popStack() {
 
 void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variable>& args) {
     pushStack(0, functionNo, args, file);
+}
+
+void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variable>& args, StackFrame& frame) {
+    pushStack(0, functionNo, args, file, frame);
 }
 
 void Runtime::removeExceptionHandler(const Variable& exceptionType) {
@@ -179,5 +198,9 @@ ObjectIterator Runtime::iter(Variable var) {
 
 bool Runtime::isBottomOfStack() const {
     return frames.size() == 1;
+}
+
+Variable Runtime::loadFn(uint32_t index) const {
+    return std::make_shared<Constants::StdFunction>(files.top(), index, frames.top());
 }
 
