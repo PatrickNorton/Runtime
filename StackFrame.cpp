@@ -15,12 +15,12 @@ StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, bool)
         : variables(varCount), functionNumber(functionNumber), native(false), location(0), newFile(true), parent(nullptr) {
 }
 
-StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, StackFrame& parent)
-    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(&parent), newFile(false) {
+StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, FramePtr parent)
+    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(std::move(parent)), newFile(false) {
 }
 
-StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, StackFrame& parent, bool)
-        : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(&parent), newFile(true) {
+StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, FramePtr parent, bool)
+        : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(std::move(parent)), newFile(true) {
 }
 
 uint32_t StackFrame::currentPos() const {

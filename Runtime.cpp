@@ -94,7 +94,7 @@ void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::v
     }
 }
 
-void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args, FileInfo* info, StackFrame& frame) {
+void Runtime::pushStack(uint16_t varCount, uint16_t functionNumber, const std::vector<Variable>& args, FileInfo* info, FramePtr& frame) {
     bool native = isNative();
     if (info == files.top()) {
         frames.push({varCount, functionNumber, frame});
@@ -125,7 +125,7 @@ void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variab
     pushStack(0, functionNo, args, file);
 }
 
-void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variable>& args, StackFrame& frame) {
+void Runtime::call(uint16_t functionNo, FileInfo* file, const std::vector<Variable>& args, FramePtr& frame) {
     pushStack(0, functionNo, args, file, frame);
 }
 
@@ -201,6 +201,6 @@ bool Runtime::isBottomOfStack() const {
 }
 
 Variable Runtime::loadFn(uint32_t index) const {
-    return std::make_shared<Constants::StdFunction>(files.top(), index, frames.top());
+    return std::make_shared<Constants::StdFunction>(files.top(), index, std::make_shared<StackFrame>(frames.top()));
 }
 

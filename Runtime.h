@@ -43,9 +43,9 @@ public:
     void call(const Variable&, Operator, const std::vector<Variable>&);
     void call(const Variable&, const std::string&, const std::vector<Variable>&);
     void call(uint16_t, FileInfo*, const std::vector<Variable>&);
-    void call(uint16_t, FileInfo*, const std::vector<Variable>&, StackFrame&);
+    void call(uint16_t, FileInfo*, const std::vector<Variable>&, FramePtr&);
     void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*);
-    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*, StackFrame&);
+    void pushStack(uint16_t, uint16_t, const std::vector<Variable>&, FileInfo*, FramePtr&);
     void popStack();
     void pushNativeFrame();
     std::vector<Variable> loadArgs(uint16_t);

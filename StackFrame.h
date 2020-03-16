@@ -9,6 +9,10 @@
 #include <set>
 #include "Variable.h"
 
+class StackFrame;
+
+typedef std::shared_ptr<StackFrame> FramePtr;
+
 class StackFrame {
 private:
     std::set<Variable> exceptionHandlers;
@@ -17,15 +21,15 @@ private:
     uint32_t location;
     bool native;
     bool newFile;
-    StackFrame* parent;
+    FramePtr parent;
 
     size_t size() const;
 
 public:
     StackFrame(size_t, uint16_t, bool);
     StackFrame(size_t varCount, uint16_t functionNumber);
-    StackFrame(size_t, uint16_t, StackFrame&);
-    StackFrame(size_t, uint16_t, StackFrame&, bool);
+    StackFrame(size_t, uint16_t, FramePtr);
+    StackFrame(size_t, uint16_t, FramePtr, bool);
     StackFrame();
 
     uint32_t currentPos() const;

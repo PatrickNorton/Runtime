@@ -4,18 +4,17 @@
 
 #include "Function.h"
 #include "StringUtils.h"
-#include <exception>
 #include <utility>
 
 Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index) : info(info), index(index) {
 }
 
-Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index, StackFrame frame)
+Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index, FramePtr frame)  // FIXME: In Runtime::call(), object is destroyed before use
 : info(info), index(index), frame(std::move(frame)) {
 }
 
 void Constants::StdFunction::operator()(const std::vector<Variable>& args, Runtime* runtime) {
-    if (frame.isNative()) {  // StdFunction will never have a native frame as a parent, so the parent is invalid
+    if (frame->isNative()) {  // StdFunction will never have a native frame as a parent, so the parent is invalid
         runtime->call(index, info, args);
     } else {
         runtime->call(index, info, args, frame);
