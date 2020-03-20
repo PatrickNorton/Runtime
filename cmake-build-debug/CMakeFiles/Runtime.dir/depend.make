@@ -13,6 +13,7 @@ CMakeFiles/Runtime.dir/BigDecimal.cpp.o: ../Bigint.h
 
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.cpp
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Constants.h
 
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Bigint.h

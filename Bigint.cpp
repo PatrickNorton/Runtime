@@ -3,6 +3,7 @@
 //
 
 #include "Bigint.h"
+#include "Constants.h"
 
 #include <string>
 #include <cmath>
@@ -167,21 +168,20 @@ Bigint Bigint::operator<<(const size_t& other) const {
     if (other == 0) {
         return *this;
     }
-    constexpr auto intBytes = std::numeric_limits<uint32_t>::digits;
     __vec result(values);
-    size_t wholeShifts = other / intBytes;
+    size_t wholeShifts = other / NUM_BITS;
     __vec shifts(wholeShifts);
     result.insert(values.end(), shifts.begin(), shifts.end());
-    size_t remainder = other % intBytes;
+    size_t remainder = other % NUM_BITS;
     if (remainder) {
-        bool carry = (result[0] >> remainder) == 0;
-        size_t r2size = carry ? values.size() : values.size() + 1;
+        bool carry = (result[0] >> remainder) != 0;
+        size_t r2size = carry ? values.size() + 1 : values.size();
         __vec result2(r2size);
         if (carry) {
             result2[0] = result[0] >> remainder;
         }
         for (size_t i = 0; i < result.size(); i++) {
-            result2[i + carry] = (result[i] << remainder) | (result[i+1] >> remainder);
+            result2[i + carry] = (result[i] << remainder) | (i + 1 < result.size() ? (result[i+1] >> remainder) : 0u);
         }
         return Bigint(result2, sign);
     } else {
@@ -347,8 +347,8 @@ int8_t Bigint::compareMagnitude(const Bigint& other) const {
     if (len1 > len2)
         return 1;
     for (size_t i = 0; i < len1; i++) {
-        int a = m1[i];
-        int b = m2[i];
+        auto a = m1[i];
+        auto b = m2[i];
         if (a != b)
             return (a < b) ? -1 : 1;
     }
@@ -402,10 +402,6 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
     return z;
 }
 
-Bigint::__vec Bigint::div(const Bigint::__vec &x, const Bigint::__vec &y) {
-    throw std::runtime_error("Bigint division not yet implemented");
-}
-
 Bigint::Bigint(size_t i) {
     sign = false;
     values = {};
@@ -452,26 +448,26 @@ Bigint::operator uint64_t() const {
 }
 
 Bigint& Bigint::operator++() {
-    const Bigint ONE = 1_B;  // Prevent over-creation
+    static const Bigint ONE = 1_B;  // Prevent over-creation
     *this = *this + ONE;
     return *this;
 }
 
 Bigint& Bigint::operator--() {
-    const Bigint ONE = 1_B;  // Prevent over-creation
+    static const Bigint ONE = 1_B;  // Prevent over-creation
     *this = *this - ONE;
     return *this;
 }
 
 Bigint Bigint::operator++(int) {
-    const Bigint ONE = 1_B;  // Prevent over-creation
+    static const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     ++*this;
     return temp;
 }
 
 Bigint Bigint::operator--(int) {
-    const Bigint ONE = 1_B;  // Prevent over-creation
+    static const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     --*this;
     return temp;
@@ -575,7 +571,7 @@ std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
     do {
         y -= x;
         result++;
-    } while (x > y);
+    } while (x > y);  // TODO: Make faster
     return {resultSign ? -result : result, y};
 }
 

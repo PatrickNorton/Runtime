@@ -23,7 +23,7 @@ private:
     static __vec _add(const __vec& x, const __vec& y);
     static __vec sub(const __vec& x, const __vec& y);
     static __vec mul(const __vec& x, const __vec& y);
-    static __vec div(const __vec& x, const __vec& y);
+
     static std::pair<Bigint, Bigint> div_rem(Bigint x, Bigint y);
 
     static Bigint valueOf(__vec val);
