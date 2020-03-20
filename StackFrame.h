@@ -17,10 +17,10 @@ class StackFrame {
 private:
     std::set<Variable> exceptionHandlers;
     std::vector<Variable> variables;
-    uint16_t functionNumber;
-    uint32_t location;
+    uint16_t functionNumber{};
+    uint32_t location{};
     bool native;
-    bool newFile;
+    bool newFile{};
     FramePtr parent;
 
     size_t size() const;

@@ -5,10 +5,10 @@
 #include "StackFrame.h"
 
 StackFrame::StackFrame(size_t varCount, uint16_t functionNumber)
-    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(nullptr) {
+    : variables(varCount), location(0), functionNumber(functionNumber), native(false), parent(nullptr), newFile(false) {
 }
 
-StackFrame::StackFrame() : native(true), newFile(false), parent(nullptr) {
+StackFrame::StackFrame() : native(true), newFile(false), parent(nullptr), functionNumber(0), location(0) {
 }
 
 StackFrame::StackFrame(size_t varCount, uint16_t functionNumber, bool)
