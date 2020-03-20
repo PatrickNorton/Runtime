@@ -110,6 +110,9 @@ namespace Executor {
             case Bytecode::DIVIDE:
                 callOperator(Operator::DIVIDE, 1, runtime);
                 return;
+            case Bytecode::FLOOR_DIV:
+                callOperator(Operator::FLOOR_DIV, 1, runtime);
+                return;
             case Bytecode::MOD:
                 callOperator(Operator::MODULO, 1, runtime);
                 return;

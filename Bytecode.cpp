@@ -33,6 +33,7 @@ int bytecode_size(Bytecode bytecode) {
         case Bytecode::MINUS:
         case Bytecode::TIMES:
         case Bytecode::DIVIDE:
+        case Bytecode::FLOOR_DIV:
         case Bytecode::MOD:
         case Bytecode::SUBSCRIPT:
         case Bytecode::POWER:
