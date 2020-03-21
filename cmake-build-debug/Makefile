@@ -555,6 +555,33 @@ IntUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/IntUtils.cpp.s
 .PHONY : IntUtils.cpp.s
 
+Integer.o: Integer.cpp.o
+
+.PHONY : Integer.o
+
+# target to build an object file
+Integer.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Integer.cpp.o
+.PHONY : Integer.cpp.o
+
+Integer.i: Integer.cpp.i
+
+.PHONY : Integer.i
+
+# target to preprocess a source file
+Integer.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Integer.cpp.i
+.PHONY : Integer.cpp.i
+
+Integer.s: Integer.cpp.s
+
+.PHONY : Integer.s
+
+# target to generate assembly for a file
+Integer.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/Integer.cpp.s
+.PHONY : Integer.cpp.s
+
 ObjectIterator.o: ObjectIterator.cpp.o
 
 .PHONY : ObjectIterator.o
@@ -990,6 +1017,9 @@ help:
 	@echo "... IntUtils.o"
 	@echo "... IntUtils.i"
 	@echo "... IntUtils.s"
+	@echo "... Integer.o"
+	@echo "... Integer.i"
+	@echo "... Integer.s"
 	@echo "... ObjectIterator.o"
 	@echo "... ObjectIterator.i"
 	@echo "... ObjectIterator.s"

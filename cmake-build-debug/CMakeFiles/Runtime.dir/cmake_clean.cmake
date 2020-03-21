@@ -15,6 +15,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Runtime.dir/FileParsing.cpp.o"
   "CMakeFiles/Runtime.dir/Function.cpp.o"
   "CMakeFiles/Runtime.dir/IntUtils.cpp.o"
+  "CMakeFiles/Runtime.dir/Integer.cpp.o"
   "CMakeFiles/Runtime.dir/ObjectIterator.cpp.o"
   "CMakeFiles/Runtime.dir/Operator.cpp.o"
   "CMakeFiles/Runtime.dir/Range.cpp.o"

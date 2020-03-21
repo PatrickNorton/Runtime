@@ -191,6 +191,12 @@
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/IntUtils.h">
 			<Option target="Runtime"/>
 		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Integer.cpp">
+			<Option target="Runtime"/>
+		</Unit>
+		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Integer.h">
+			<Option target="Runtime"/>
+		</Unit>
 		<Unit filename="/Users/patricknorton/CLionProjects/Runtime/Method.h">
 			<Option target="Runtime"/>
 		</Unit>

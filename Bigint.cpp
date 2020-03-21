@@ -4,6 +4,7 @@
 
 #include "Bigint.h"
 #include "Constants.h"
+#include "Integer.h"
 
 #include <string>
 #include <cmath>
@@ -18,68 +19,6 @@ namespace {
         } else {
             return c - '0';
         }
-    }
-
-    uint32_t bitCount(uint32_t i) {
-        // HD, Figure 5-2
-        i = i - (i >> 1u & 0x55555555u);
-        i = (i & 0x33333333u) + (i >> 2u & 0x33333333u);
-        i = i + (i >> 4u) & 0x0f0f0f0fu;
-        i = i + (i >> 8u);
-        i = i + (i >> 16u);
-        return i & 0x3fu;
-    }
-
-    uint32_t numberOfLeadingZeros(uint32_t i) {
-        // HD, Count leading 0's
-        if (i <= 0)
-            return i == 0 ? 32 : 0;
-        size_t n = 31;
-        if (i >= 1u << 16u) {
-            n -= 16;
-            i >>= 16u;
-        }
-        if (i >= 1u << 8u) {
-            n -=  8;
-            i >>= 8u;
-        }
-        if (i >= 1u << 4u) {
-            n -=  4;
-            i >>=  4u;
-        }
-        if (i >= 1u << 2u) {
-            n -=  2;
-            i >>=  2u;
-        }
-        return n - (i >> 1u);
-    }
-
-    uint32_t bitLengthForInt(uint32_t n) {
-        return 32 - numberOfLeadingZeros(n);
-    }
-
-    uint32_t numberOfTrailingZeros(uint32_t i) {
-        // HD, Count trailing 0's
-        i = ~i & (i - 1);
-        if (i <= 0) return i & 32u;
-        size_t n = 1;
-        if (i > 1u << 16u) {
-            n += 16;
-            i >>= 16u;
-        }
-        if (i > 1u << 8u) {
-            n +=  8;
-            i >>= 8u;
-        }
-        if (i > 1u << 4u) {
-            n +=  4;
-            i >>= 4u;
-        }
-        if (i > 1u << 2u) {
-            n +=  2;
-            i >>= 2u;
-        }
-        return n + (i >> 1u);
     }
 }
 
@@ -803,10 +742,10 @@ size_t Bigint::bitLength() const {
         n = 0; // offset by one to initialize
     } else {
         // Calculate the bit length of the magnitude
-        size_t magBitLength = ((len - 1u) << 5u) + bitLengthForInt(values[0]);
+        size_t magBitLength = ((len - 1u) << 5u) + Integer::bitLengthForInt(values[0]);
         if (sign) {
             // Check if magnitude is a power of two
-            bool pow2 = (bitCount(values[0]) == 1);
+            bool pow2 = (Integer::bitCount(values[0]) == 1);
             for (size_t i=1; i < len && pow2; i++)
                 pow2 = (values[i] == 0);
 
@@ -826,7 +765,7 @@ uint32_t Bigint::getLowestSetBit() const {
         // Search for lowest order nonzero int
         uint32_t i, b;
         for (i = 0; (b = getInt(i)) == 0; i++);
-        lsb += (i << 5u) + ::numberOfTrailingZeros(b);
+        lsb += (i << 5u) + Integer::numberOfTrailingZeros(b);
     }
     return lsb;
 }
