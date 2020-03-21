@@ -19,6 +19,8 @@ namespace {
     }
 }
 
+const Bigint Bigint::ZERO = 0_B;
+
 Bigint::Bigint() {
     sign = false;
     values = {0};
@@ -533,8 +535,25 @@ std::string Bigint::to_string() const {
     } else if (values.size() == 1) {
         return sign ? "-" + std::to_string(values[0]) : std::to_string(values[0]);
     } else {
-        throw std::runtime_error("Too big to stringify yet");
+        return to_str(*this);
     }
+}
+
+std::string Bigint::to_str(Bigint value) {
+    if (!value) {
+        return "0";
+    }
+    static const Bigint TEN = 10_B;
+    std::string result {};
+    if (value < ZERO) {
+        value = -value;
+        result.push_back('-');
+    }
+    while (value != ZERO) {
+        result.push_back(std::to_string(int32_t(value % TEN))[0]);
+        value /= TEN;
+    }
+    return result;
 }
 
 std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {

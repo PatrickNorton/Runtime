@@ -11,6 +11,7 @@
 
 class Bigint {
 private:
+    static const Bigint ZERO;  // Prevent over-creation of 0s
 
     typedef uint32_t __num;
     typedef std::vector<__num> __vec;
@@ -23,6 +24,7 @@ private:
     static __vec _add(const __vec& x, const __vec& y);
     static __vec sub(const __vec& x, const __vec& y);
     static __vec mul(const __vec& x, const __vec& y);
+    static std::string to_str(Bigint);
 
     static std::pair<Bigint, Bigint> div_rem(Bigint x, Bigint y);
 
