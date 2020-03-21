@@ -531,7 +531,7 @@ std::string Bigint::to_string() const {
     if (values.empty()) {
         return "0";
     } else if (values.size() == 1) {
-        return std::to_string(values[0]);
+        return sign ? "-" + std::to_string(values[0]) : std::to_string(values[0]);
     } else {
         throw std::runtime_error("Too big to stringify yet");
     }
