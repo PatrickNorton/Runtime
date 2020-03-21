@@ -8,7 +8,7 @@
 #include "Type.h"
 
 std::string _Variable::str(Runtime* runtime) {
-    runtime->call(shared_from_this(), Operator::STR, {});  // FIXME: Get this to execute (as opposed to just changing the pos)
+    runtime->call(shared_from_this(), Operator::STR, {});
     return runtime->pop()->str(runtime);
 }
 

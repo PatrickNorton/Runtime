@@ -9,7 +9,7 @@
 Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index) : info(info), index(index) {
 }
 
-Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index, FramePtr frame)  // FIXME: In Runtime::call(), object is destroyed before use
+Constants::StdFunction::StdFunction(FileInfo* info, uint32_t index, FramePtr frame)
 : info(info), index(index), frame(std::move(frame)) {
 }
 
