@@ -35,12 +35,12 @@ private:
     size_t bitLength() const;
     uint32_t getLowestSetBit() const;
 public:
-    Bigint();
-    explicit Bigint(size_t i);
-    explicit Bigint(int32_t i);
-    explicit Bigint(uint32_t i);
-    explicit Bigint(int64_t);
-    explicit Bigint(uint64_t);
+    Bigint() noexcept;
+    explicit Bigint(size_t i) noexcept;
+    explicit Bigint(int32_t i) noexcept;
+    explicit Bigint(uint32_t i) noexcept;
+    explicit Bigint(int64_t) noexcept;
+    explicit Bigint(uint64_t) noexcept;
     explicit Bigint(std::string);
     Bigint(__vec, bool);
     Bigint operator+(const Bigint&) const;
@@ -90,7 +90,7 @@ public:
     std::string to_string() const;
 };
 
-Bigint operator "" _B (unsigned long long);
+Bigint operator "" _B (unsigned long long) noexcept;
 
 
 #endif //RUNTIME_BIGINT_H

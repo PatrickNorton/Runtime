@@ -85,12 +85,12 @@ namespace {
 
 const Bigint Bigint::ZERO = 0_B;
 
-Bigint::Bigint() {
+Bigint::Bigint() noexcept {
     sign = false;
     values = {0};
 }
 
-Bigint::Bigint(int64_t value) {
+Bigint::Bigint(int64_t value) noexcept {
     sign = value < 0;
     auto uValue = static_cast<uint64_t>(value);
     values = {};
@@ -100,7 +100,7 @@ Bigint::Bigint(int64_t value) {
     } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
-Bigint::Bigint(int value) {
+Bigint::Bigint(int value) noexcept {
     sign = value < 0;
     auto uValue = static_cast<uint64_t>(value);
     values = {};
@@ -110,7 +110,7 @@ Bigint::Bigint(int value) {
     } while (uValue > std::numeric_limits<uint32_t>::max());
 }
 
-Bigint::Bigint(uint64_t value) {
+Bigint::Bigint(uint64_t value) noexcept {
     sign = value < 0;
     values = {};
     do {
@@ -472,7 +472,7 @@ Bigint::__vec Bigint::mul(const Bigint::__vec &x, const Bigint::__vec &y) {
     return z;
 }
 
-Bigint::Bigint(size_t i) {
+Bigint::Bigint(size_t i) noexcept {
     sign = false;
     values = {};
     while (i > std::numeric_limits<__num>::max()) {
@@ -481,7 +481,7 @@ Bigint::Bigint(size_t i) {
     }
 }
 
-Bigint::Bigint(uint32_t i) {
+Bigint::Bigint(uint32_t i) noexcept {
     sign = false;
     values = {i};
 }
@@ -831,6 +831,6 @@ uint32_t Bigint::getLowestSetBit() const {
     return lsb;
 }
 
-Bigint operator "" _B(unsigned long long val) {
+Bigint operator "" _B(unsigned long long val) noexcept {
     return Bigint(val);
 }
