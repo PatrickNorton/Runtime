@@ -10,12 +10,76 @@
 #include <algorithm>
 
 namespace {
+    const uint32_t MAX_MAG_LENGTH = std::numeric_limits<uint32_t>::max() / std::numeric_limits<uint32_t>::digits + 1;
+
     int intOf(char c) {
         if (!isdigit(c)) {
             throw std::invalid_argument("Given argument is not a digit");
         } else {
             return c - '0';
         }
+    }
+
+    uint32_t bitCount(uint32_t i) {
+        // HD, Figure 5-2
+        i = i - (i >> 1u & 0x55555555u);
+        i = (i & 0x33333333u) + (i >> 2u & 0x33333333u);
+        i = i + (i >> 4u) & 0x0f0f0f0fu;
+        i = i + (i >> 8u);
+        i = i + (i >> 16u);
+        return i & 0x3fu;
+    }
+
+    uint32_t numberOfLeadingZeros(uint32_t i) {
+        // HD, Count leading 0's
+        if (i <= 0)
+            return i == 0 ? 32 : 0;
+        size_t n = 31;
+        if (i >= 1u << 16u) {
+            n -= 16;
+            i >>= 16u;
+        }
+        if (i >= 1u << 8u) {
+            n -=  8;
+            i >>= 8u;
+        }
+        if (i >= 1u << 4u) {
+            n -=  4;
+            i >>=  4u;
+        }
+        if (i >= 1u << 2u) {
+            n -=  2;
+            i >>=  2u;
+        }
+        return n - (i >> 1u);
+    }
+
+    uint32_t bitLengthForInt(uint32_t n) {
+        return 32 - numberOfLeadingZeros(n);
+    }
+
+    uint32_t numberOfTrailingZeros(uint32_t i) {
+        // HD, Count trailing 0's
+        i = ~i & (i - 1);
+        if (i <= 0) return i & 32u;
+        size_t n = 1;
+        if (i > 1u << 16u) {
+            n += 16;
+            i >>= 16u;
+        }
+        if (i > 1u << 8u) {
+            n +=  8;
+            i >>= 8u;
+        }
+        if (i > 1u << 4u) {
+            n +=  4;
+            i >>= 4u;
+        }
+        if (i > 1u << 2u) {
+            n +=  2;
+            i >>= 2u;
+        }
+        return n + (i >> 1u);
     }
 }
 
@@ -66,10 +130,14 @@ Bigint::Bigint(std::string value) {
         sign = values[0] == '-';
         i++;
     }
+    if (value.size() < 10 + i) {
+        *this = Bigint(std::stoi(value));
+        return;
+    }
     sign = false;
     Bigint result = 0_B;
     for (; i < value.size(); i++) {
-        result += Bigint(intOf(value[i])) * Bigint((unsigned long long) std::pow(10, value.size() - i - 1));
+        result += Bigint(intOf(value[i])) * (10_B).pow(value.size() - i - 1);
     }
     this->values = result.values;
 }
@@ -177,7 +245,7 @@ Bigint Bigint::operator<<(const size_t& other) const {
     size_t remainder = other % NUM_BITS;
     if (remainder) {
         bool carry = (result[0] >> remainder) != 0;
-        size_t r2size = carry ? values.size() + 1 : values.size();
+        size_t r2size = carry ? result.size() + 1 : result.size();
         __vec result2(r2size);
         if (carry) {
             result2[0] = result[0] >> remainder;
@@ -606,6 +674,161 @@ size_t Bigint::numberOfTrailingZeros() const {
     size_t trailing0s = 0;
     for (; b % 2 == 0; b >>= 1u, trailing0s++);
     return ((values.size()-1-j)<<5u) + trailing0s;
+}
+
+Bigint Bigint::pow(const size_t& exponent) const {
+    if (exponent < 0) {
+        throw std::runtime_error("Negative exponent");
+    }
+    if (!*this) {
+        return exponent == 0 ? 1_B : *this;
+    }
+
+    auto partToSquare = this->abs();
+
+    // Factor out powers of two from the base, as the exponentiation of
+    // these can be done by left shifts only.
+    // The remaining part can then be exponentiated faster.  The
+    // powers of two will be multiplied back at the end.
+    uint32_t powersOfTwo = partToSquare.getLowestSetBit();
+    uint64_t bitsToShiftLong = (uint64_t) powersOfTwo * exponent;
+    if (bitsToShiftLong > std::numeric_limits<uint32_t>::max()) {
+        throw std::runtime_error("Overflow");
+    }
+    auto bitsToShift = (uint32_t) bitsToShiftLong;
+
+    uint32_t remainingBits;
+
+    // Factor the powers of two out quickly by shifting right, if needed.
+    if (powersOfTwo > 0) {
+        partToSquare >>= powersOfTwo;
+        remainingBits = partToSquare.bitLength();
+        if (remainingBits == 1) {  // Nothing left but +/- 1?
+            if (sign && (exponent & 1u) == 1) {
+                return -1_B << bitsToShift;
+            } else {
+                return 1_B << bitsToShift;
+            }
+        }
+    } else {
+        remainingBits = partToSquare.bitLength();
+        if (remainingBits == 1) { // Nothing left but +/- 1?
+            if (sign && (exponent & 1u) == 1) {
+                return -1_B;
+            } else {
+                return 1_B;
+            }
+        }
+    }
+
+    // This is a quick way to approximate the size of the result,
+    // similar to doing log2[n] * exponent.  This will give an upper bound
+    // of how big the result can be, and which algorithm to use.
+    uint64_t scaleFactor = (uint64_t) remainingBits * exponent;
+
+    // Use slightly different algorithms for small and large operands.
+    // See if the result will safely fit into a long. (Largest 2^63-1)
+    if (partToSquare.values.size() == 1 && scaleFactor <= 62) {
+        // Small number algorithm.  Everything fits into a long.
+        uint32_t newSign = sign && (exponent & 1u) == 1 ? -1 : 1;
+        uint64_t result = 1;
+        uint64_t baseToPow2 = partToSquare.values[0];
+
+        uint32_t workingExponent = exponent;
+
+        // Perform exponentiation using repeated squaring trick
+        while (workingExponent != 0) {
+            if ((workingExponent & 1u) == 1) {
+                result = result * baseToPow2;
+            }
+
+            if ((workingExponent >>= 1u) != 0) {
+                baseToPow2 = baseToPow2 * baseToPow2;
+            }
+        }
+
+        // Multiply back the powers of two (quickly, by shifting left)
+        if (powersOfTwo > 0) {
+            if (bitsToShift + scaleFactor <= 62) { // Fits in long?
+                return Bigint((result << bitsToShift) * newSign);
+            } else {
+                return Bigint(result * newSign) << bitsToShift;
+            }
+        } else {
+            return Bigint(result * newSign);
+        }
+    } else {
+        if ((uint64_t) bitLength() * exponent / std::numeric_limits<uint32_t>::digits > MAX_MAG_LENGTH) {
+            throw std::runtime_error("Overflow");
+        }
+
+        // Large number algorithm.  This is basically identical to
+        // the algorithm above, but calls multiply() and square()
+        // which may use more efficient algorithms for large numbers.
+        auto answer = 1_B;
+
+        size_t workingExponent = exponent;
+        // Perform exponentiation using repeated squaring trick
+        while (workingExponent != 0) {
+            if ((workingExponent & 1u) == 1) {
+                answer *= partToSquare;
+            }
+
+            if ((workingExponent >>= 1u) != 0) {
+                partToSquare *= partToSquare;
+            }
+        }
+        // Multiply back the (exponentiated) powers of two (quickly,
+        // by shifting left)
+        if (powersOfTwo > 0) {
+            answer <<= bitsToShift;
+        }
+
+        if (*this < ZERO && (exponent & 1u) == 1) {
+            return -answer;
+        } else {
+            return answer;
+        }
+    }
+}
+
+Bigint Bigint::abs() const {
+    return sign ? -*this : *this;
+}
+
+size_t Bigint::bitLength() const {
+    size_t n;
+    size_t len = values.size();
+    if (len == 0) {
+        n = 0; // offset by one to initialize
+    } else {
+        // Calculate the bit length of the magnitude
+        size_t magBitLength = ((len - 1u) << 5u) + bitLengthForInt(values[0]);
+        if (sign) {
+            // Check if magnitude is a power of two
+            bool pow2 = (bitCount(values[0]) == 1);
+            for (size_t i=1; i < len && pow2; i++)
+                pow2 = (values[i] == 0);
+
+            n = (pow2 ? magBitLength - 1 : magBitLength);
+        } else {
+            n = magBitLength;
+        }
+    }
+    return n + 1;
+}
+
+uint32_t Bigint::getLowestSetBit() const {
+    uint32_t lsb = 0;
+    if (sign) {
+        lsb--;
+    } else {
+        // Search for lowest order nonzero int
+        uint32_t i, b;
+        for (i = 0; (b = getInt(i)) == 0; i++);
+        lsb += (i << 5u) + ::numberOfTrailingZeros(b);
+    }
+    return lsb;
 }
 
 Bigint operator "" _B(unsigned long long val) {

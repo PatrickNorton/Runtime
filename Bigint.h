@@ -31,6 +31,9 @@ private:
     static Bigint valueOf(__vec val);
 
     static constexpr unsigned int NUM_BITS = std::numeric_limits<__num>::digits;
+
+    size_t bitLength() const;
+    uint32_t getLowestSetBit() const;
 public:
     Bigint();
     explicit Bigint(size_t i);
@@ -80,6 +83,9 @@ public:
     explicit operator uint32_t() const;
     explicit operator int64_t() const;
     explicit operator uint64_t() const;
+
+    Bigint pow(const size_t&) const;
+    Bigint abs() const;
 
     std::string to_string() const;
 };
