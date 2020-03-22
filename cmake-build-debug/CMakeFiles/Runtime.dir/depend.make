@@ -14,6 +14,7 @@ CMakeFiles/Runtime.dir/BigDecimal.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.cpp
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Constants.h
+CMakeFiles/Runtime.dir/Bigint.cpp.o: ../Integer.h
 
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/BuiltinImpl.cpp.o: ../Bigint.h
@@ -225,6 +226,9 @@ CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StackFrame.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Variable.h
+
+CMakeFiles/Runtime.dir/Integer.cpp.o: ../Integer.cpp
+CMakeFiles/Runtime.dir/Integer.cpp.o: ../Integer.h
 
 CMakeFiles/Runtime.dir/ObjectIterator.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/ObjectIterator.cpp.o: ../Bigint.h

@@ -23,16 +23,16 @@ namespace Integer {
             i >>= 16u;
         }
         if (i >= 1u << 8u) {
-            n -=  8;
+            n -= 8;
             i >>= 8u;
         }
         if (i >= 1u << 4u) {
-            n -=  4;
-            i >>=  4u;
+            n -= 4;
+            i >>= 4u;
         }
         if (i >= 1u << 2u) {
-            n -=  2;
-            i >>=  2u;
+            n -= 2;
+            i >>= 2u;
         }
         return n - (i >> 1u);
     }
@@ -50,15 +50,15 @@ namespace Integer {
             i >>= 16u;
         }
         if (i > 1u << 8u) {
-            n +=  8;
+            n += 8;
             i >>= 8u;
         }
         if (i > 1u << 4u) {
-            n +=  4;
+            n += 4;
             i >>= 4u;
         }
         if (i > 1u << 2u) {
-            n +=  2;
+            n += 2;
             i >>= 2u;
         }
         return n + (i >> 1u);
