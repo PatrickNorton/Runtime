@@ -6,6 +6,7 @@
 #include "Method.h"
 #include "StringUtils.h"
 #include "Builtins.h"
+#include "DefaultMethods.h"
 
 TempDict::TempDict() : internal(), size() {
 }
@@ -29,7 +30,11 @@ Variable TempDict::operator[](std::pair<std::string, Runtime*> pair) {
 }
 
 Variable TempDict::operator[](std::pair<Operator, Runtime*> pair) {
-    return std::make_shared<Constants::GenericM<TempDict>>(this_ptr<TempDict>(), Constants::DictType::methodOf(pair.first));
+    auto method = Constants::DictType::methodOf(pair.first);
+    if (method == nullptr) {
+        method = reinterpret_cast<Constants::GenericMethod<TempDict>>(DefaultMethods::of(pair.first));
+    }
+    return std::make_shared<Constants::GenericM<TempDict>>(this_ptr<TempDict>(), method);
 }
 
 size_t TempDict::hash(const Variable& var, Runtime* runtime) {
@@ -123,7 +128,7 @@ namespace Constants {
                 {Operator::GET_ATTR, dictGet},
                 {Operator::SET_ATTR, dictSet},
         };
-        return operators.at(op);
+        return operators.count(op) ? operators.at(op) : nullptr;
     }
 
     GenericMethod<TempDict> DictType::methodOf(const std::string& str) {

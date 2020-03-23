@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Runtime.dir/CharUtils.cpp.o"
   "CMakeFiles/Runtime.dir/Constant.cpp.o"
   "CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o"
+  "CMakeFiles/Runtime.dir/DefaultMethods.cpp.o"
   "CMakeFiles/Runtime.dir/DictUtils.cpp.o"
   "CMakeFiles/Runtime.dir/Exception.cpp.o"
   "CMakeFiles/Runtime.dir/Executor.cpp.o"

@@ -67,6 +67,7 @@ CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../CharUtils.cpp
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../CharUtils.h
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/CharUtils.cpp.o: ../Method.h
@@ -116,6 +117,24 @@ CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StdVariable.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../StringUtils.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Type.h
 CMakeFiles/Runtime.dir/ConstantLoaders.cpp.o: ../Variable.h
+
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../BaseFunction.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../BigDecimal.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Bigint.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../DefaultMethods.cpp
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../DefaultMethods.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../FileInfo.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../IntUtils.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Method.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Method.inl
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../ObjectIterator.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Operator.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Runtime.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../StackFrame.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../StringUtils.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Type.h
+CMakeFiles/Runtime.dir/DefaultMethods.cpp.o: ../Variable.h
 
 CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/DictUtils.cpp.o: ../Bigint.h
@@ -214,6 +233,7 @@ CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.cpp
 CMakeFiles/Runtime.dir/IntUtils.cpp.o: ../IntUtils.h
@@ -255,6 +275,7 @@ CMakeFiles/Runtime.dir/Range.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Range.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Range.cpp.o: ../Method.h
@@ -317,6 +338,7 @@ CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../CharUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/StringUtils.cpp.o: ../Method.h
@@ -334,6 +356,7 @@ CMakeFiles/Runtime.dir/TempDict.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/TempDict.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../DictUtils.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/TempDict.cpp.o: ../Method.h
@@ -352,6 +375,7 @@ CMakeFiles/Runtime.dir/TempList.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Builtins.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/TempList.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/TempList.cpp.o: ../Method.inl
@@ -368,6 +392,7 @@ CMakeFiles/Runtime.dir/TempList.cpp.o: ../Variable.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/TempSet.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../Method.h
 CMakeFiles/Runtime.dir/TempSet.cpp.o: ../Method.inl
@@ -385,6 +410,7 @@ CMakeFiles/Runtime.dir/Tuple.cpp.o: ../BaseFunction.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../BigDecimal.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Bigint.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Constant.h
+CMakeFiles/Runtime.dir/Tuple.cpp.o: ../DefaultMethods.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../FileInfo.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../IntUtils.h
 CMakeFiles/Runtime.dir/Tuple.cpp.o: ../Method.h

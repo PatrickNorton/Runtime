@@ -11,6 +11,7 @@
 #include "Method.h"
 #include "Builtins.h"
 #include "CharUtils.h"
+#include "DefaultMethods.h"
 
 namespace Constants {
     String::String(std::string value) {
@@ -63,7 +64,7 @@ namespace Constants {
                 {Operator::STR,      pushSelf},
                 {Operator::GET_ATTR, strIndex},
         };
-        return strOperators.at(o);
+        return strOperators.count(o) ? strOperators.at(o) : nullptr;
     }
 
     Variable StringType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
@@ -90,7 +91,11 @@ namespace Constants {
     Variable String::operator[](std::pair<Operator, Runtime *> pair) {
         Operator op = pair.first;
         if (!methods.count(op)) {
-            methods[op] = std::make_shared<GenericM<String>>(this_ptr<String>(), StringType::strMethod(op));
+            auto method = StringType::strMethod(op);
+            if (method == nullptr) {
+                method = reinterpret_cast<GenericMethod<String>>(DefaultMethods::of(op));
+            }
+            methods[op] = std::make_shared<GenericM<String>>(this_ptr<String>(), method);
         }
         return methods.at(op);
     }

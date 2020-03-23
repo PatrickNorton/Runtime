@@ -7,6 +7,7 @@
 #include "StringUtils.h"
 #include "IntUtils.h"
 #include "Builtins.h"
+#include "DefaultMethods.h"
 
 #include <utility>
 
@@ -83,7 +84,7 @@ namespace Constants {
                 {Operator::ITER, rangeIter},
                 {Operator::GET_SLICE, rangeSlice},
         };
-        return operators.at(o);
+        return operators.count(o) ? operators.at(o) : nullptr;
     }
 
     RangeIterator::RangeIterator(const RangePtr& val) {
@@ -127,7 +128,11 @@ Variable Range::operator[](std::pair<Operator, Runtime*> pair) {
     Operator op = pair.first;
     if (!methods.count(op)) {
         auto self = this_ptr<Range>();
-        methods[op] = std::make_shared<Constants::GenericM<Range>>(std::move(self), Constants::RangeType::rangeMethod(op));
+        auto method = Constants::RangeType::rangeMethod(op);
+        if (method == nullptr) {
+            method = reinterpret_cast<Constants::GenericMethod<Range>>(DefaultMethods::of(op));
+        }
+        methods[op] = std::make_shared<Constants::GenericM<Range>>(std::move(self), method);
     }
     return methods.at(op);
 }

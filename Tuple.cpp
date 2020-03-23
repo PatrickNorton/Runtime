@@ -6,6 +6,7 @@
 #include "Runtime.h"
 #include "IntUtils.h"
 #include "Method.h"
+#include "DefaultMethods.h"
 
 namespace Constants {
 
@@ -13,11 +14,12 @@ namespace Constants {
         this->values = std::move(values);
     }
 
-    Variable Tuple::operator[](std::pair<Operator, Runtime *> op) {
-        return std::make_shared<GenericM<Tuple>>(
-                this_ptr<Tuple>(),
-                TupleType::getOperator(op.first)
-        );
+    Variable Tuple::operator[](std::pair<Operator, Runtime*> op) {
+        auto method = Constants::TupleType::getOperator(op.first);
+        if (method == nullptr) {
+            method = reinterpret_cast<Constants::GenericMethod<Tuple>>(DefaultMethods::of(op.first));
+        }
+        return std::make_shared<Constants::GenericM<Tuple>>(this_ptr<Tuple>(), method);
     }
 
     bool Tuple::toBool(Runtime*) {
@@ -42,6 +44,6 @@ namespace Constants {
                 {Operator::BOOL, tupleBool},
                 {Operator::GET_ATTR, tupleIndex},
         };
-        return ops.at(o);
+        return ops.count(o) ? ops.at(o) : nullptr;
     }
 }

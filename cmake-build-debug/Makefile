@@ -366,6 +366,33 @@ ConstantLoaders.cpp.s:
 	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/ConstantLoaders.cpp.s
 .PHONY : ConstantLoaders.cpp.s
 
+DefaultMethods.o: DefaultMethods.cpp.o
+
+.PHONY : DefaultMethods.o
+
+# target to build an object file
+DefaultMethods.cpp.o:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/DefaultMethods.cpp.o
+.PHONY : DefaultMethods.cpp.o
+
+DefaultMethods.i: DefaultMethods.cpp.i
+
+.PHONY : DefaultMethods.i
+
+# target to preprocess a source file
+DefaultMethods.cpp.i:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/DefaultMethods.cpp.i
+.PHONY : DefaultMethods.cpp.i
+
+DefaultMethods.s: DefaultMethods.cpp.s
+
+.PHONY : DefaultMethods.s
+
+# target to generate assembly for a file
+DefaultMethods.cpp.s:
+	$(MAKE) -f CMakeFiles/Runtime.dir/build.make CMakeFiles/Runtime.dir/DefaultMethods.cpp.s
+.PHONY : DefaultMethods.cpp.s
+
 DictUtils.o: DictUtils.cpp.o
 
 .PHONY : DictUtils.o
@@ -996,6 +1023,9 @@ help:
 	@echo "... ConstantLoaders.o"
 	@echo "... ConstantLoaders.i"
 	@echo "... ConstantLoaders.s"
+	@echo "... DefaultMethods.o"
+	@echo "... DefaultMethods.i"
+	@echo "... DefaultMethods.s"
 	@echo "... DictUtils.o"
 	@echo "... DictUtils.i"
 	@echo "... DictUtils.s"

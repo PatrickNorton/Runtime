@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "StringUtils.h"
+#include "DefaultMethods.h"
 
 namespace Constants {
 
@@ -39,7 +40,7 @@ namespace Constants {
                 {Operator::STR, setStr},
                 {Operator::ITER, setIter},
         };
-        return operators.at(op);
+        return operators.count(op) ? operators.at(op) : nullptr;
     }
 
     GenericMethod<TempSet> SetType::methodOf(const std::string& str) {
@@ -76,7 +77,11 @@ Variable TempSet::operator[](std::pair<std::string, Runtime*> pair) {
 }
 
 Variable TempSet::operator[](std::pair<Operator, Runtime*> pair) {
-    return std::make_shared<Constants::GenericM<TempSet>>(this_ptr<TempSet>(), Constants::SetType::methodOf(pair.first));
+    auto method = Constants::SetType::methodOf(pair.first);
+    if (method == nullptr) {
+        method = reinterpret_cast<Constants::GenericMethod<TempSet>>(DefaultMethods::of(pair.first));
+    }
+    return std::make_shared<Constants::GenericM<TempSet>>(this_ptr<TempSet>(), method);
 }
 
 size_t TempSet::size() {

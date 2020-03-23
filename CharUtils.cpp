@@ -7,6 +7,7 @@
 #include "StringUtils.h"
 #include "Builtins.h"
 #include "IntUtils.h"
+#include "DefaultMethods.h"
 
 namespace Constants {
     void CharType::charStr(const CharPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
@@ -36,7 +37,7 @@ namespace Constants {
                 {Operator::SUBTRACT, charMinus},
                 {Operator::INT, charInt},
         };
-        return values.at(op);
+        return values.count(op) ? values.at(op) : nullptr;
     }
 
     Variable CharType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
@@ -55,7 +56,11 @@ namespace Constants {
         Operator op = pair.first;
         if (!methods.count(op)) {
             auto self = this_ptr<CharConstant>();
-            methods[op] = std::make_shared<GenericM<CharConstant>>(std::move(self), CharType::charMethod(op));
+            auto method = CharType::charMethod(op);
+            if (method == nullptr) {
+                method = reinterpret_cast<GenericMethod<CharConstant>>(DefaultMethods::of(op));
+            }
+            methods[op] = std::make_shared<GenericM<CharConstant>>(std::move(self), method);
         }
         return methods.at(op);
     }

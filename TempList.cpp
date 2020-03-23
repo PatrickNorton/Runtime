@@ -8,6 +8,7 @@
 #include "Runtime.h"
 #include "StringUtils.h"
 #include "Builtins.h"
+#include "DefaultMethods.h"
 
 namespace Constants {
 
@@ -39,7 +40,7 @@ namespace Constants {
                 {Operator::GET_ATTR, listIndex},
                 {Operator::ITER, listIter},
         };
-        return operators.at(op);
+        return operators.count(op) ? operators.at(op) : nullptr;
     }
 
     Variable ListType::createNew(const std::vector<Variable>& args, Runtime*) {
@@ -87,7 +88,11 @@ Variable TempList::operator[](std::pair<std::string, Runtime*> pair) {
 }
 
 Variable TempList::operator[](std::pair<Operator, Runtime*> pair) {
-    return std::make_shared<Constants::GenericM<TempList>>(this_ptr<TempList>(), Constants::ListType::methodOf(pair.first));
+    auto method = Constants::ListType::methodOf(pair.first);
+    if (method == nullptr) {
+        method = reinterpret_cast<Constants::GenericMethod<TempList>>(DefaultMethods::of(pair.first));
+    }
+    return std::make_shared<Constants::GenericM<TempList>>(this_ptr<TempList>(), method);
 }
 
 Variable TempList::operator[](size_t index) {

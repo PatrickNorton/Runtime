@@ -10,6 +10,7 @@
 #include "Runtime.h"
 #include "Method.h"
 #include "Builtins.h"
+#include "DefaultMethods.h"
 
 
 namespace Constants {
@@ -232,7 +233,7 @@ namespace Constants {
                 {Operator::BOOL,           intToBool},
                 {Operator::HASH,           intHash},
         };
-        return instance.at(op);
+        return instance.count(op) ? instance.at(op) : nullptr;
     }
 
     Variable IntType::createNew(const std::vector<Variable>& args, Runtime* runtime) {
@@ -252,7 +253,11 @@ namespace Constants {
         Operator op = pair.first;
         if (!methods.count(op)) {
             auto self = this_ptr<IntConstant>();
-            methods[op] = std::make_shared<GenericM<IntConstant>>(std::move(self), IntType::intMethod(op));
+            auto method = IntType::intMethod(op);
+            if (method == nullptr) {
+                method = reinterpret_cast<GenericMethod<IntConstant>>(DefaultMethods::of(op));
+            }
+            methods[op] = std::make_shared<GenericM<IntConstant>>(std::move(self), method);
         }
         return methods.at(op);
     }
