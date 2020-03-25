@@ -629,12 +629,12 @@ Bigint Bigint::pow(const size_t& exponent) const {
     // these can be done by left shifts only.
     // The remaining part can then be exponentiated faster.  The
     // powers of two will be multiplied back at the end.
-    uint32_t powersOfTwo = partToSquare.getLowestSetBit();
-    uint64_t bitsToShiftLong = (uint64_t) powersOfTwo * exponent;
+    auto powersOfTwo = partToSquare.getLowestSetBit();
+    auto bitsToShiftLong = static_cast<uint64_t>(powersOfTwo) * exponent;
     if (bitsToShiftLong > std::numeric_limits<uint32_t>::max()) {
         throw std::runtime_error("Overflow");
     }
-    auto bitsToShift = (uint32_t) bitsToShiftLong;
+    auto bitsToShift =static_cast<uint32_t>(bitsToShiftLong);
 
     uint32_t remainingBits;
 
@@ -697,7 +697,7 @@ Bigint Bigint::pow(const size_t& exponent) const {
             return Bigint(result * newSign);
         }
     } else {
-        if ((uint64_t) bitLength() * exponent / std::numeric_limits<uint32_t>::digits > MAX_MAG_LENGTH) {
+        if (static_cast<uint64_t>(bitLength()) * exponent / std::numeric_limits<uint32_t>::digits > MAX_MAG_LENGTH) {
             throw std::runtime_error("Overflow");
         }
 
