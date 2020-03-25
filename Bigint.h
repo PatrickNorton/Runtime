@@ -100,5 +100,6 @@ public:
 
 Bigint operator "" _B (unsigned long long) noexcept;
 
+std::ostream& operator<<(std::ostream&, const Bigint&) noexcept;
 
 #endif //RUNTIME_BIGINT_H

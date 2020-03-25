@@ -840,3 +840,8 @@ Bigint::__num Bigint::operator[](size_t i) {
 Bigint operator "" _B(unsigned long long val) noexcept {
     return Bigint(val);
 }
+
+std::ostream& operator<<(std::ostream& stream, const Bigint& val) noexcept {
+    stream << val.to_string();
+    return stream;
+}
