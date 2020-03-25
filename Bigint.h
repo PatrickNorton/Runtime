@@ -15,8 +15,11 @@ private:
 
     typedef uint32_t __num;
     typedef std::vector<__num> __vec;
+
+    explicit Bigint(__vec) noexcept;
+    Bigint(uint32_t, bool) noexcept;
     __vec values;
-    bool sign;  // True if negative, false if positive
+    bool sign{};  // True if negative, false if positive
     int8_t compareMagnitude(const Bigint& other) const;
     uint32_t getInt(size_t index) const;
     size_t numberOfTrailingZeros() const;
@@ -34,6 +37,11 @@ private:
 
     size_t bitLength() const;
     uint32_t getLowestSetBit() const;
+
+    size_t sizeWithoutLeadingZeros() const;
+    static std::pair<Bigint, Bigint> divideKnuth2(const Bigint& u, const Bigint& v);
+
+    __num operator[](size_t);
 public:
     Bigint() noexcept;
     explicit Bigint(size_t i) noexcept;

@@ -9,6 +9,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <utility>
 
 namespace {
     const uint32_t MAX_MAG_LENGTH = std::numeric_limits<uint32_t>::max() / std::numeric_limits<uint32_t>::digits + 1;
@@ -61,6 +62,12 @@ Bigint::Bigint(uint64_t value) noexcept {
 Bigint::Bigint(std::vector<uint32_t> values, bool sign) {
     this->values = std::move(values);
     this->sign = sign;
+}
+
+Bigint::Bigint(__vec values) noexcept : values(std::move(values)), sign(false) {
+}
+
+Bigint::Bigint(uint32_t value, bool sign) noexcept : values({value}), sign(sign) {
 }
 
 Bigint::Bigint(std::string value) {
@@ -132,7 +139,7 @@ Bigint Bigint::operator*(const Bigint& other) const {
 Bigint Bigint::operator/(const Bigint& other) const {
     if (*this == other) {
         return Bigint(sign == other.sign ? 1 : -1);
-    } else if (other > *this) {
+    } else if (other.abs() > this->abs()) {
         return 0_B;
     } else {
         return div_rem(*this, other).first;
@@ -582,23 +589,64 @@ std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
         return {0_B, x};
     }
 
+    bool sign = x.sign ^ y.sign;
     if (x.values.size() == 1 && y.values.size() == 1) {
-        return {Bigint(x.values[0] / y.values[0]), Bigint(x.values[0] % y.values[0])};
+        return {Bigint(x.values[0] / y.values[0], sign), Bigint(x.values[0] % y.values[0])};
     }
 
-    bool resultSign = x.sign ^ y.sign;
-    x = x.sign ? -x : x;
-    y = y.sign ? -y : y;
     // Shift away some of it
     size_t shift = std::min(x.numberOfTrailingZeros(), y.numberOfTrailingZeros());
     x >>= shift;
     y >>= shift;
-    auto result = 0_B;
-    do {
-        y -= x;
-        result++;
-    } while (x > y);  // TODO: Make faster
-    return {resultSign ? -result : result, y};
+    return divideKnuth2(x, y);
+}
+
+/*
+ * Taken from Knuth's Algorithm D.
+ */
+std::pair<Bigint, Bigint> Bigint::divideKnuth2(const Bigint& u, const Bigint& v) {
+    bool resultSign = u.sign ^ v.sign;
+    size_t uSize = u.sizeWithoutLeadingZeros();
+    size_t vSize = v.sizeWithoutLeadingZeros();
+    size_t n = vSize;
+    size_t m = uSize - vSize;
+    uint32_t d = (1u << (NUM_BITS - 1)) / Integer::numberOfLeadingZeros(v.values[vSize - 1]);
+    /*
+     * Normalize by shifting v left just enough so that its high-order
+     * bit is on, and shift u left the same amount. We may have to append a
+     * high-order digit on the dividend; we do that unconditionally.
+     */
+    Bigint vn = v.abs() << d;
+    Bigint un = u.abs() << d;
+    Bigint q = ZERO;
+    q.values = __vec(m + 1);
+    if (un.values.size() == u.values.size()) {
+        un.values.push_back(0);
+    }
+    for (size_t j = m; j + 1 > 0; --j) {
+        uint64_t qHat = (un[j+n] * NUM_BITS + un[j+n-1]) / vn[n - 1];
+        uint64_t rHat = (un[j+n] * NUM_BITS + un[j+n-1]) % vn[n - 1];
+        do {
+            if (qHat == NUM_BITS || qHat * vn[n - 2] > rHat * NUM_BITS + un[n + j - 2]) {
+                qHat--;
+                rHat += vn[n-1];
+            } else {
+                break;
+            }
+        } while (rHat < NUM_BITS);
+        // Multiply and subtract.
+        for (size_t i = 0; i < n; i++) {
+            uint64_t t = un[i+j] - qHat * vn[i];
+            un.values[i+j] = t;
+        }
+        q.values[j] = qHat;
+    }
+    Bigint rem = ZERO;
+    rem.values = __vec(un.values.size());
+    for (size_t i = 0; i < un.values.size(); i++) {
+        rem.values[i] = un[i] * m;
+    }
+    return {resultSign ? -q : q, rem};
 }
 
 size_t Bigint::numberOfTrailingZeros() const {
@@ -768,6 +816,19 @@ uint32_t Bigint::getLowestSetBit() const {
         lsb += (i << 5u) + Integer::numberOfTrailingZeros(b);
     }
     return lsb;
+}
+
+size_t Bigint::sizeWithoutLeadingZeros() const {
+    for (size_t answer = values.size(); answer > 0; --answer) {
+        if (values[answer - 1] != 0) {
+            return answer - 1;
+        }
+    }
+    return 0;
+}
+
+Bigint::__num Bigint::operator[](size_t i) {
+    return values[i];
 }
 
 Bigint operator "" _B(unsigned long long val) noexcept {
