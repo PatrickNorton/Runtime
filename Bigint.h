@@ -93,6 +93,7 @@ public:
     explicit operator uint64_t() const;
 
     Bigint pow(const size_t&) const;
+    Bigint pow(const Bigint&) const;
     Bigint abs() const;
 
     std::string to_string() const;

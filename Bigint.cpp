@@ -666,6 +666,14 @@ size_t Bigint::numberOfTrailingZeros() const {
     return ((values.size()-1-j)<<5u) + trailing0s;
 }
 
+Bigint Bigint::pow(const Bigint& exp) const {
+    if (exp > Bigint(std::numeric_limits<__num>::max())) {
+        throw std::runtime_error("Value too large");
+    } else {
+        return pow(size_t(exp));
+    }
+}
+
 Bigint Bigint::pow(const size_t& exponent) const {
     if (exponent < 0) {
         throw std::runtime_error("Negative exponent");

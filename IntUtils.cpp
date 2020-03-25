@@ -76,6 +76,14 @@ namespace Constants {
         runtime->push(fromNative(result));
     }
 
+    void IntType::intPow(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
+        Bigint result(self->value);
+        for (const auto& arg : args) {  // TODO: Type checking
+            result = result.pow(arg->toInt(runtime));
+        }
+        runtime->push(fromNative(result));
+    }
+
     void IntType::intEquals(const IntPtr& self, const std::vector<Variable>& args, Runtime* runtime) {
         auto value = self->value;
         for (const auto& arg : args) {
@@ -217,6 +225,7 @@ namespace Constants {
                 {Operator::MULTIPLY,       intMul},
                 {Operator::FLOOR_DIV,      intFloorDiv},
                 {Operator::MODULO,         intMod},
+                {Operator::POWER,          intPow},
                 {Operator::EQUALS,         intEquals},
                 {Operator::NOT_EQUALS,     intNotEquals},
                 {Operator::GREATER_THAN,   intGreaterThan},

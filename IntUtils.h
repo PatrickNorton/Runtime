@@ -25,6 +25,7 @@ namespace Constants {
         static void intMul(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intFloorDiv(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intMod(const IntPtr&, const std::vector<Variable>&, Runtime*);
+        static void intPow(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intEquals(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intNotEquals(const IntPtr&, const std::vector<Variable>&, Runtime*);
         static void intGreaterThan(const IntPtr&, const std::vector<Variable>&, Runtime*);
