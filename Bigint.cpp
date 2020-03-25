@@ -83,7 +83,10 @@ Bigint::Bigint(std::string value) {
     sign = false;
     Bigint result = 0_B;
     for (; i < value.size(); i++) {
-        result += Bigint(intOf(value[i])) * (10_B).pow(value.size() - i - 1);
+        auto iVal = intOf(value[i]);
+        if (iVal != 0) {
+            result += Bigint(iVal) * (10_B).pow(value.size() - i - 1);
+        }
     }
     this->values = result.values;
 }
@@ -372,7 +375,7 @@ int8_t Bigint::compareMagnitude(const Bigint& other) const {
 }
 
 uint32_t Bigint::getInt(size_t index) const {
-    if (index <= values.size()) {
+    if (index >= values.size()) {
         return sign ? -1 : 0;
     }
     uint32_t magInt = values[values.size()-index-1];
@@ -669,6 +672,9 @@ Bigint Bigint::pow(const size_t& exponent) const {
     }
     if (!*this) {
         return exponent == 0 ? 1_B : *this;
+    }
+    if (!exponent) {
+        return 1_B;
     }
 
     auto partToSquare = this->abs();
