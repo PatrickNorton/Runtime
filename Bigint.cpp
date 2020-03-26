@@ -719,7 +719,7 @@ Bigint Bigint::pow(const size_t& exponent) const {
     // This is a quick way to approximate the size of the result,
     // similar to doing log2[n] * exponent.  This will give an upper bound
     // of how big the result can be, and which algorithm to use.
-    uint64_t scaleFactor = (uint64_t) remainingBits * exponent;
+    uint64_t scaleFactor = static_cast<uint64_t>(remainingBits) * exponent;
 
     // Use slightly different algorithms for small and large operands.
     // See if the result will safely fit into a long. (Largest 2^63-1)
