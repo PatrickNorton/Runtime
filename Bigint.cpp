@@ -571,7 +571,7 @@ std::string Bigint::to_str(Bigint value) {
     return result;
 }
 
-std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
+std::pair<Bigint, Bigint> Bigint::div_rem(const Bigint& x, const Bigint& y) {
     if (!y) {
         throw std::runtime_error("Cannot divide by 0");
     }
@@ -597,9 +597,7 @@ std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
 
     // Shift away some of it
     size_t shift = std::min(x.numberOfTrailingZeros(), y.numberOfTrailingZeros());
-    x >>= shift;
-    y >>= shift;
-    return divideKnuth(x, y);
+    return divideKnuth(x >> shift, y >> shift);
 }
 
 /*

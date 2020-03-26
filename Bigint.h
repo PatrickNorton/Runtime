@@ -29,7 +29,7 @@ private:
     static __vec mul(const __vec& x, const __vec& y);
     static std::string to_str(Bigint);
 
-    static std::pair<Bigint, Bigint> div_rem(Bigint x, Bigint y);
+    static std::pair<Bigint, Bigint> div_rem(const Bigint& x, const Bigint& y);
 
     static Bigint valueOf(__vec val);
 
