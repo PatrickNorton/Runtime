@@ -456,14 +456,14 @@ Bigint::operator uint32_t() const {
 
 Bigint::operator int64_t() const {
     if (sign) {
-        return -(int64_t) ((uint64_t) *this);
+        return -static_cast<int64_t>(operator uint64_t());
     } else {
-        return (uint64_t) *this;
+        return operator uint64_t();
     }
 }
 
 Bigint::operator uint64_t() const {
-    return (uint64_t) values[values.size() - 2] << 32u | (uint64_t) values[values.size() - 1];
+    return static_cast<uint64_t>(values[values.size() - 2]) << 32u | static_cast<uint64_t>(values[values.size() - 1]);
 }
 
 Bigint& Bigint::operator++() {
@@ -479,14 +479,12 @@ Bigint& Bigint::operator--() {
 }
 
 Bigint Bigint::operator++(int) {
-    static const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     ++*this;
     return temp;
 }
 
 Bigint Bigint::operator--(int) {
-    static const Bigint ONE = 1_B;  // Prevent over-creation
     Bigint temp = *this;
     --*this;
     return temp;
@@ -601,13 +599,13 @@ std::pair<Bigint, Bigint> Bigint::div_rem(Bigint x, Bigint y) {
     size_t shift = std::min(x.numberOfTrailingZeros(), y.numberOfTrailingZeros());
     x >>= shift;
     y >>= shift;
-    return divideKnuth2(x, y);
+    return divideKnuth(x, y);
 }
 
 /*
  * Taken from Knuth's Algorithm D.
  */
-std::pair<Bigint, Bigint> Bigint::divideKnuth2(const Bigint& u, const Bigint& v) {
+std::pair<Bigint, Bigint> Bigint::divideKnuth(const Bigint& u, const Bigint& v) {
     bool resultSign = u.sign ^ v.sign;
     size_t uSize = u.sizeWithoutLeadingZeros();
     size_t vSize = v.sizeWithoutLeadingZeros();

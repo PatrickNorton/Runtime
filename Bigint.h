@@ -39,7 +39,7 @@ private:
     uint32_t getLowestSetBit() const;
 
     size_t sizeWithoutLeadingZeros() const;
-    static std::pair<Bigint, Bigint> divideKnuth2(const Bigint& u, const Bigint& v);
+    static std::pair<Bigint, Bigint> divideKnuth(const Bigint& u, const Bigint& v);
 
     __num operator[](size_t);
 public:
