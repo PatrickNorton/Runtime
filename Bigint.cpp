@@ -617,8 +617,7 @@ std::pair<Bigint, Bigint> Bigint::divideKnuth(const Bigint& u, const Bigint& v) 
      */
     Bigint vn = v.abs() << d;
     Bigint un = u.abs() << d;
-    Bigint q = ZERO;
-    q.values = __vec(m + 1);
+    Bigint q(__vec(m + 1));
     if (un.values.size() == u.values.size()) {
         un.values.push_back(0);
     }
@@ -640,8 +639,7 @@ std::pair<Bigint, Bigint> Bigint::divideKnuth(const Bigint& u, const Bigint& v) 
         }
         q.values[j] = qHat;
     }
-    Bigint rem = ZERO;
-    rem.values = __vec(un.values.size());
+    Bigint rem(__vec(un.values.size()));
     for (size_t i = 0; i < un.values.size(); i++) {
         rem.values[i] = un[i] * m;
     }
